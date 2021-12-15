@@ -1,0 +1,44 @@
+Package: GraveGoodValue
+Title: Quantify Grave Good Value (One Line, Title Case)
+Version: 0.1
+Authors@R:
+    person(given = "Mikkel",
+           family = "Nørtoft",
+           role = c("aut", "cre"),
+           email = "jsv399@hum.ku.dk")
+Description: This research compendium is primarily used as documentation for the main paper 
+"Quantifying Grave Wealth", and may develop into a proper package at a later stage. 
+It calculates manufacturing times for archaeological objects (mainly Neolithic) 
+based on experimental reference literature and interviews with crafts specialists. 
+To do this, several measurement details and it is necessary to follow the structure given in the material specific tables (for your own data, 
+copy them and replace values with your data). The system only works for object types covered in the system (mainly from the Neolithic and Copper Age), 
+and it is important that the exact same object terminology is used for the system to recognize. See the SI reference tables in each material section for the working terminology.
+Skill bonus is calculated as a percentage of manufaturing hours based on estimations of the required training (in years) to make the different objects 
+(see again reference tables for required terminology) in different levels, see SI for details. 
+Manufacturing time for ceramics depends on many different factors, many of which are connected with pot size, see SI for details. 
+The different material scripts also show exactly which terminology to use in what case, but the reference tables in the SI should also show this.
+Manufaturing times can be combined with estimated travel times (e.g. in hours assuming here 7 km/h) for imported raw materials, 
+and scarcity (total number of graves/total number of artefacts of x material). 
+An additional prestige value can be calculated as follows: 
+generate presence/absence table of grave good categories and get the Total number of Object Types (TOT) for each grave, 
+then take TOT median for each grave good category (a.k.a. "Object Type"), see the script prestigeObjectsBoxPlots.R in 
+this compendium but modify to fit your grave good categories or follow the structure given in the 
+data file "data/grave_goods_raw_count.csv". 
+The Prestige.R script exctracts the TOT medians for each grave good category and applies them as values instead of 
+the raw grave good counts (in a new table). 
+Estimated meat is calculated by applying Meat Utility Indices of different species to the Minimum Number of Individuals (MNI)
+of unworked animal bones (some species indices not found in the literature, and thus extrapolated from other species) 
+found in each grave.
+License: MIT + file LICENSE
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: bookdown,
+    here,
+    ggplot2 (>= 3.3.3),
+    knitr (>= 1.31),
+    rmarkdown (>= 2.6)
+Suggests: devtools,
+    git2r
