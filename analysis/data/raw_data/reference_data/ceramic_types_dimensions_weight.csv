@@ -1,0 +1,24 @@
+item_fired,height_cm,width_cm,kg,type,largest_measure_cm,grams,HeightXwidth
+6 oz. coffee mug,7.62,7.62,0.2835,mug,7.62,283.5,58.0644
+8 oz. coffee mug,12.7,7.62,0.3969,mug,12.7,396.9,96.774
+14 oz. beer mug,17.78,8.89,0.5953,mug,17.78,595.3,158.0642
+Saucer,2.54,13.97,0.3685,saucer,13.97,368.5,35.4838
+Large dinner plate,3.175,29.21,1.8144,plate,29.21,1814.4,92.74175
+Medium dinner plate,2.54,25.4,1.3608,plate,25.4,1360.8,64.516
+Side plate,2.54,20.32,0.9922,plate,20.32,992.2,51.6128
+Bread and butter plate,1.905,16.51,0.5953,plate,16.51,595.3,31.45155
+Large bowl,15.24,30.48,2.6082,bowl,30.48,2608.2,464.5152
+Medium bowl,11.43,25.4,1.8144,bowl,25.4,1814.4,290.322
+Small bowl,7.62,15.24,0.6237,bowl,15.24,623.7,116.1288
+4 quart casserole,20.32,30.48,2.6082,casserole,30.48,2608.2,619.3536
+2 quart casserole,11.43,21.59,1.8144,casserole,21.59,1814.4,246.7737
+1 quart casserole,10.16,16.51,0.9922,casserole,16.51,992.2,167.7416
+1 pint pitcher,16.51,10.16,0.6804,pitcher,16.51,680.4,167.7416
+4 pint pitcher,35.56,15.24,2.6082,pitcher,35.56,2608.2,541.9344
+Large teapot,20.32,20.32,1.9845,teapot,20.32,1984.5,412.9024
+Medium teapot,15.24,15.24,1.5309,teapot,15.24,1530.9,232.2576
+Small teapot,11.43,12.7,0.9922,teapot,12.7,992.2,145.161
+1 liter wine decanter,30.48,15.24,1.9845,decanter,30.48,1984.5,464.5152
+Small wine decanter,20.32,12.7,1.219,decanter,20.32,1219,258.064
+Large storage jar,30.48,12.7,2.268,jar,30.48,2268,387.096
+Medium storage jar,25.4,10.16,1.5309,jar,25.4,1530.9,258.064

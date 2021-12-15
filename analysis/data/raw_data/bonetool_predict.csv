@@ -1,0 +1,47 @@
+Site;Grave_ID;object_ID;Plate_number;object_type;count;comments;grave_fill;anatomical_part;species;length_mm;width_mm;thickness_mm;hole_diam_mm
+Hostice 4;Hos_802;NM Praha 17805;4.3;bevel-ended tool;;bone tool with an edge, metatarsus, Bos primigenius f. taurus. L - 169 mm, W - 28 mm, T - 15 mm;TRUE;metatarsus;Bos primigenius f. taurus;169;28;15;
+Hostice 4;Hos_847;A 34541;;bevel-ended tool;1;bone tool with an edge, the bone of a larger animal;;;larger animal;175;23;22;
+Hostice 4;Hos_881;A34856;22.3;bone point;1;bone tool with a tip (double-sided), a larger animal bone;;;;142;15;8;
+Hostice 4;Hos_881;A34860;22.4;bevel-ended tool;1;bone tool with edge, sacrum Ovis / Capra;;;;164;24;15;
+Ivanovice na Hane 3/2;Iv3_2_800;A16784a;25.3a;bone point;1;pointed bone tool, from bone of a larger animal, L – 122 mm, W – 10 12 mm, T – 7 mm;;;larger animal;122;10-12;7;
+Ivanovice na Hane 3/2;Iv3_2_800;A16784b;25.3b;bone point;1;pointed bone tool, from bone of a medium-sized animal, L – 65 mm, W – 6 mm, T – 5 mm;;;medium-sized animal;65;6;5;
+Ivanovice na Hane 3/2;Iv3_2_801;A16794;26.2;bone point;1;bone pointed tool, not archaeologically determined;;;;108;15;11;
+Ivanovice na Hane 3/2;Iv3_2_813;A16889;33.2;antler point;1;antler pointed tool, Cervus elaphus;;;;115;29;14;
+Ivanovice na Hane 4;Iv4_800;A17375;45.5;bone point;1;bone point;;;Ovis / Capra;71;8;3;
+Ivanovice na Hane 4;Iv4_810;A17534;51.7;bone tool;1;2 fragments (of presumably same bone tool), severely damaged bone tool (species undetermined);;;unidentified;77 and 50;17 and 21;13 and 7;
+Blucina;14.1.1. Gr. 1;bone;;bone chisel;1;bone chisel (proximal part of domestic aurochs radius L 119mm);;;;119;;;
+Letonice (Hajek);155.1.1. Br. 3;bone;;bone chisel;1;Bone tool with chisel-like edge, made of fragment of very thick unidentified bone, L - 1 10 mm;;;;110;;;
+Letonice (Hajek);155.1.1. Br. 3;bone;;bone point;1;Pointed bone tool fragment of thick compact bone. L - 134 mm);;;;134;;;
+Letonice (Hajek);155.1.1. Br. 3;bone;;boar tusk pendant;5;boars tusk pendant (made of lower canines, probably  domestic pig, two opposite incisions on the tip);;;;;;;
+Letonice (Hajek);155.1.2 Barrow 4 (VN 1);bone;;boar tusk pendant;5;boar tusk with two opposite incisions at the tip (unidentified);;;;;;;
+Letonice (Hajek);155.1.4 Barrow 6 (VN 1);bone;;boar tusk;4;boar tusk;;;;;;;
+Letonice (Hajek);155.1.3. Br. 5;155.1.3.3. ;;bone chisel;1;Bone chisel (joint head at the butt, made from medial section of proximal portion of a left radius from a domestic aurochs. L - 146 mm);;;;146;;;
+Marefy (Clupy);177.1.1 Grave 1 (VN 1);bone;;tooth;2;2 domestic aurochs teeth (molar and lower incisor);;;;;;;
+Marefy (Clupy);177.1.1 Grave 1 (VN 1);bone;;bone awl;1;Bone awl (fragment of unidentified bone. L - 127 mm);;;;127;;;
+Marefy (Clupy);177.1.1 Grave 1 (VN 1);bone;;tooth pendant;189;189 dog incisors (I1, I2, I2) and 43 molars (M1, M2);;;;14.5-23.5;;;1.5-3
+Marefy (Clupy);177.1.1 Grave 1 (VN 1);bone;;tooth pendant;4;4 badger canines (C1, C2);;;;;;;
+Marefy (Clupy);177.1.1 Grave 1 (VN 1);bone;;tooth pendant;130;130 dog canines (C1, C|) and 28 fragments, indicating a minimum of a further 13 specimens;;;;31-40;;;2.5-4
+Marefy (Clupy);177.1.1 Grave 1 (VN 1);bone;;bone pendant;57;"57 bone copies of dog teeth made of the compact bone of large bones of probably aurochs. All teeth and bone copies are provided at the root end with holes, made from both sides. The functional outline of those holes is not conspicuous. Incisor dimensions (L - 14.5-23.5 mm; hole - 1.5-3 mm), molars (L - 7-13 mm; hole - 2-4.1 mm), canines (L - 31-40 mm; hole I 2.5-4 mm) and bone imitations+K2 (L I 28, 5-36.5 mm; hole - 2.5-4 mm),  estimated as teeth from at least 89 dogs, Pl. 213)";;;;28.5-36.5;;;2.5-4
+Marefy (Clupy);177.1.1 Grave 1 (VN 1);bone;;bone bead;101;"101 bone beads (cylindrical shape of undetermined bone. H - 3-8 mm; diameter - 8 mm)";;;;3.0-8.0;8;;
+Morkuvky (built-up section of the village);197.1.1;bone;;bone chisel;1;bone chisel (joint head at the rear, made from proximal part of aurochs right radius, L - 195 mm).;TRUE;;;195;;;
+Pavlov (Horni pole);232.1.1 Grave 5 (VN 1);bone;;antler tool;1;antler(?) object (red deer antler, rounded ends);;;;;;;
+Pavlov (Horni pole);232.1.1 Grave 5 (VN 1);bone;;bone bead;3;"3 bone beads (cylindrical shape. L - 9-13 mm; diameter - 4-4.5 mm)";;;;9.0-13.0;4-4.5;;
+Pavlov (Horni pole);232.1.1 Grave 5 (VN 1);bone;;bone chisel;1;bone chisel (aurochs radius, without articular head at the butt);;;;;;;
+Pavlov (Horni pole);232.1.2. Gr. 14;bone;;bone harpoon simple;1;bone harpoon (inside pot, undetermined bone. L - 96.5 mm);;;;96.5;;;
+Pavlov (Horni pole);232.1.2. Gr. 14;bone;;bone chisel;1;bone chisel (domestic aurochs radius, articular head at the butt. L - 150 mm);;;;150;;;
+Podolí (Zuran);240.1.1. Br. 1;bone;;bone awl;1;bone awl (compact, undetermined, L -108 mm);;;;108;;;
+Smrzice (Zaolesni);281.1.1. Gr. 1;bone;;bone awl;1;bone awl (diaphysis of some long bone, probably pig);;;;;;;
+Brno-Stary Liskovec (Housing Estate of Czechoslovak-Soviet Friendship, Bohunice-West);30.1.2 Grave 36 (VN 1);bone;;bone tool;1;bone tool (sheep/goat metacarpal diaphysis);;;;;;;
+Brno-Stary Liskovec (Housing Estate of Czechoslovak-Soviet Friendship, Bohunice-West);30.1.2 Grave 36 (VN 1);bone;;bone chisel;1;bone chisel (148 mm, metatarsus of domestic aurochs, joint head at butt);;;;148;;;
+Brno-Stary Liskovec (Housing Estate of Czechoslovak-Soviet Friendship, Bohunice-West);30.1.2 Grave 36 (VN 1);bone;;bone awl;1;bone awl (88mm, long bone diaphysis, perhaps domestic aurochs);;;;88;;;
+Tesetice (Livestock production area belonging to the agricultural cooperative);312.1.1 Grave 1 (VN 1);bone;;antler tool;1;bone/antler tool (2 fragments, very compact bone or antler. L - 110 and 190 mm);;;;110 and 190;;;
+Tvarozna (Intersection of Motorways D 1 and D 47);321.3.1. Gr. 3;bone;;bone awl;1;bone awl (probably sheep/goat tibia, L - 115 mm);;;;115;;;
+Vresovice (Padelky);355.1.2. Gr. 2;bone;;bone chisel;1;chisel-shaped bone tool (aurochs medial face of tibia body, L 164mm);;;;164;;;
+Vresovice (Padelky);355.1.2. Gr. 2;bone;;boar tusk;1;boar tusk fragment (domestic pig, pres. L - 57 mm);;;;57;;;
+Zelesice (Sadova ulice, site No. 203/2);368.1.1 Grave 1;bone;;bevel-ended tool;1;bone tool (unknown species, rib, one end rounded, the other transversally pointed, in the middle a small circular bored hole from both directions. L - 91 mm: hole diameter - 3 mm);;;;90;;;3
+Zelesice (Sadova ulice, site No. 203/2);368.1.1 Grave 1;bone;;boar tusk awl;1;"boar tusk awl (boar tusk of domestic pig(?), well made point. L - 101 mm; Point - 11mm)";;;;101;11;;
+ Detkovice (Motorway Prostejov-Vyskov Section);58.1.1. Gr. 1;bone;;bone point;1;bone tool (one pointed and one flat ends, from compact diaphysis of undetermined bone, L 170 mm);;;;170;;;
+Drahlov (Cow barn of the agricultural cooperative);72.1.1. Gr. 1;bone;;bone tool;1;bone tool (bent, with rounded ends, unidentified bone, L - 116 mm);;;116;;;;
+Holubice IV (U cihelen);93.1.2. Gr. 26;bone;;bone awl;1;bone awl (probably of sheep/goat tibia, L - 67 mm);;;67;;;;
+Hostice Farm of the Vyskov State Farm;97.1.1 Grave 1 (VN 1);bone;;bone chisel;1;bone tool (chisel-like edge, unidentified split hollow bone. L - 138 mm);;;138;;;;
+Hostice Farm of the Vyskov State Farm;97.1.1 Grave 1 (VN 1);bone;;bone awl;1;bone awl (joint head at butt, distal part of sheep/goat tibia, L-104 mm);;;104;;;;

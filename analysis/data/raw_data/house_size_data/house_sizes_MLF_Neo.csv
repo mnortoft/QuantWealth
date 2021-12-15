@@ -1,0 +1,18 @@
+site;Region;Country;date_relative;rel_data_basis;house_type;Period;Period_specific;Culture;Cultural_specific;house_m2;reference
+Schönebeck;Salzlandkreis;Germany;2800-2200 BCE;10.38x5;;FN_CA;Final Neolithic;Schonfeld;Schönfeld;51.9;Jurkenás and Spatzier 2019
+Wedringen;Landkreis Börde;Germany;2800-2200 BCE;4.88x4.13;pit dwelling;FN_CA;Final Neolithic;Schonfeld;Schönfeld;20.15;Blödorn et al. 2019
+Pförring-Unterfeld;Landkreis Eichstätt, Bavaria;Germany;3300-2700 BCE;28.68x8.2;Two-aisled;FN_CA;Final Neolithic;Cham Group;Cham Group;235.18;Schefzik 2019
+Wien-Oberlaa House 1;Eastern Austria;Austria;2600-2150 BCE;7.13x4.75;Two-aisled;FN_CA;Eneolithic;KC-Mako;Kosihy-Caka/Mako group;33.87;Kern et al. 2019
+Wien-Oberlaa House 2;Eastern Austria;Austria;2600-2150 BCE;6.5x3.75;;FN_CA;Eneolithic;KC-Mako;Kosihy-Caka/Mako group;24.38;Kern et al. 2019
+Wien-Oberlaa House 3;Eastern Austria;Austria;2600-2150 BCE;5.75x1.65;Two-aisled;FN_CA;Eneolithic;KC-Mako;Kosihy-Caka/Mako group;9.49;Kern et al. 2019
+Biechów site 6;Lower Silesia Voivodeship, Northwestern Poland;Poland;3300-2350 BCE;2.78x2.5;hut;GAC;Late Neolithic;GAC;Globular Amphora Culture;6.95;Czebreszuk et al. 2019
+Deby site 29;Kujawy-Pomerania vovoideship, Northwestern Poland;Poland;3300-2350 BCE;4.31x1.81;hut;GAC;Late Neolithic;GAC;Globular Amphora Culture;7.8;Czebreszuk et al. 2019
+Siciny;Lower Silesia Voivodeship, Northwestern Poland;Poland;3300-2350 BCE;4.45x4.86;hut;GAC;Late Neolithic;GAC;Globular Amphora Culture;21.63;Czebreszuk et al. 2019
+Miroslawice;Kujawy-Pomerania vovoideship, Northwestern Poland;Poland;3300-2350 BCE;2.78x2.22;hut;GAC;Late Neolithic;GAC;Globular Amphora Culture;6.17;Czebreszuk et al. 2019
+Opatowice site 36;Kujawy-Pomerania vovoideship, Northwestern Poland;Poland;3300-2350 BCE;6.95x4.17;hut;GAC;Late Neolithic;GAC;Globular Amphora Culture;28.98;Czebreszuk et al. 2019
+Biedrzychowice;Upper Silesia vovoideship, Nortwestern Poland;Poland;3300-2350 BCE;5.56x3.89;hut;GAC;Late Neolithic;GAC;Globular Amphora Culture;21.63;Czebreszuk et al. 2019
+Limensgård;Bornholm;Denmark;2800-2600 BCE;pot sherds with line and pit-decoration;Two-aisled;Scand MN;MN BI;TRB;late FBC/early BAC (BAC in Nielsen vol I);111;Sparrewohn et al. 2019
+Limensgård;Bornholm;Denmark;2800-2600 BCE;four-sided flint chisel;Two-aisled;Scand MN;MN BI;TRB;late FBC, Grødby phase;123.75;Sparrewohn et al. 2019
+Ndr. Grødbygård;Bornholm;Denmark;;;Two-aisled;Scand MN;MN BI?;TRB;;154;Sparrewohn et al. 2019
+Ndr. Grødbygård;Bornholm;Denmark;;;Two-aisled;Scand MN;MN;TRB;late FBC Grødby phase;114;Sparrewohn et al. 2020
+Rendsborgparken;Western Zealand;Denmark;3100-2900 calBCE;;Two-aisled;Scand MN;MNAIII-V;TRB;Late FBC;95;Sparrewohn et al. 2025

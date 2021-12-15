@@ -1,0 +1,30 @@
+mineral_type;mohs_hardness;fracture_toughness;mohs_ref;tough_ref
+talc;1;;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+gypsum;2;;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+calcite;3;0.39;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+fluorite;4;0.89;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+apatite;5;0.76;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+orthoclase;6;0.88;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+quartz;7;1.6;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+topaz;8;1.04;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+corundum;9;2.38;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+diamond;10;5;https://doi.org/10.2138/am.2006.1844;https://doi.org/10.2138/am.2006.1844
+diabase;5;1.6;https://rocks.comparenature.com/en/diabase-rock/model-82-0;https://rocks.comparenature.com/en/diabase-rock/model-82-0
+amphibolite;6.5;2.3;https://rocks.comparenature.com/en/amphibolite-rock/model-42-0;https://rocks.comparenature.com/en/amphibolite-rock/model-42-0
+jadeitite;6.75;7;https://en.wikipedia.org/wiki/Jadeite;https://rocks.comparenature.com/en/jadeitite-rock/model-148-0
+serpentinite;3.5;7;https://rocks.comparenature.com/en/serpentinite-rock/model-103-0;https://rocks.comparenature.com/en/serpentinite-rock/model-103-0
+eclogite;3.75;;https://rocks.comparenature.com/en/eclogite-rock/model-49-0;
+porphyritic rocks (unclear definition);5.25;2.7;https://rocks.comparenature.com/en/rhomb-porphyry-rock/model-151-0;https://rocks.comparenature.com/en/rhomb-porphyry-rock/model-151-0
+volcanite;6.25;2.7;https://doi.org/10.1016/s0043-1648(01)00717-7;https://rocks.comparenature.com/en/rhomb-porphyry-rock/model-151-0
+slate;3.5;1.2;https://rocks.comparenature.com/en/slate-rock/model-2-0;https://rocks.comparenature.com/en/slate-rock/model-2-0
+sandstone;6.5;2.6;https://rocks.comparenature.com/en/sandstone-rock/model-8-0;https://rocks.comparenature.com/en/sandstone-rock/model-8-0
+culm greywacke;6.5;2.6;https://rocks.comparenature.com/en/greywacke-rock/model-41-0;https://rocks.comparenature.com/en/greywacke-rock/model-41-0
+argillite (claystone);2.5;2.6;https://rocks.comparenature.com/en/argillite-rock/model-67-0;https://rocks.comparenature.com/en/argillite-rock/model-67-0
+greenschist;3.75;1.5;https://rocks.comparenature.com/en/greenschist-rock/model-135-0;https://rocks.comparenature.com/en/greenschist-rock/model-135-0
+metabasite;6.5;;https://www.jstor.org/stable/40713210;
+nephelinite;6.5;2.7;https://rocks.comparenature.com/en/nephelinite-rock/model-124-0;https://rocks.comparenature.com/en/nephelinite-rock/model-124-0
+granite;6.5;1.2;https://rocks.comparenature.com/en/granite-rock/model-1-0;https://doi.org/10.1016/j.proeng.2017.05.242
+siltstone;6.5;2.6;https://rocks.comparenature.com/en/siltstone-rock/model-37-0;https://rocks.comparenature.com/en/siltstone-rock/model-37-0
+gabbro;7;1.6;https://rocks.comparenature.com/en/gabbro-rock/model-14-0;https://rocks.comparenature.com/en/gabbro-rock/model-14-0
+diorite;6.5;2.1;https://rocks.comparenature.com/en/diorite-rock/model-13-0;https://rocks.comparenature.com/en/diorite-rock/model-13-0
+basalt;6;2.3;https://rocks.comparenature.com/en/properties-of-basalt/model-7-6;https://rocks.comparenature.com/en/properties-of-basalt/model-7-6

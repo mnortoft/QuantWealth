@@ -1,0 +1,33 @@
+Country	Culture	Period	Period_specific	Site	Region	Houses_for_the_living_ID	house ID	house_m2	house_type	Reference
+Sweden	TRB	EN	EN I	Dagstorp	Scania, Southern Sweden		house 57/58	140	Dagstorp (type I, two-aisled, trapedzoidal)	Sørensen 2014
+Denmark	TRB	EN	EN I	Kildevang	Randers Amt, Jutland	351	house III, A938	13	hut, only 2 roof-bearing posts are at the edges (so total length is same as posthole length)	Houses for the living catalogue
+Denmark	TRB	EN	EN I	Lisbjerg Skole	Aarhus Amt, Jutland	363	house A2090	60		Houses for the living catalogue
+Denmark	TRB	EN	EN I	Lisbjerg Skole	Aarhus Amt, Jutland	363	house A2225	60		Houses for the living catalogue
+Denmark	TRB	EN	EN I	Lisbjerg Skole	Aarhus Amt, Jutland	363	house A2291	38		Houses for the living catalogue
+Denmark	TRB	EN	EN I	Lisbjerg Skole	Aarhus Amt, Jutland	363	house A2254	38		Houses for the living catalogue
+Sweden	TRB	EN	EN I	Mossby	Scania			72	Mossby	Sørensen 2014
+Sweden	TRB	EN	EN I	Skogsmossen	Värmland, Western Sweden			100		Sørensen 2014
+Sweden	TRB	EN	EN I	Skumparberget	Närke, Svealand, Southern Central Sweden			105		Sørensen 2014
+Sweden	TRB	EN	EN I	Svågertorps industriomr. A	Scania, Southern Sweden		house 5	110		Sørensen 2014
+Sweden	TRB	EN	EN I	Tjugestatorp	Närke, Svealand, Southern Central Sweden			105		Sørensen 2014
+Denmark	TRB	EN	EN I (ignoring LN C14 dates as contamination)	Limensgård	Bornholm	102	house FH	101	two-aisled, Limensgård	Houses for the living catalogue
+Denmark	TRB	EN	EN I (Svaleklint phase)	Skræppekærgård	Københavns Amt, Zealand	71		81		Houses for the living catalogue
+Denmark	TRB	EN	"EN I (""ENB"" from ""Svaleklint""-group TRB sherds in near-by pit)"	Dådyrsvej	Frederiksborg Amt, Zealand	2	house 2	105	two-aisled, probably rounded ends	Houses for the living catalogue
+Denmark	TRB	EN	"EN I (""ENB"" from ""Svaleklint""-group TRB sherds in near-by pit)"	Topperøgel	Frederiksborg Amt, Zealand	14	house 1	90	two-aisled	Houses for the living catalogue
+Denmark	TRB	EN	"EN I (""ENB"" from ""Svaleklint""-group TRB sherds in near-by pit)"	Topperøgel	Frederiksborg Amt, Zealand	14	house 2	90	two-aisled	Houses for the living catalogue
+Denmark	TRB	EN	EN IB (7/10 dates around 3600 calBCE)	Frydenlund	Odense Amt, Fyn	117	house A	112.2	two-aisled, Mossby-type	Houses for the living catalogue
+Denmark	TRB	EN	EN IB (7/10 dates around 3600 calBCE)	Frydenlund	Odense Amt, Fyn	117	house B	74.4	two-aisled, Mossby-type	Houses for the living catalogue
+Denmark	TRB	EN	EN IB/ENII (3715-3423/3396 (most dates earlier than 3500) cal BCE)	Ellebækgård II	Maribo Amt, Lolland	106	only house present	29.6	two-aisled	Houses for the living catalogue
+Denmark	TRB	EN	EN II	Alstedgaard	Zealand		house IV	40	two-aisled	Sørensen 2014
+Denmark	TRB	EN	EN II	Alstedgaard	Zealand		house III	18	two-aisled	Sørensen 2014
+Sweden	TRB	EN	EN II	Brunneby	Östergötland			38	two-aisled	Sørensen 2014
+Denmark	TRB	EN	EN II	Bygholm Nørremark	Eastern Jutland			45	two-aisled	Sørensen 2014
+Denmark	TRB	EN	EN II	Damsbo	Svendborg Amt	152	A2	70	two-aisled	Sørensen 2014
+Germany	TRB	EN	EN II	Engter	Northwestern Germany			78	two-aisled	Sørensen 2014
+Denmark	TRB	EN	EN II	Esrogård 30	Frederiksborg Amt	1		55	two-aisled	Houses for the living catalogue
+Denmark	TRB	EN	EN II	Lindalslund	Fyn		K4	72	two-aisled	Sørensen 2014
+Denmark	TRB	EN	EN II	Lindalslund	Fyn		K1	63	two-aisled	Sørensen 2014
+Sweden	TRB	EN	EN II	Saxtorp	Scania		house 17	120	two-aisled	Sørensen 2014
+Denmark	TRB	EN	EN II	Strandby Gammeltoft Syd	Fyn			50	two-aisled	Sørensen 2014
+Denmark	TRB	EN	EN II (Virum-style pottery)	Ornehus	Stevns, Zealand	99		96	two-aisled	Houses for the living catalogue
+Denmark	TRB	EN	EN II (Virum-style pottery)	Lerbjerget	Præstø Amt	101	house 1	56.12	two-aisled	Sørensen 2014

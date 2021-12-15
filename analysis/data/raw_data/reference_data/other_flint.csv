@@ -1,0 +1,15 @@
+type;type_description;time_estimate_mins;knapping_PH;handle_PH;skill_level;flint_type;reference;URL
+disc scraper;disc scraper;few minutes;0.05;;low-medium;;Informant (MK);
+backed knife;backed knife;less than 1 minute;0.017;0.86;low?;;Informant (MK);
+flake axe;flake axe;few minutes;0.05;6;high;;Informant (MK);
+blade sickle;blade sickle;few minutes + handle 0.86 (10% of axe handle)  = 0.05+0.86;0.05;0.86;medium;;Informant (MK);
+flake burin;flake burin;less than 1 minute;0.017;;low?;;Informant (MK);
+borer;borer;less than 1 minute;0.017;0.86;low?;;Informant (MK);
+transverse arrowhead;transverse arrowhead;30 seconds + shaft and feathers 1 full day 0.0083 + 8;0.0083;8;high;;Informant (MK), shaft: Wentink 2020, Informant (MK));
+blade;blade;less than 1 minute;0.017;;medium?;;Informant (MK);
+Bell Beaker knife;Bell Beaker knife (standardized, dorsal retouch, thin blade);raw material: c. 3 PH (assuming half of axe), prepare blade core: 1 h, knapping: up to 30 min (MK), 30-45 min (Wentink 2020) = 3+1+0.56;4.56;0.86;very high;;Informant (MK);
+Late Neolithic Nordic dagger;Late Neolithic Hindsgavl-type dagger);raw material: c. 3 PH (assuming half of axe), knapping: 3-4 hours onwards;6.5;0.86;expert;;Informant (MK);
+Blade core;Blade core (incl. cylindrical blade core);raw material: c. 5 PH prepare blade core (1 PH) + 3-4 hours finishing?;9.5;;high?;;Informant (MK);
+Arrowhead barbed-and-tanged;Arrowhead (barbed-and-tanged, pressure-flaked);20-30 min (MK), 19 min (with copper pressure flaker, Will Lord uncut video) (mean 23 min) + shaft and feathers;0.38;8;high;;Knapping: Informant (MK), Will Lord 2019, shaft: Wentink 2020, Informant (MK));https://www.youtube.com/watch?v=AQuoqb6qBSI&ab_channel=WillLordPrehistoricSurvival
+Obsidian arrowhead;Arrowhead (barbed with side-notches, pressure-flaked);30 min (with copper pressure flaker, grinding edge and surface, Will Lord uncut video), time is from triangle-shaped preform;0.5;8;high;obsidian;Will Lord 2020;https://www.youtube.com/watch?v=_3r69qPRBGQ&ab_channel=WillLordPrehistoricSurvival
+British Neolithic Dagger;British Neolithic Dagger;26 min rough knapping, 17 min pressure flaking incl tang;0.72;0.86;expert;high quality dark British flint;Will Lord 2020 uncut video;https://www.youtube.com/watch?v=JWS-5JzUII0
