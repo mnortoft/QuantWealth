@@ -16,7 +16,7 @@ Title <- "Quantifying Grave Wealth"
 
 # Quantifying Grave Wealth
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mattbeets/prestigeObjects/master?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/main?urlpath=rstudio)
 
 This repository contains the data and code for our paper:
 
