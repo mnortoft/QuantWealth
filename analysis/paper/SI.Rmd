@@ -1,0 +1,992 @@
+---
+title: "Quantifying prehistoric grave wealth - Supplementary Information"
+author:
+  - Author:
+      email: Author@author.com
+      correspondence: true
+  
+institute:
+  - UofO: University of Author
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+    bookdown::html_document2:
+      code_folding: hide
+      fig_caption: yes
+      reference_docx: "../templates/template.docx" # Insert path for the DOCX file
+      pandoc_args:
+      #- --lua-filter=../templates/scholarly-metadata.lua
+      #- --lua-filter=../templates/author-info-blocks.lua
+      #- --lua-filter=../templates/pagebreak.lua
+      toc: true
+      toc_float: true
+bibliography: references.bib
+csl: "../templates/journal-of-computer-applications-in-archaeology.csl" # Insert path for the bib-style
+abstract: |
+  This is the supplementary Information (SI) to the paper "Quantifying Grave Wealth" which gives additional information about theoretical and methodological considerations, shows how labour-hours (given as person-hours, PH) of the production of grave goods, as well as skill bonus, scarcity, and meat estimates, are quantified in the main paper (Author submitted 2021), and how it can be used for other Eneolithic-Early Bronze Age grave good data. Additional information that did not fit into the main paper about caveats, PCA dimensions 2 and 3, and imputation of missing grave depth data is also given. Some graphs and tables are interactive, so this document works best in html format.
+keywords: |
+  labour-hours; grave goods; manufacture; craft; experimental archaeology; meat utility index
+highlights: |
+  A new transparent framework for quantifying production labour-hours (person-hours, PH) of grave goods
+
+---
+
+<!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
+
+<!-- With the following code you can access and display values from the yml header above. -->
+
+Keywords: `r rmarkdown::metadata$keywords`
+
+Highlights: `r rmarkdown::metadata$highlights`
+
+<!-- The following code chunk defines some general settings how code chunks should behave. -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>",
+  fig.path = "../figures_SI/",
+  dpi = 300
+)
+```
+
+<!-- The actual document text starts here: -->
+```{r}
+require(here)
+here("analysis")
+```
+
+
+# Objective of this framework
+There are several ways of studying inequality in archaeology. This Supplementary Information shows how estimated labour-hours (person-hours, PH) of grave goods were quantified in a way that for many objects incorporates the different stages in the _chaînes operatoires_ of the production of each object. This is still only a relatively primitive framework for doing so exemplified by a case study on Moravian Corded Ware graves. While the production time for some other European Neolithic, Eneolithic and Bronze Age objects have been added as well, this is by no means an exhaustive resource. However, the open nature of this framework makes it possible to continuously expand, improve, and adjust the data that this study builds upon. The time estimates, in different production stages, for the already included objects may also serve as a guide to estimate the production time for objects not yet included. 
+In any case, PH are "practical" for quantification in the sense that they are more flexible units than e.g. counts of objects (the boundaries of which are not always distinguishable). 
+Nevertheless, using time estimates from experimental archaeology studies as proxy for the time used by people in prehistory presents several problems. One important point as that many experimental studies are done by archaeologists who may in some cases have a good deal of experience in making prehistoric objects, but even so likely cannot compare with individuals who did such work all their life building on generations of handed down experience. However, some of the craft specialists referenced in this study do have many years of, more or less full-time, experience, and are probably the closest we get to the prehistoric craft expertise. On the other hand, we would expect prehistoric individuals to also have different levels of experience, talent, and speed, depending on their age and how their use their time in general, so even if we could observe them directly, we would expect to see a good deal of variance in manufacturing time. This ties in with the other, major problem with trying to estimate manufacturing time, that each craft person may have their own style of manufacture, e.g. potters, which may, apart from their general speed, etc. may affect the time used. This is especially evident in this study for the grinding of flint axes/adzes and for both pecking and grinding groundstone axes, where time seems to vary greatly depending on crafts person, method used, and degree of grinding. On the other hand, flint axe knapping seems fairly regular between knappers (usually around two hours), and the time variation for Neolithic pots in relation to size between three different potters also seems relatively limited acceptable. Another problem is the manufacturing quality of each archaeological artefact within each artefact category which may very likely be tied to its value as well. It would probably take a specialist for each material to distinguish different levels of manufacturing quality between similar artefacts, which the author of this study is unfortunately not. It may be theoretically possible to add a column rating (e.g. from 1-10) each archaeological object on the manufacturing quality within the range of each object, but this would be beyond the knowledge of the author. Therefore, this aspect has not been taken into account, and remains a significant caveat of the study. A larger team of craft specialists within each material or artefact category may perhaps be able to carry out this aspect. 
+Instead a general estimate (from speaking to craft specialists and general comments in the sources used) on the skill level needed to achieve a roughly comparable quality of each artefact category has been attempted, based on estimated years of experience. This is in no way certain and again may vary greatly between individuals, and it may be improved as well in the future.  Endless other factors may affect the manufacturing time that are beyond the scope of this study. For more on this general 'it depends'-problem, see @@petty19. 
+
+## The value of time in the Neolithic
+It can be discussed whether or not manufacturing time (or time in general) is even a suitable indicator of the value of grave goods. Based on extensive data collection and calculations, @kerig07 argues that daily food production alone would have included dehusking and grinding cereals, but also collecting firewood from the closest forest edges, carrying water from the closest well or water source, and food preparation such as making bread or porridge. This would take up approximately a 5th of the daylight hours throughout the year in a Neolithic economy or on average 5 hours per day [@kerig07: 3; @kerig10a]. To this we can add time for seasonal work such as sowing and harvesting, etc. and other activities such as animal husbandry, tool production and maintenance, clothing (production and maintenance), mining and quarrying (e.g. flint, groundstone or copper), tilling, weeding, clearing/fencing, pollarding, leaf-foddering, and building (incl. maintenance), and any social activities, rituals (although some probably outside daylight hours) and travels undertaken for e.g. trading and forming or maintaining alliances. @boydston89 argues that time may be a better measure of value of flint axes than, e.g. calory expenditure, and @olausson83b also mentions manufacturing time of flint axes as one of several factors defining their value in ethnographic societies. Thus, although time may not have been as valuable as it is in our modern society, the time spent making artefacts would likely have accounted for _one of several aspects_ of grave good value, at least from the Neolithic period onwards. Other aspects of value are discussed below and in the main paper. 
+
+<br>
+
+# A note on wealth inequality measures
+Finding the best way to measure inequality has long been a point of interest in modern populations (e.g. United Nations, http://data.un.org/Data.aspx?d=WDI&f=Indicator_Code%3ASI.POV.GINI). For an overview and theoretical thoughts on doing this for prehistoric populations, see @kohler_smith18, especially @smith_etal18 therein, and the combined methodology used in the main text related to this Supplementary Information. 
+
+Calculating wealth in graves is a particularly difficult endeavour, and so far, Gini coefficients from graves tend to be significantly higher than e.g. house floor areas [@stone18; @fochesato_etal19, and this study], which is a more common inequality measure in archaeology. Often, grave wealth is calculated by assigning value points to each grave good type (Todorova [-@todorova02] for Chalcolithic Durankulak in Bulgaria, Nieszery et al. [-@nieszery_etal95: 204-209] for the LBK; and @fochesato_etal21). However, while both studies give similar, and sensible criteria for assigning values: "exoticness" of raw materials [@nieszery_etal95; @todorova02; @fochesato_etal21], manufacturing hours [@nieszery_etal95], scarcity in the graves [@todorova02], and more personal evaluations by the archaeologists working with the materials [@todorova02; @fochesato_etal21], they are not always transparent about the weighting or quantification of the individual points. @grossmann21 is more transparent about his specific calculations in that he uses only scarcity (total graves/total material frequency in graves, normalized against the richest grave in the population) as a measure of value when making Gini coefficients. Although focusing on only one of these aspects of value, his method does have the appeal that it is simple to apply to a larger array of data. However, as Grossmann also mentions [-@grossmann21: 30], the method may overestimate objects such as simple bone tools (or a spindle whorl in this study), if they are deposited rarely in a grave, and underestimate objects considered more valuable (e.g. due to its imported raw material, longer _chaîne operatoire_, more specialised knowledge) such as bronze daggers, if they are deposited more often. Some of these criteria (manufacturing time, import distance, material scarcity) are also mentioned as value parameters in ethnographic accounts by Olausson [-@olausson83b: 12-14] for flint axes, who adds morphological exaggeration (extremely long and thin axes, while unusable, are regarded as more valuable), special variegated colours of the material, and skill (requiring specialist knowledge/experience).
+
+Another relatively simple way to quantify grave wealth is using the Total number of Object Types (referred to as TOT in this study) represented for each grave, which reflects grave wealth as grave good plurality [@nieszery_etal95; @hedeager92; @szmyt02; @mittnik_etal19]. This also has the advantage of being simple to implement, but only counts each grave good category once per grave, and thus would not distinguish (in this case) thousands of shell beads from one shell bead in a grave, potentially underestimating extraordinarily rich graves [a problem also mentioned in @nieszery_etal95: 205]. It also has the drawback of categorizing grave goods into subjectively defined categories (with different ranges) which could potentially affect Gini indices for different cultures. Nevertheless, it is a useful and relatively common measure of grave good wealth. Bösel [-@bosel08: 50, 51-52; based on @binford71] mentions similar parameters such as plurality/TOT, grave good or material scarcity/exclusivity, and number of grave goods as markers of "social persona". 
+
+<br>
+
+# Methods
+Person-hour (PH) estimates for production of objects in this paper have been collected from a combination of experimental and ethnographic literature, as well as interviews with crafts people specializing in Stone Age technology and materials. For cast metals, Johanna Brinkmann's person-hour system is used which, like this study, attempts to incorporate as much of the _chaîne operatoire_ as possible. The idea is to make this framework as flexible as possible, but still keep it relatively comprehensible, expandable, and easy to use. The most complex part is time estimates for making pottery because so many archaeologically distinguishable parameters affect the production time, including temper, size, wall thickness, decoration, smoothing, polish, paint/slip, etc (pers. comm. with Inger Heebøl, historical potter at Lejre Land of Legends).
+
+<br>
+
+## Skill in manufacture of artefacts
+Skill of manufacture of various objects was added as a factor as percentages of manufacturing person-hours in the following scheme guided by estimated training needed to succesfully manufacture these objects as we find them in archaeology: low 0.0 (no dedicated training needed), medium 0.4 (1 month to 1 year training), high 2.0 (1 to 5 years training), very high 5.0 (5-10 years training), and a hypothetical expert 10.0 (more than 10 years focused training, only in exceptional cases). The determination was done based on the experimental and ethnographic literature as well as the interviews with crafts people. While the subjective nature of such ratios is apparent, and may skew the result, they can be adjusted with more data and sources. The important thing is that they are included as a factor which is often mentioned in archaeology, and that they generally seem intuitive, and are transparent. 
+
+<br>
+
+## Imported objects
+For imported objects, active travel hours have been added from raw material source map data compiled (and in large part also mapped) from the literature by the author. Only one-way travel hours from material source to the destination of deposition has been used, under the assumption that many materials were circulating widely and that a direct out-and-back journey only for the purposes of a given material was not the norm. The point that materials may have circulated in many ways and even reused [e.g. @wentink20: 174-177] is extremely difficult (if not impossible) to track for each object, so this more likely represents a minimum travel time of a given material if its suggested source area is taken at face value. Map data for various materials traded over long distances will be updated continuously and a QGIS Geodatabase file with the data is added to this project's Github page, see figure \@ref(fig:cwc-ressource-map). Apart from the geo-lithological polygon layer from @donnini_etal20, and the point data of Neolithic mines and quarries from the Neomine project [https://www.ucl.ac.uk/neomine/maps and @schauer_etal20] and the reader is directed to these sources for that part of the data, the rest is manually mapped by the author through georeferencing of maps from @pernicka_anthony10; @obrien15; @cristea-stan_constantinescu16; @kolar18; @sorensen15; @edinborough_etal20; @artioli_etal17; @brovender_okalelov19; @brovender_etal21; @gebauer_etal21; @klassen14; @hansen13; @siklosi_szilagyi19; @stollner16; @kienlin10; @krause03; @bourgarit_etal08; @muller_etal09; @vangpetersen08; @lexa_etal00; @grigorev15; and flintsource.net. The latter data is available on @Github at https://github.com/mattbeets/. 
+
+It should be noted that although metal deposits may exist in a given place on the map, there is often no evidence that it was used in prehistory. It is therefore best to consult the literature for the relevant area and period, including metal provenance studies, to determine the most likely source of a given material. 
+The map data is given in the European LAEA true distance projection (EPSG 3035) in order to make more accurate distance measures. The often default WGS84 is not suitable for measuring distance, and local projections, such as UTM zones, may introduce problems calculating distances that cross UTM zones. 
+
+```{r cwc-ressource-map, results='asis', fig.cap="Map of raw material source data with the Moravian pilot study area marked (black square). Copper deposits (red dots), copper mines (red stars), gold deposits (yellow dots), gold mines (yellow stars), identified prehistoric alluvial and vein gold sources (yellow symbols with black edges), other colours (points and polygons) represent different flint/chert, stone, and amber sources (see shapefile for the identification of each) some of which from the supplementary data in Schauer et al. 2020. Geological polygon layer of Western Europe from Donnini et al. 2018. Collected and mapped in QGIS by the author. Rivers are from the United Nations HydroSHEDS data (https://www.hydrosheds.org/) and background map is from ESRI's (Shaded Relief).", out.width="100%", out.height="25%", fig.show='hold', fig.align='center'}
+require(png)
+
+knitr::include_graphics(here::here(
+  'analysis/figures_SI/resource_map_SI.png'))
+
+```
+
+<br>
+
+## Scarcity of imported objects
+Rare or unusual raw materials have been cited in ethnography as factors that may influence the percevied value of an artefact. @grossmann21 relies only on scarcity for assessing the value of grave goods. In this respect, grave good value is defined as total number of individuals in the sample population divided by total number of graves with X material (e.g. 197 individuals/24 individuals with copper = copper value 8.2), and then summing the accumulated value points for each individual. Grossmann also normalizes this score in relation to the grave with the highest score, e.g. each burial’s accumulated points (e.g. 30.6 points) divided by richest grave with 107.8 points (thus 30.6/107.8) giving a score of 0.28 for the grave in question [@grossmann21: 30]. 
+The advantage of this method is its simplicity being relatively fast and easy to do, as well as its case-specific flexibility = broad applicability. The disadvantage of this method is that it only considers one factor (scarcity) for grave goods. 
+Grossmann uses this system together with grave pit size data (volume where available, otherwise bottom surface area) to give a total “burial value” which may give a more holistic picture of burial elaboration. One possible issue with pit size in volume and area is that these may be affected by natural body size and number or size of grave goods that need to fit into the graves. Grossman uses grave pit size especially for diachronic comparison of Gini coefficients. Grossmann [-@grossmann21: 31] rightly accounts for this by removing graves of infans individuals, with naturally smaller bodies, in pit size calculations, but does not account for the natural difference in body size between males and females. Thus, pit sizes should in theory be scaled to account for differences in body size (which requires good bone preservation), or separately for males and females. Alternatively, the grave (bottom) pit depth could be used, which usually is less affected by body size, and would be closely correlated with the labour needed to dig the whole grave assuming relatively flat bottom surfaces. The original grave pit depth may be affected by erosion processes, but these may be independent of the body size. Despite this caveat, this study follows @bosel08: 51 in using grave pit depth as an approximate measure of digging effort connected to the burial. 
+
+
+# Calculating manufacturing time, skill, import travel time, and scarcity of grave goods
+
+<br>
+
+## Ceramics
+### Ceramic Manufacturing time reference 
+
+Reference data for pottery manufacture was achieved primarily by speaking with two potters working with reconstruction of Stone Age pottery, including Pauline Ferrisse from France, and for the largest part Inger Heebøl at Sagnlandet Lejre. Heebøl provided, apart from records of her own pottery manufacture, also records from an earlier project for reconstructed pottery made for an exhibition in 2009 about Klekkendehøj, a reconstructed Neolithic passage grave on Møn, Denmark. This exhibition was carried out in connection with the project "Oldtiden i Landskabet" led by the Danish Cultural Heritage Agency. The reference data for pottery manufacture is given in table \@ref(tab:ref-pots). 
+
+```{r echo = TRUE, results = 'hide'}
+#First set working directory to source file location in the "Session" menu
+#Then refer to the labour-hour script(s)
+
+here::here()
+source(here('analysis/scripts/PH_ceramics.R'), echo = TRUE, encoding = "UTF-8")
+source(here('analysis/scripts/ceramics_predict.R'), echo = TRUE)
+```
+
+
+```{r ref-pots, echo = TRUE, results = 'asis'}
+knitr::kable(PH_pottery, 
+             row.names = FALSE,
+      caption = "Estimated basic person-hours for pottery in reference data.") %>%
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+```
+
+<br>
+
+#### Clay extraction and pre-processing
+Experiments by @martineau_etal07: 37 used an average clay extraction time of `r min_clay_extract` min/kg, `r min_water_clay_mix` min/kg for mixing with water, and @manea_etal19, although based on loom weight clay preparation, used an average of `r min_kneading_clay` min/kg for kneading the clay into a paste giving a total of `r min_clay_all` equaling `r PH_clay_extract`
+
+A clay density of 1.75 kg/L, while of course variable depending on the clay used, is taken from https://www.aqua-calc.com/page/density-table/substance/clay-coma-and-blank-wet-blank-excavated giving `r clay_PH_L` PH/L for extracted humid clay. 
+
+<br>
+
+#### Tempers
+Clay extraction and temper preparation is usually given in kg or in L in experimental studies but weight and volume of archaeological pots is rarely given, making direct clay amount uesd for each pot uncertain. Therefore, the weight of the archaeological pots is estimated by the weight of the reference pots and the density of clay, again using their max measure as a reference point, but with the temper percentage subtracted, see figure \@ref(fig:shape-polish-plot). 
+From these estimated weights, the amount of clay needed for each pot is estimated. 
+
+Tempers have different densities, and thus to take e.g. 20% of the volume of a pot for temper, the pot weight needs conversion to volume (in L). 
+The approximate volume of clay needed for each pot can be estimated from height, maximum width, and an average thickness of 0.68 cm (from the reference data) to calculate the liters of clay needed assuming a hollow cylinder shape with the formula: $V = \pi*height*(ext.diam^2-int.diam ^2)/4)$ (from https://www.omnicalculator.com/math/cylinder-volume). 
+
+The given temper percentage in the archaeological data (or 20% default) is used as the amount of temper needed in Liter and calculated using each temper type's density where needed. 
+Grog density (from a mean of three different samples) is estimated to be 1.81 kg/L (similar to clay) [@iyasara_etal16: table 5; and @ignat_etal18]. 
+Granite (broken) density is 1.65 kg/L taken from https://www.aqua-calc.com/page/density-table/substance/granite-coma-and-blank-broken,
+<br>quartz (in lumps) density is 1.55 kg/L from https://www.aqua-calc.com/page/density-table/substance/quartz-coma-and-blank-lump, while <br>quartz (sand) is 1.22 kg/L from https://www.aqua-calc.com/page/density-table/substance/quartz-coma-and-blank-sand,
+<br>Mica (in flakes) is 0.52 kg/L from 
+https://www.aqua-calc.com/page/density-table/substance/quartz-coma-and-blank-sand,
+<br>Ground oyster shell density is 0.85 kg/L and is used generally for shells in this system, converted from kg/m3 at https://anval.net/Downloads/Bulk%20Density%20Chart.pdf.
+
+
+Different tempers may require different amounts of labour. At the moment, the system supports various types of temper, including grog: `r PH_temper_grog` PH/L [from @palacios21], and granite: `r PH_temper_granite` PH/L (or 0.33 PH/kg, Inger Heebøl pers.comm. August 2021). Sand should already have the desired form so no preparation is needed. No studies were found so far for shell and mica, so this study uses approximate estimates with the other materials as baseline. Their more brittle material would likely be much less than e.g. grog, granite and quartz. Sand is thus set at `r PH_temper_sand` PH/L (including mixing and collection), and shell and mica at `r PH_temper_shell` PH/L, which is admittedly guesswork derived from the other materials because no studies could be found experimenting with these. Other materials may be added in the future. @palacios21 reports much higher crushing time, 6.5 PH/L, for quartz. This could perhaps be an artefact of the methods in the experiment. According to Inger Heebøl, they use granite in Lejre which has first been burnt several (usually around 5) times by being added into other fires, making it brittle which greatly weakens the material and greatly reduces the crushing time needed. Burning quartz or quartzite at around 540 &deg;C would make it much more brittle [@crandell07] and thus easier to crush, thus probably greatly diminishing the time needed towards that of granite, although perhaps at somewhat higher temperature and more firings. In this system, the time for quartz temper, assuming the use of fire-brittled quartz, is therefore set to be 50% more than for granite, i.e. `r PH_temper_quartz` PH/L. Figure \@ref(fig:PH-temper-plot) shows an approximation of the person-hours needed for different temper types and approximate pot sizes (from largest measure), assuming a temper percent of 20% (sand is omitted in the graph). 
+
+
+```{r PH-temper-plot, fig.cap="Labour-hours for different types of temper vs. approximate pot size. The two pots 'biconical jar' and 'shouldered bowl' in the data table (max_measure = 24.5 and 25 in the graph) stand out because their height and max width relationship differ from the rest of the pots (one is slimmer, the other is flatter) and need less clay, and thus less temper compared to max_measure.", results='markup', fig.show='asis', out.width='100%'}
+
+temper_PH
+```
+
+<br>
+
+There are still some uncertainties in these estimates concerning the difference between wet and dried pots (or "shrinkage"), and the weights involved. These differences were quite variable in the reference data, and a working incorporation of these differences is lacking in the system at the moment. However, it is hoped that it can still give an approximate idea of the amount of time needed for preparing the clay before shaping, generally making up minor parts of the overall time estimates for the finished pots. 
+
+<br>
+
+#### Shaping pots
+
+Different size units were tested in order to test the best relationship with shaping time in the reference data (Figure \@ref(fig:PH-plot)). These included largest measure in cm (in any direction), a ratio of largest measure/pot wall thickness (cm), and largest measure/(square-rooted) wall thickness, as well as a ratio of $(height/max.width)/wall. thickness$ (also square-rooted wall thickness). The height/max width ratio gave the worst fit for either version of wall thickness (not plotted here), the max measure vs. wall thickness was somewhat better, while max measure vs. $\sqrt{wall.thickness}$ and especially the simple max measure gave the best fits.  For this reason, and for easier application by others, max measure (cm) is used as proxy for size in this study. 
+```{r PH-plot, fig.cap="shaping time (minutes) vs  (respectively) max measure/thickness (cm), max measure/squareroot of thickness (cm), and max measure (cm).", results='hide', fig.show='asis'}
+
+#plot graphs of different predictors for shaping time
+gridExtra::grid.arrange(ratio_time, ratio_time2, mesh_time, ncol = 3,
+                        top = grid::textGrob(
+"shaping time (minutes) vs  (respectively) max measure/thickness (cm), max measure/squareroot of thickness (cm), and max measure (cm)",
+                          gp=grid::gpar(fontsize=1,font=3)),widths=c(3.3, 3.3, 3.3))
+
+```
+
+<br>
+
+While this small dataset does suggest that different potters may have significantly different shaping times, other factors such as shape, number of parts, documentation accuracy, interruptions, etc. also come into play. While these factors result in a certain amount of error, maximum measure does seem to have an approximately linear relationship to shaping time overall which is applied here, see figure \@ref(fig:potter-plot). 
+```{r potter-plot, fig.cap="shaping time between four different potters", results='markup', fig.show='asis'}
+potter_PH
+
+
+```
+
+<br>
+
+According to the potters used as reference in this study, size is a considerable factor in the difficulty of making a pot, especially if also the wall thickness stays relatively low. However, catalogues of archaeological grave data do not always report the wall thickness. Therefore, to make this point system as broadly applicable as possible, only size will be used to determine skill. 
+
+
+Shaping time and polishing time for the archaeological data were estimated from the reference data, although with a smaller coefficient for pots smaller than 10 cm at maximum measure, see figure \@ref(fig:shape-polish-plot).
+
+```{r shape-polish-plot, fig.cap="Weights, shaping times and polishing times compared to maximum measure (cm). green dots: experimental reference data, red dots: archaeological estimates.", out.width='100%', results='markup', fig.show='asis'}
+require(patchwork)
+
+weight_size_arch + shape_time_arch + polish_time_arch
+
+# gridExtra::grid.arrange(weight_size_arch, shape_time_arch, polish_time_arch, ncol = 3, top = grid::textGrob("shaping time and polishing time compared to maximum measure (cm). green dots: experimental reference data, red dots, estimated times.",gp=grid::gpar(fontsize=6,font=3)), widths=c(3, 3, 4))
+
+```
+
+<br>
+
+#### Firing pots
+Firing time for pots in open fire was based on well-documented experiments by Inger Heebøl in Sagnlandet Lejre as well as the author's first hand observation of pot firing in late July 2021 at Steinzeitpark Dithmarschen. Only active firing time was included, and when used in overall ceramic person-hours calculations, the author assumed 2 persons actively participating in managing the fire and turning and moving pots gradually closer to the fire in order to slowly increase their temperature. After the active firing, the pots were left in the fire or embers to slowly cool down. This cooling process is not included in the calculations as the work here does not require much participation if any. Around 20 successfully fired pots were assumed to have been fired in a batch at the same time, which greatly reduces the time used for each pot. 
+```{r fire-plot, fig.cap="Left: Experimental firing times for pottery. The median is used as reference for firing archaeological pots. Right: pottery firing in Steinzeitpark Dithmarschen (photo by the author 2021).", results='asis', fig.show='asis', out.width="100%", out.height="600px"}
+
+require(magick)
+require(cowplot)
+fire_photo <- image_read(here::here( 
+  'analysis/figures_SI/pot_firing.jpg'))
+photo_panel <- ggdraw() + draw_image(fire_photo, scale = 0.8)
+
+fire_plot + photo_panel + plot_layout(ncol = 2, widths = 1,1)
+```
+
+A test estimate of the total person-hours was made on the reference data from the simple max measure dimension of the pots, and according to each _chaîne operatoire_ step. 
+
+<br>
+
+#### Time estimates for decorated pots
+Time for decoration, both impressed and plastic, was estimated as well. According to Wentink [-@wentink20: 57], a pot fully decorated with complex impressions may have taken easily the same time for decoration as the shaping itself, and may have conveyed important symbolic information of identity, etc. This suggestion is supported by the data from Inger Heebøl's highly decorated "Skarpsalling" pot for which decoration comprises a bit more than the shaping time itself. Skarpsalling is an extreme example, so in this system, full (i.e. 100% of surface in the data) impressed decoration, not area texture by e.g. nets, is taken to be the same as shaping time. Thus, the approximate percentage of the decorated surface is noted in the archaeological data (very simple but fully covering decoration may be downgraded a bit and vice versa) and is thus automatically added to the pots production time. 
+
+Extra value points in terms of the skill needed to produce larger pots (derived from shaping, polishing, and firing) were calculated as well. These are especially related to the knowledge needed to prevent deformation and collapse of the pot during shaping, getting an evenly polished surface, and preventing breakage in the fire. This skill bonus is added according to three levels, based on approximately estimated years of training needed: medium (x0.4 bonus), medium-high (x0.6 bonus), and high (x2.0 bonus). These are of course hypothetical estimates because the amount of training needed varies with talent, training intensity, and other conditions.
+
+The overall estimated person-hours for each pot from the reference is given in table \@ref(tab:ref-pot-PH).
+```{r ref-pot-PH, echo = TRUE, results = 'asis'}
+knitr::kable(PH_pottery[c("dish_ID", 
+                   "max_measure_cm",
+                   "PH_all", 
+                   "skill", 
+                   "PH_all_skill")], 
+      col.names = c("Vessel name", 
+                    "Maximum measure (cm)",
+                   "Total PH", 
+                   "Skill bonus", 
+                   "Total PH + skill bonus"), 
+      caption = "Estimated basic person-hours for pottery including skill.", #caption also gives table reference number
+      digits = 2) %>% # round numbers to 2 decimals
+  kableExtra::kable_styling(bootstrap_options = "striped")
+```
+
+<br>
+
+### Applying manufacturing time to archaeological pots
+The pottery person-hours for the archaeological data were estimated in the same way, given in table \@ref(tab:arch-pot-PH).
+```{r arch-pot-PH, echo = TRUE, results = 'asis'}
+knitr::kable(pot_predict, 
+             row.names = FALSE,
+      caption = "Estimated basic person-hours for pottery.", #caption also gives table reference number
+      digits = 2)  %>% # round numbers to 2 decimals
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+```
+
+<br>
+
+This is then summed into total accumulated pottery points for each grave, given in table \@ref(tab:total-arch-pot-value). 
+```{r total-arch-pot-value}
+knitr::kable(grave_total_pot, 
+             row.names = FALSE,
+      caption = "Total pottery points per grave.", #caption also gives table reference number
+      digits = 2)  %>% # round numbers to 2 decimals
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+### Ceramic textile tools
+
+For the shaping of ceramic textile tools, a fixed rate of 1 PH is used for spindle whorls and 0.5 PH for loom weights. According to Heebøl, spindle whorls generally require more skill and time to get the balance right, whereas loom weights require less skill. Although especially loom weights often require more drying time due to their thickness, this is passive time and is therefore not included in the calculations, see table \@ref(tab:text-tool-ref). 
+
+```{r text-tool-ref}
+
+knitr::kable(other_ceramic_ref, 
+      caption = "Shaping time (PH) ceramic textile tools") %>% # round numbers to 2 decimals
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "200px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+The person-hours and the skill factor from the ceramic textile tool reference data are then applied to the archaeological grave data (in this case, only a spindle whorl was found), see table \@ref(tab:text-tool-arch).
+
+```{r text-tool-arch}
+
+knitr::kable(other_ceramic_predict, 
+      caption = "Shaping time (PH) ceramic textile tools") %>% # round numbers to 2 decimals
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "200px", width = "100%", fixed_thead = T)
+```
+
+<br>
+<br>
+
+## Flint artefacts
+Knapping and grinding times for flint artefacts (mostly axes) were collected from @hansen_madsen83; @madsen84; Olausson [-@olausson83a: table 3], Olausson [-@olausson83b: 62], uncut YouTube videos of flint axe manufacture by the highly experienced flint knapper Will Lord [-@lord19; @lord17; @lord20], and one YouTube comment (written 2013) by Wulf Hein on his own experimental video of axe grinding (see reference data tables for YouTube URLs), as well as from an interview with flint knapper and all-round prehistoric crafts specialist Morten Kutschera. 
+
+<br>
+
+### Thin-butted flint axe (four-sided) manufacture person-hours
+```{r Flint-axe-grind, fig.cap="Box plots of thin-butted flint axe person-hours. Left: knapping times, middle: grinding time with different methods coloured by information source type, right: conflated boxplot of both hand grinding and weighted grinding estimates (excluding old ethnographical source).", results='markup', fig.show='asis'}
+#load flint reference person-hour calculations:
+source(here('analysis/scripts/PH_flint.R'), echo = TRUE, encoding = "UTF-8")
+
+gridExtra::grid.arrange(knapp_plot, thinButt_grindPlot, box_all, ncol = 3, top = grid::textGrob("Grinding and knapping time (in PH) for different methods and sources",gp=grid::gpar(fontsize=6,font=3)), widths=c(2, 5, 4))
+```
+
+<br>
+
+The reference data on knapping a flint axe from both the experimental literature and the informant had a median of `r thin_butt_knap_median` and a standard deviation of `r thin_butt_knap_sd`, making it fairly reliable. 
+Axe length has also been noted ethnographically as a marker of prestige [@olausson83b: 12-14]. The larger surface of longer axes might in theory also affect the person-hours needed for grinding. This may also be the case for the reference data. However, this could also be due to the increased person-hours noted for weighted (2-3 persons) experiments and ethnographically (often reported in days making conversion to hours very uncertain). If the focus is only total hours of grinding (i.e. irrespective of the persons involved in the weighted experiments), there is no clear increase (in this data) in grinding time with increased length, except perhaps for the longest axes (29-31 cm). Again, the ethnographic example is less reliable because it is reported in days (the mean of 5-8 hour work days used here), and the knapping of this axe was done by direct percussion which would require extra grinding time according to the author [@vial40: 160; via @madsen84: 57-58]. The lack of a clear relationship between length and grinding time could be due to grinding the axe in longer movements across the grinding surface, in which case time may rely more on the grinding skill keeping as much surface contact between the axe and the grindstone as possible in each movement. 
+
+```{r Flint-axe-length, fig.cap="Scatterplots comparing thin-butted flint axe length vs. grinding hours: left: person-hours, right: total labour-hours (for weighted grinding by multiple people).", results='markup', fig.show='asis'}
+
+grind_PH <- ggplot(flintAxe_grind, aes(length_cm, PH_grindTime, color = source_type, shape = grinding_method)) +
+  geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
+
+total_grind_h <- ggplot(flintAxe_grind, aes(length_cm, total_grinding_hours, color = source_type, shape = grinding_method)) +
+  geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
+
+gridExtra::grid.arrange(grind_PH, total_grind_h, ncol = 2, top = grid::textGrob("Grinding person-hours vs. grinding total hours",gp=grid::gpar(fontsize=10,font=3)), widths=c(5, 5))
+
+```
+
+<br>
+
+If we remove the two less reliable ethnographic examples of grinding, we get a median of `r thinButt_grind_median`. The degree of polish, however, may also be a factor, in the sense that extraordinarily polished axes would have taken more time, or required more skill, e.g. for axes that are extraordinarily long and thin, with one example being 27-30 cm long and only 0.8-1.5 cm thick as is noted for special ceremonial axes by [@olausson83b: 12]. Ceremonial axes with special and exotic (e.g. varicoloured) stone quality may also have added extra value. Therefore, it may still be justified using length of above 27 cm as a factor of value along with lower thickness, extra polish/shine, and rare or variegated colours. If each of these adds, e.g. 10% to the raw person-hour estimate, this could potentially add 40% value. To this could be added estimated travel-hours from the quarry, which may have been very distant. 
+
+<br>
+
+### Mining or quarrying of flint
+@hansen_madsen83 refer to experiments in flint mining at Grimes Graves in England in which 6-7 persons could mine 8000 kg flint over 6 months. 
+If we take this at face value and scale this down to flint yield/person/hour, we get the following formula: 
+<br>8000 kg flint / 6.5 persons / 6 months / 30 days / 8 hours
+<br>= `r flint_raw_1` kg/person (over 6.5 months) = `r flint_raw_2` kg/person/month = `r flint_raw_3` kg/person/day = `r flint_raw_4` kg/person/hour. 
+One axe blank is 4-6 kg (mean 5 kg) according to Hansen and Madsen [-@hansen_madsen83: 48] and it takes c. 8-11 minutes (mean 9.5 minutes) or 0.16 PH to knap one axe blank according to Hansen and Madsen [-@hansen_madsen83: 48], and flint knapping demonstration videos by Will Lord who has worked with flint since childhood. 
+<br>One axe blank altogether thus takes `r flint_raw_4` PH *  5 kg (= `r flint_raw_5`) + 0,16 PH
+<br>= `r axe_blank` PH per axe blank
+
+<br><br>
+Taking an example of a typical thin-butted flint axe quarried 14 travel hours away, the formula for flint axes would be as follows: 
+<br>axe blank `r axe_blank` PH (quarrying and blank knapping) + 
+<br>knapping `r thin_butt_knap_median` PH +
+<br>grinding `r thinButt_grind_median` PH +
+<br>sharpening `r round(flint_axe_sharp, 2)` PH +
+<br>travel time `r flint_travel_PH` PH +
+<br>wooden handle `r axeAdze_handleMedian` PH (if assuming that all axeheads in graves had been hafted)
+<br>= `r flint_axeAdze_total_PH`
+
+<br>A flint axe with all possible bonuses could reach a score up to: 
+<br>length >30 cm (+50% to knapping and grinding PH) `r flint_long` + 
+<br>thickness < 2 cm (+50% to knapping and grinding PH) `r flint_axe_thin` + 
+<br>extra polish/shine (+50% to grinding PH) `r flint_shine` + 
+<br>rare/variegated colours (+50% to axe blank and grinding PH) `r flint_colour`
+<br>= `r round(flint_axeAdze_total_PH + flint_long + flint_axe_thin + flint_shine + flint_colour, 2)` total score. To this we may add extra long distance to the raw material, exclusivity ("prestige" measure) and scarcity in the given community, 
+
+Based on the calculations above, the raw person-hours for making hafted flint tools such as axes and daggers can thus be summarised as follows (raw material for flint daggers assumed to be half of axes, here without travel hours, scarcity, "prestige", and extraordinary features): 
+
+```{r echo = FALSE}
+#adding tables side by side (not working properly)
+#kable(list(knapp_time, thin_butt_raw))
+
+
+kable(Flint_PH_all, 
+      col.names = c('Artefact', 
+                'Raw material (PH)', 
+                'Knapping (PH)', 
+                'Grinding (PH)', 
+                'Sharpening (PH)', 
+                'Handle (PH)', 
+                'Skill level', 
+                'Total PH'), 
+      caption = "Summarised basic person-hours for flint artefacts.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "300px", width = "100%", fixed_thead = T)
+  
+
+```
+
+<br>
+
+### Scarcity of flint
+Scarcity of imported flints is based on the numbers in Kolar 2018: total Corded Ware graves known: 413/total count of Corded Ware flint types by origin (@kolar18: table 52). Number of graves with each flint type were not available in this work, so the total count has been used instead. Scarcity for local and indeterminable cherts is based on the total number of flint objects in Corded Ware (255) in @kolar18: table 51. The total number of flint/silicite axes (18) is based on @kolar18: table 55.
+
+<br>
+
+#### Flint axe estimated manufacture time in archaeological grave data
+
+The total value points for flint axes, taken from the reference data and applied to the archaeological data, is given in table \@ref(tab:flint-axe-arch).
+```{r flint-axe-arch}
+#load flint person-hour calculations:
+source(here('analysis/scripts/flint_predict.R'), echo = TRUE, encoding = "UTF-8")
+
+kable(flintAxe_predict,
+      caption = "Value points for archaeological flint axes") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+  
+
+```
+
+<br>
+
+The score accumulated for each grave, in simplified format, (only one axe per grave in this archaeological test dataset) is given in table \@ref(tab:flint-axe-arch-total).
+```{r flint-axe-arch-total}
+
+
+kable(grave_total_flint_axe,
+      caption = "Summarised value points per grave for archaeological flint axes") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+  
+
+```
+
+<br>
+
+### Other flint tools
+For flint tools that can be produced from the flakes of making an axe blank, estimates are much lower, often as a result of one or a few blows and a bit of adjustments. [@hansen_madsen83] documented a number of different tools made as a byproduct of one axe blank given in table \@ref(tab:table-other-flint) (standardised by the author).
+
+```{r table-other-flint, echo = TRUE, results='markup'}
+kable(HansenMadsen83_flakes, 
+      col.names = c( 
+                'Experiment description', 
+                'Reference', 
+                'Disc scrapers', 
+                'Backed knives', 
+                'Flake axes', 
+                'Blade sickles', 
+                'Flake burins', 
+                'Borers', 
+                'Transverse arrowheads', 
+                'Total time (minutes)',
+                'Mean per piece (minutes)', 
+                'PH per piece'), 
+      caption = "Experiments with axe blank discoid and waste flakes (Hansen and Madsen 1983)") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+
+```
+
+<br>
+
+If we compare this with the knapping time given by the informant (MK), we can see the similarity for most of these (table \@ref(tab:inf-flintknap-time).
+
+```{r inf-flintknap-time, echo = FALSE}
+kable(other_flint[,-8], 
+      caption = "Person-hour estimates for other flint tools.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+#### Other flint tools estimated manufacture time in archaeological grave data
+
+The reference data is then applied to the archaeological grave data (table \@ref(tab:flint-other-arch-points).
+```{r flint-other-arch-points}
+kable(flint_other_predict,
+      caption = "Summarised value points per grave for archaeological flint axes") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+Summing the non-axe flint objects by grave we get (table \@ref(tab:flint-other-arch-total).
+```{r flint-other-arch-total}
+
+kable(grave_total_flint_other,
+      caption = "Summarised value points per grave for archaeological non-axe flint items.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+  
+
+```
+
+<br>
+
+## Groundstone tools
+```{r}
+source(here('analysis/scripts/stone.R'), echo = TRUE, encoding = "UTF-8")
+source(here('analysis/scripts/stone_predict.R'), echo = TRUE, encoding = "UTF-8")
+```
+
+Stone tools may be manufactured from a natural stone that already resembles the desired shape, or may be produced from raw material acquired by quarrying. An experiment on a quarrying technique using fire to crack the rock (a technique known as 'fire-spalling') was carried out by @cresson_etal21 inspired by earlier experiments and ethnographic reports. They report being able to extract 272 kg rock in 4 hours. Assuming axe-blank is around 10 kg, that is `r axe_blank_10kg` PH per axe blank. @petrequin_etal12 made an extensive study on the production of Alpine axes, in which was argued that the existence of quarrying sites and the lack of flat pebbles of eclogite, omphacitite, and jadeitite, suggested that these axes were not pecked on site from naturally axe-shaped pebbles, but rather, the rock was first made into blanks, and then transported elsewhere for further shaping. @petrequin_etal12 report axe-blank production (glaucophane and serpentinite examples) struck on an anvil taking maximum 30 minutes for the longest (20-30 cm) flat blanks, and only a few minutes for the smallest flat blanks. However, although this is a relatively easy process without much needed practice, it does not produce the best quality blanks (@petrequin_etal12: 260). Another method using the more durable eclogite is pecking out the blank for an hour (25 cm long axe) on-site of the quarry. An experiment on amphibolite rock by H. Cymerys (summarised by Pétrequin et al. [-@petrequin_etal12: 260]) made a blank by polishing sides and rough pecking for 10h removing 10g (removing 1 g/hour), and then pecking out the axe with gradually smaller hammerstones for 8h30m (removing 10g/hour), and finally polishing/grinding only the edge for 7h30m (removing 1.25g/hour), giving a total of 26 hours. This could be used as a minimal amount for a well-functioning, but simple axe. 
+
+Smaller adze blade blanks made with the fast technique on an anvil were also identified, which were transported to the settlements for grinding. Another technique for longer and more regular adze blades were also identified from the 5th millennium BCE, using naturally rectangular og prismatic blocks, most likely initially splitting them into blades on an anvil, and rounding any extremities by percussion making them ready to be polished. However, this technique is still not adequate for making the very long blades (some 40 cm and longer) from the Neolithic (@petrequin_etal12: 262-263). Such long slabs for blanks would require an extraction technique using fire (similar to the experiments by @cresson_etal21), that may yield cracks in the surface, sometimes receiving extra polish leaving a curved adze blade (@petrequin_etal12: 264-266). After three extraction experiments with thermal shock from fire (on eclogite), only the third experiment was successful in obtaining a longer blade (30 cm), but because only the rock that was not in direct contact with the fire was usable, it took an 80 kg block to produce one slab usable as an axe. So much waste is not found at the sites showing thermal shock extraction, and so the technical knowledge for extracting axe-suitable slabs of this length must have been quite specific and handed down over generations by on-site teaching. However, the one successful experiment used 15 kg of split pine wood for heating the rock for 20 minutes (@petrequin_etal12: 267). 
+
+Preforming a thermally shocked, relatively deformed jadeitite blank (23 cm) by knapping and pecking took 1h20m (@petrequin_etal12: 271). From these and more experiments in @petrequin_etal12, it seems that different methods may have been used for different rock types and lengths of axes, each giving widely varying production time in the different stages. One of these methods may be more effective in making a blank, but then it may take more time for the preform, or the grinding, and vice versa. Another aspect is the aesthetic and mechanical quality and durability of the final axe. Of course, the degree and area of polish greatly affects the production time, but the hardness (measured on the logarithmic Moh's scale) and toughness of the rock material can also greatly affect time [@petrequin_etal12]. For jadeitite axes, it seemed more effective to do a combination of both chipping and grinding. Serpentinite and amphibolite are less hard and durable than jadeitite, and therefore take less time to produce [@petrequin_etal12]. There are still many unknowns about how these factors affect the final result and the manufacturing time, and so the time estimates used here are only tentative and a very rough simplification of the processes taking place. The median of the various quarrying methods is used here, see figure \$ref(fig:stone-extract-plot).
+
+
+```{r stone-extract-plot}
+ggplotly(stoneaxe_blank_plot, width = 400, height = 400)
+```
+
+<br>
+
+While grinding time seems somewhat more regular, at least within the same publications, the time used for knapping the blank into a preform depends greatly on the method used and sometimes seems to be closely related to subsequent grinding time. Therefore, knapping time for stone axes has been included in grinding time in three different grinding categories: edge grind, full grind, and "mirror" (the latter reserved for the most shiny examples known from Neolithic Alpine jadeitite axes). 
+Apart from this, a combination of (logarithmic) Moh's hardness and fracture toughness of the rock may affect general working time. 
+
+A tentative reference overview of Moh's hardness and fracture toughness with reference links is provided in table \@ref(tab:mohs-tough-list) and figure \@ref(fig:mohs-tough-fig).
+
+```{r mohs-tough-fig}
+ggplotly(mohs_tough_list, width = 800, height = 400)
+```
+
+```{r mohs-tough-list}
+kable(mohs_tough_ref_list,
+      caption = "Tentative reference list of Moh's hardness and fracture toughness") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+The time recorded for the various knapping and grinding methods is given in figure \@ref(fig:knap-grind-plot). 
+```{r knap-grind-plot}
+gridExtra::grid.arrange(stoneaxe_preform, stoneaxe_grind, ncol = 2,
+                        top = grid::textGrob(
+"Manufacturing time for stone tools by toughness, and Mohs+toughness",
+                          gp=grid::gpar(fontsize=1,font=3)),widths=c(5, 5))
+```
+
+<br>
+
+However, when adding data from [-@olausson83a] which generally has shorter production times, the reference data for stone axes, showed no clear relationship between Mohs-toughness and the time for making the blank and the preform. This may be partly due to the very different methods for each step in the experiments, each step affecting the working time of the others, but different axe types, and different stone knappers and study designs probably also play a major role as evident in the discrepancy between Olausson's and Pétrequin's studies even when considering the different rock materials. Even within each study, and for each knapper, a clear pattern seems unclear, also when including various combinations of Mohs hardness and toughness. The same is the case for grinding. 
+
+A boxplot of the total times for stone axe production in the reference data, divided by the different main types, coloured by degree of grinding, and with shapes according to each knapper, is given in \@ref(fig:stone-medians-plot). 
+```{r stone-medians-plot}
+ggplotly(stoneaxe_total_plot, width = 400, height = 400)
+```
+
+<br>
+
+Because no systematic pattern in the production times for stone axes could be found, it remains difficult to reliably separate the time for each step in the _chaîne operatoire_, and time estimates for archaeological data will therefore be done from total working time. Similarly to the flint axes, the median will be used, split between Alpine stone axes/adzes, axe-hammers, faceted axe-hammers, flat axes, and other stone tools (anvils, whetstones, etc.). However, to still give Moh's hardness and toughness a small effect on the working time following the literature [e.g. @petrequin_etal12] the (admittedly hypothetical) logarithm of (already logarithmic) Moh's hardness + fracture toughness) has been used as multiplication factor (ranging here from 0.8-2.2) on the median PH for each type in the archaeological stone tools adding a maximum of c. 5 PH to the items at the top of the PH range (originally around 15 PH). 
+
+The degree of grinding or polishing is also still taken into account as percentages of fully ground axes, where edge-ground or lesser ground axes have multiplications below 1, and extra polished axes have multiplication between 1 and 2. Axe-hammers, which are not included in the reference data, however, take the median of flat axes multiplied by 2 (with extra time for drilling the shaft-hole), and faceted axe-hammers (both drilling shaft hole and extra facet shaping), are multiplied by 3. An interactive overview plot of the time estimates for the different stone tools in the archaeological data is given in figure \@ref(fig:stone-tool-plot)). 
+
+```{r stone-tool-plot, fig.cap="total estimated person-hours for different stone tools in the archaeological dataset incorporating degree of grind/polish"}
+
+ggplotly(stone_arch_plot, width = 800, height = 400)
+```
+
+<br>
+
+### Import of rock materials
+The source of archaeological rocks is not always certain. However, according to @kolar18: 154, 157, 158, especially _serpentinite_ and _gabbro_ seem to have been quarried around 200 km away from most Moravian Corded Ware graves at Mt. Ślęża in Southern Poland (Gogolów-Jordanów massif), possibly travelling through the Kłodzko Valley down the upper Morava River (@kolar18: 154)). _Greywacke_, sedimentary rocks (such as _sandstone_, _siltstone_, and _claystone_), _greenschist_, and _metabasite_ are assumed to be from local sources, many within the Carpathian Flysch zone (@kolar18: 158). _Amphibolite_ may have also come from a relatively close source in the west within c. 50 km (@kolar18: fig. 133). _Eclogite_ is quite rare, but the Czech Corded Ware _eclogite_ is hypothesised to be from the Bohemian Massif (@kolar18: 161), which, if assuming the closest part of the Bohemian Massif to the Moravian graves, may have been the Bohemian-Moravian Highlands running southwest-northeast, forming the border between Moravia and Bohemia. This would be around 90 km from the western group of Corded Ware graves in this study. _Basalt_ may have been transported c. 50 km from their source into Central Moravia, although there are several possible sources of _basalt_ in the Moravian Corded Ware, including the northern part of Moravian Corded Ware distribution with additional sources in Poland, or Starý Hrozenkov (White Carpathians), as well as sources in Bohemia, Slovakia, Hungary, and Burgenland [@kolar18: 157]. Thus, a distance of 50 km will be assumed in this study for _basalt_. _Porphyritic_ rock types seem to have come from the Brno region [@kolar18: 161], which would be within 25-70 km transport within the territory of the graves in this study. For simplicity (and uncertain distribution patterns within the territory), the mean, c. 48 km for _porphyritic_ rock types, is used here. 
+
+Scarcity of specific rock types sourced more than 5 km away from the grave distribution area is calculated as the total number of known graves (413)/total number of axes of a specific rock type (@kolar18: table 60). 
+<!-- In cases of undetermined rock types (for axes), the total number of stone axes is used. -->
+<!-- Axes of undetermined rock are given the total number of axes found in graves (184) (@kolar18: table 59), and undetermined rocks in general get the total number of graves (resulting in no added scarcity bonus). -->
+
+
+The full stone tool data with time estimates is given in table \@ref(tab:stone-predict-tab).
+```{r stone-predict-tab}
+kable(stone_axe_predict,
+      caption = "Estimated person-hours for Moravian Corded Ware stone tools") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+The summarised grave totals for stone tools is given in table \@ref(tab:stone-grave-total).
+
+```{r stone-grave-total}
+kable(grave_total_stone_tools,
+      caption = "Estimated person-hours for Moravian Corded Ware stone tools, summarised per grave") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+## Metal artefacts
+Much of the labour time involved in manufacturing metal artefacts involves extracting the metal from ore such as _malachite_ or _azurite_, a process known as smelting (if native copper is not used). In much of Copper Age/Eneolithic-Early Bronze Age Europe, this seems to have been mostly done in an oxidised environment in pit fires [@brinkmann19]. Johanna Brinkmann [-@brinkmann19] has devised a _chaîne operatoire_ step-wise labour-hour system (also using PH) for cast metals from mining to finished product, also taking tools and wood consumption into account. This will also be applied in this system for cast metal artefacts. However, most of the metals in Corded Ware graves are made by hammering (forging), for which the casting labour-hours in Brinkmann's system do not apply. In any case, the weight of the metal is closely related to the time of the initial steps of the _chaîne operatoire_, and Brinkmann's system is thus also applied for the forged Corded Ware metals. 
+
+<br>
+
+### Raw material
+The weight of archaeological metal objects is unfortunately often not reported in archaeological catalogues, and therefore the weight will often have to be estimated based on the metal volume which itself is an estimate from the simple measures usually given, and from measures of drawings and photos with scale. One could then use the density of each metal to estimate the weight from the volume (e.g. cm3/g) of the reference metal objects and compare that with the _reported_ weights of the same objects to get an idea of the precision and whether downscaling of the pure densities should be made. In this case it required a multiplication factor of 0.289 of the densities to match the reported weights for the same objects. However, when zooming in on the smaller items, it is evident that there is an error of up to 15 g for some objects compared to reported weights. This could of course also be due to errors in the volume estimates. 
+
+The relationship between reported weight (in g) and estimated volume vs. estimated weights (by simple density) and estimated volume for the reference data is given in figure \@ref(fig:metal-plots).
+
+```{r metal-plots, fig.cap="Scatterplot of reported weights (g) vs. estimated weights (from density) related to estimated volume (cm3) for metal reference data."}
+
+source(here('analysis/scripts/metals.R'), echo = TRUE, encoding = "UTF-8")
+
+metal_refplot + metal_pure_plot
+
+# gridExtra::grid.arrange(metal_refplot, metal_pure_plot, ncol = 2,
+#                         top = grid::textGrob(
+# "Relationship between estimated volume (cm3) and reported weight vs. estimated weight (by density) for metal reference data.",
+#                           gp=grid::gpar(fontsize=1,font=3)),widths=c(5, 5))
+
+```
+
+<br>
+
+Alternatively, metal calculators for simple shapes can be used such as the one at https://www.aktivguld.com/en/metalcalculator, e.g. the "sheet" and "wire" calculators for silver or gold (with alloys that compare to archaeological objects) and scaled down for copper by the difference in density of copper from gold or silver. However, even here modern industrial alloys may be different from prehistoric alloys, and it is uncertain whether these can be compared. 
+
+To minimize these errors, an attempt was made instead to estimate a "dimension ratio" of the estimated volume (on relatively few measurements, and thus still with some uncertainty) of similar archaeological objects (paired individually) with reported weights from other Central European 3rd millennium metal objects [primarily Romanian, Hungarian, Polish Yamnaya and/or Corded Ware culture data from @dani_nepper06, @preda-balanica_etal19, @popescu_frinculeasa16, and @garbacz-klempka_etal17], and then applied to the estimated volume of the objects in the case study. This dimension ratio was then applied to the objects with reported weights to estimate the weight of the objects in the case study (again with some uncertainty, but probably less than when using density alone). For gold items where most of its value lies in the time procuring the material and less in the forging work, getting close to the actual weight is especially important to determine its manufacturing time. 
+
+This dimension ratio (i.e. the multiplication factor) between archaeological reference objects and the archaeological case study objects as well as the estimated weights can be found in table \@ref(tab:metal-PH).
+
+If we zoom in we can better see the small items (figure \@ref(fig:metal-plots-small)).
+```{r metal-plots-small, fig.cap="Scatterplot of reported weights (g) vs. estimated weights (from density) related to estimated volume (cm3) for metal reference data."}
+#same as above but zoomed in on small metals
+metal_refplot_small + metal_estplot_small
+```
+
+<br>
+
+The forged metal artefacts which include ornaments, awls and small knives, are usually made by hammering the metal into shape with tools such as hammerstones, a stone anvil, bone chisels, and boar's tusks (for abrading the shaped metal) instead of casting it (@peska16). This process is not included in Brinkmann's system, and the labour-hours involved have so far been difficult to find in the experimental and ethnographic literature, as well as in historical bronze working communities, which seem to focus more on the casting and smelting processes. However, one metal crafts person, with around 5-10 years hobby experience in making metal jewelry (and many more years in creative wood artisanship) of Iron Age and historical forging experience in copper, gold and silver, Torben Johansen (TJ), agreed to do some experiments forging 3rd millennium-style metal artefacts using the above-mentioned tools. These will be ongoing experiments documented by the author, also after finishing this manuscript, and the results will be incorporated into this system when done. Because, only the initial steps of procuring and re-melting the copper into nuggets have been done so far, TJ also gave preliminary, and therefore only approximate, time estimates on the other metal artefacts in the archaeological dataset from his general metal forging experience. One initial observation for TJ from initial attempts at hammering the copper with a hammerstone, was that it did not feel much more demanding than using a modern hammer, partly because the copper is relatively soft when annealed. Apart from the forging equipment, the metal was heated in an open field furnace using primarily charcoal, because the focus was on forging, and not smelting or melting (the latter proved unsuccesful in a preliminary experiment, indicating that the furnace heat was not at the melting point of copper (1085^\circ$ C)).
+
+The needed skill for making metal tools and ornaments was set at "very high" level (giving a multiplication bonus of 5.0) due to the deep material and pyrotechnical knowledge needed to both procure, transform, and work with metals. 
+
+Scarcity was calculated as total known graves (413 for Moravian Corded Ware/represented graves with that material, i.e. 54 graves with copper, and 3 graves with gold) [@kolar18: table 13].
+
+Travel hours were calculated based on the assumption that copper was transported from the contemporary Spania Dolína copper mine in Slovakia (@kolar18: 170), and gold from the Aries River in the Apuseni Mountains in Romania, the closest active source at this time to the best of the author's knowledge [based on provenance studies @cristea-stan_constantinescu16]. Because this is such a long route, a travel path was created following a combination of the least sloped areas (calculated on 30m resolution DEM data from https://dwtkns.com/srtm30m/ using QGIS 3.16), as much distance on downriver kilometers, and as few river crossings as possible. Thus, actual mountain terrain could be avoided apart from the initial journey out of the Apuseni Mountains (for which a Least Cost Path analysis was used on the DEM-derived slope map). The gold path can be seen in figure \@ref(fig:gold-path). 
+
+```{r gold-path, fig.cap="Hypothetical route of gold from the Aries River, Apuseni Mts., Romania to Moravia (mapped by the author 2021 in QGIS 3.16 from DEM data at https://dwtkns.com/srtm30m/. rivers from UN HydroSHEDS data. Prehistoric gold sources from Cristea-Stan et al. 2016. Below calculated slope and elevation along the path generated using the 'Profile Tool' plugin in QGIS, extracted and plotted in with ggplot).", results='asis', fig.show='asis', out.width="100%", out.height="600px"}
+#using magick and cowplot packages
+
+gold_path <- image_read(here::here(
+  'analysis/figures_SI/Romania_Moravia_gold_path.png'))
+gold_path_img <- ggdraw() + draw_image(gold_path, scale = 1.4)
+
+gold_slope_height <- image_read(here::here(
+  'analysis/figures_SI/slope_height_graphs.png'))
+gold_slope_img <- ggdraw() + draw_image(gold_slope_height, scale = 0.6)
+
+gold_path_img / gold_slope_img + plot_layout(nrow = 2, ncol = 1)
+
+# ![Gold path from Aries River to Moravia](C:/Mikkel/Saxo2020/courses/R for Archaology (DIALPAST)/PrestigeObjects/prestigeObjects/analysis/figures_SI/Romania_Moravia_gold_path.png)
+# 
+# ![Slope and elevation of gold path from Aries River to Moravia](C:/Mikkel/Saxo2020/courses/R for Archaology (DIALPAST)/PrestigeObjects/prestigeObjects/analysis/figures_SI/slope_height_graphs.png)
+
+```
+
+Panning river gold in a washing pan may yield about 1 g per 8 hours (but can vary widely) [@urban09]. 
+
+Gold mining PH (such as Caucasian gold from the Sakdrisi mine) is based on Stöllner [-@stollner16: Fig. 9] and includes all steps of his mining _chaîne operatoire_, that is: wood work/wood transport, Preparation/maintenance of tools, extraction/fire-setting, beneficiation/ore separation, crushing/sorting/milling, and wet beneficiation, but here separating the last step, smelting. Gold mining is thus set at 41.92 PH/g. 
+
+Copper mining is based on @brinkmann19, and again includes both mining and ore beneficiation at 1.015 PH/g, but is multiplied by 2 = 2.03 PH/g for the Corded Ware period compared to Brinkmann's estimate for the more industrial scale Early Bronze Age.
+
+Silver objects were not present in the case study material, but silver objects are known in the 4th-3rd millennium BCE in Southeastern and Eastern Europe, and elsewhere. 
+Silver may be obtained from, e.g. silver ore such as galena (lead sulfide) which has up to 86.6% lead in its purest form [@haldar20: 36].
+First, the ore is crushed, which is relatively easy because galena is brittle and has a Mohs hardness of only 2.5-2.75. The crushed ore is sorted and then smelted (or "roasted") removing other impurities (lead melts above 300 &deg;C), but higher temperatures may be better, e.g. at 850 &deg;C for 30-45 minutes [@gauthier_tereygeol13: 145], and a silver-lead "bullion" is obtained. The silver can then be separated from the lead by cupellation in which the silver-lead bullion is placed on a cupel ("small cup") made of e.g. bone ash or shell (high in calcium), and heated to around 850-980 &deg;C, e.g. in a furnace with continuous air flow. The oxidized lead (litharge) separates from the silver (absorbed by the calcium-rich cupel) leaving a silver "button" on top. Silver-lead bullions may also contain various amounts of bismuth (Bi), which tends to separate later in the process than the lead, and can be very challenging to remove. Antimony (Sb) and tin (Sn) may also be present [@lheritier_etal15].
+In experiments by L'Heritier et al. [-@lheritier_etal15], cupellation took an average of 36 minutes and 150 minutes to heat the furnace. They did batches of four, which may be used here to divide the 150 minutes for the furnace by 4 = 37.5 minutes, thus including the cupellation process itself = 73.5 minutes. The yield of silver was on average 0.19 g of 93.19% purity. 1/0.19 = 5.26 is the ratio to upscale to 1 g of silver. Thus, we get ((150 mins/4 (furnace)+36 (cupellation))/60 (mins to PH)) * 5.26 (ratio to 1 g) = 6.44 PH for cupellation of 1 g of 93.19% pure silver. 
+
+Forming a nugget or ingot to work with is assumed here to be done for copper through smelting, again following Brinkmann's scheme for open pit smelting in the Early Bronze Age at 0.0869 PH/g, but adding a minimum of 2 PH (for reaching the required conditions such as temperature, basing this on experiments by Grigor'ev [-@grigorev15: 40] using 2-4 hours, and @chapman_chapman13 using 1.5 hours for one smelting operation, and again multiplied by 2 because it is presumably on smaller scale at this time. It is assumed here that this would apply to the Corded Ware period where metal technology still on small scale after a decrease in metal evidence in Northwestern and parts of Central Europe during the 4th millennium BCE [@iversen15: 134]. 
+
+Mined gold is set at 1 hour for smelting (assuming that mined gold also signifies more industrial scale), again based on Stöllner [-@stollner16: fig. 9]. 
+
+Alluvial gold, more relevant for Southeast European gold sources [@cristea-stan_constantinescu16], was made by cold-welding gold dust by hammering, or sintering ("gluing" gold dust together by heating) to form small nuggets, the process then repeated for continuously larger nuggets. A combination of heating and pressure by hammering also works. Heating gold dust at 300 &deg;C for about 10-12 hours without applying any pressure works, but would be faster with more heat, e.g. an hour at 900 &deg;C, e.g. combined with pressure or hammering [@raub95]. This process usually leaves impurities from the riverbed which are still visible in the archaeological objects [@raub95]. Not knowing at what temperature the archaeological gold hair-ring in this case study was sintered at, the sintering process is set intermediately at 5 hours (assuming a linear relationship between heat and time), at e.g. 600 &deg;C with combined heating and pressure. 
+
+Tool production and maintenance is also based on a downscaled version of @brinkmann19, and is set at 0.0071 PH/g. 
+
+<br>
+
+### Shaping metal
+Finally the forging process itself is based on a combination of time used in forging experiments for a few select processes, including round to square cross-sectioned bar stock: 0.11 PH (average), then the bar stock to a chisel (flattening one end): 0.75 PH, annealing sheet metal buried in coals: repeated process of c. 0.17 PH each time, shaping large (18 cm) bronze sheet into a bowl: 4 PH, and cut tin ingot (10 mm thick): 45 seconds (rounding to 1 minute = 0.017 PH [@fregni14: 141-145]. Most of these experiments were done with a bronze hammer, so they are here upscaled somewhat to account for using more irregular hammerstone instead. However, for the most part, the author so far had to rely on very rough tentative estimates by Torben Johansen, which will be adjusted when more experiments have been carried out. 
+
+At the moment, only undecorated metal objects are included, but this may be expanded if more data on the time used in various decoration processes, e.g. chasing and punching, as well as grinding and polishing. To make this as flexible as possible, it could be done by again using the approximate percentage cover of various decoration processes. But no reference data has been found for this yet and the present case study did not include decorated metal objects. 
+
+The system for undecorated metal items breaks up forging in two stages so far.
+
+The first stage is getting from a nugget to a primary shape, either a _wire_, a _sheet_ (also _thick wire_ and _flat wire_), a _bar_, and in case of _cast_ items (not found in this case study), following Brinkmann's system. 
+
+Sheet (from 1.5 cm3 or c. 13.4 g): It was assumed that a sheet could have been made in batches of 4-5 pieces (mean 4.5) from one copper nugget, that would alstogether have taken about PH to make flat = 0.22 PH each, each of them cut to shape in c. 5 minutes = 0.08, so together one sheet would take c. 0.305 PH. For composite sheet ornaments, this quickly adds up. 
+
+Solid wire: A simple relatively thick wire of c. 10 cm, 3 mm thick (from same size nugget) is estimated to take around 1 PH to make, e.g. by hammering the gold nugget into a bar shaped ingot, and then into a negative groove in a stone or hardwood surface, similar to the "swaging" method mentioned by @fregni14 and @oddy77, or alternatively from 2-3 mm thick sheet form cut into strips or square-sectioned rods, which are then twisted tightly followed by rolling out the twisting pattern on the wire between two pieces of hardwood, a method also described in Exodus 39.3, and known in the Bronze Age according to Oddy [-@oddy77]. 
+
+A bar ingot is given 0.5 PH from nugget shape. 
+
+Stage two takes the primary shapes and forms them into the finished forms:
+
+Thick wire (3 mm) to finger ring by bending and/or hammering around a finger-shaped object (e.g. a branch or bone): 0.33 PH (20 minutes)
+Thick wire to neck ring: 0.66 PH (40 minutes)
+Wire to spiral ornament shape: 0.33 PH (20 minutes)
+Bending sheet into clips shape: 0.17 PH (10 minutes)
+A simple bead form: 0.33 PH (20 minutes)
+Thin sheet to folded tube shape, either by drawing thin sheet through a hole, or by folding it around a thin wire or pin shape [@oddy77]: 0.66 PH (40 minutes)
+
+Finally, some small simple copper tools have also been estimated roughly, including:
+one-edged "razor"-like shape and knife: 1 PH
+scoop shaped tool (from bar blank): 1.5 PH
+Pointed tool/awl, and needle from bar blank, square or rounded cross-section: 1.25 PH
+
+Both stages can be put together piece by piece in composite ornaments, which is why the archaeological metal data in this study counts both whole objects (as well as possible) as well as the pieces their made of. 
+
+Taking all these aspects into account, and also implementing Brinkmann's time estimates per 200 g adze (scaled down to 1 g), the labour-hours for the metal artefacts in the archaeological dataset are given in table \@ref(tab:metal-PH).
+```{r metal-PH}
+kable(metal_forge_arch,
+      caption = "Estimated person-hours for Moravian Corded Ware metal artefacts.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+This is summarized per grave given in table \@ref(tab:metal-grave-sum).
+
+```{r metal-grave-sum}
+kable(grave_total_metals,
+      caption = "Estimated person-hours for Moravian Corded Ware metal artefacts, summarised per grave.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+## Osseous artefacts
+The literature on the time involved in manufacturing bone tools and ornaments is still quite scarce, and therefore, the estimates given here are primarily based on the experience of Morten Kutschera who works regularly with replicating prehistoric bone and antler artefacts. Additionally, a demonstration video by @pointer19 (for antler), a presentation by @gurova_bonsall17, and @frinculeasa_etal20 for bone and tooth beads were used. 
+The time used for acquiring the raw bone material itself is very difficult to quantify. In the case of especially domestic animals, it can be argued that bones were generally the byproduct of prepared food and would thus not require specific person-hours. This may also be the case for some wild animals. However, the symbolic value of the hunt for especially prestigious animals where their teeth ornaments seem to have been worn as status symbols (e.g. red deer, wild boar, wolf, etc. [cf. @kysely_etal19], the hunt itself may have been connected with high prestige, and it could support including the hunt as a large factor in the value of e.g. a tooth pendant from a wild animal. For dog tooth beads, it may have had a more personal value if this was a life companion, or some other more symbolic value if many dog tooth beads are worn (such as the hundreds of dog teeth representing 89 dogs worn by the individual in grave 177.1.1 at Marefy). Unfortunately, these aspects may have varied greatly with each period, culture, and even each individual, and would in any case be very difficult to quantify. 
+Given the nature of the data collection, the time information for each production step also varies, and will likely vary considerably with new informants, but the author hopes that this data can be expanded with more detail and more informants in the future to make time estimates more robust. 
+
+The person-hour estimates for osseous artefacts in the reference data are given in \@ref(tab:bone-tool-ref).
+
+```{r bone-tool-ref, echo = TRUE, results='markup'}
+source(here('analysis/scripts/PH_bone.R'), echo = FALSE, encoding = "UTF-8")
+
+knitr::kable(bone[,-c(1,9)], 
+      caption = "Person-hour estimates for osseous artefacts.") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+```
+
+<br>
+
+This reference data is then applied to the archaeological grave data, given in \@ref(tab:bone-tool-arch).
+```{r bone-tool-arch}
+
+knitr::kable(bone_predict,
+      caption = "Person-hour estimates for osseous artefacts in the archaeological grave data including skill bonus and count") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+The data is then summarized for each grave, \@ref(tab:bone-tool-total).
+
+```{r bone-tool-total}
+
+knitr::kable(grave_total_bone,
+      caption = "Accumulated person-hour estimates for osseous artefacts including skill bonus") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+## Shell ornaments
+For now, only data for two types of shell ornaments have been collected. While the manufacturing time for one perforated shell bead is quite low, shells are sometimes found in high numbers in a grave as part of e.g. a necklace or alternatively sewn on clothing. Nevertheless, there are indications that some shell beads may have been quite prestigious in some periods [e.g. @kysely_etal19 for high status Corded Ware females]. The figure showing TOT ranges for each artefact group also shows that nacre (mother-of-pearl) beads are found primarily in the upper range of Moravian Corded Ware females. 
+An aspect of some shells, apart from the ornamental factor, that may add prestige is if they were perceived as exotic, as e.g. in the Neolithic long distance Spondylus trade network from the Mediterranean all the way to graves in Central Germany and Poland, even though losing most of their shiny appearance on the way [@windler19; @seferiades10]. For nacre, however, which is represented in a few graves of the Moravian Corded Ware, they may have been from local freshwater shells such as Unio, so their unique quality would primarily be that they have developed the shiny-white nacre material. 
+
+So far, the manufacturing time data includes only Unio and Dentalis/Antalis shell beads from @frinculeasa_etal20, @campbell77, and @gurova_bonsall17. According to  @margarit_etal20, the  manufacturing process for a set of Early Neolithic perforated specimens of Theodoxus and Lithoglyphus sp. from Romania involved indirect percussion to make the perforation. This seems to be a simpler task than what Gurova and Bonsall describe for Unio, and thus, a shorter process of 10 minutes for Theodoxus and Lithoglyphus sp. has been assumed until further relevant experimental work is found. For nacre beads, no time estimates or manufacturing details were found, and thus nacre person-hours are preliminarily taken from Unio. The various shell manufacturing time estimates can be seen in table \@ref(tab:shell-ref).
+
+```{r shell-ref, results='markup'}
+source(here('analysis/scripts/PH_shell.R'), echo = TRUE, encoding = "UTF-8")
+
+kable(shell[,-7],
+      caption = "Person-hour estimates for shell ornaments.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+```
+
+<br>
+
+Due to the very large number of perforated shell and nacre beads in one grave (more than 7000), the manufacturing time alone results in an extreme Gini coefficient at more than 0.80. And while these may indeed have been prestigious, this result begs the question whether the general "daylight hours" argument can be assumed for shells as well. Perforating and polishing so many shell beads was likely a trivial task and could perhaps have been done in the evening while telling stories around the camp fire. 
+To control for this, a 3-step model has been applied, for which less than 100 of the same shell bead, gives the reference PH; between 100 and 999 shell beads gives the reference PH square-rooted and multiplied by 1000, and more than 1000 shell beads gives the reference PH again square-rooted but then only multiplied by 100. Thus, 5463 nacre beads in the same grave gives a "person-hour value" of 558 instead of more than 3000 which would have been the result if treated as any other grave good. 
+
+When we apply this to an archaeological test dataset, we get the results in table \@ref(tab:shell-arch-PH).
+```{r shell-arch-PH}
+kable(shell_predict, 
+      caption = "Person-hour estimates for shell ornaments in test data.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+We can then sum the accumulated shell points in the test data for each grave, given in table \@ref(tab:shell-grave-total). 
+```{r shell-grave-total}
+kable(grave_total_shell, 
+      caption = "Value point estimates for shell ornaments accumulated per grave.") %>% #caption also gives table reference number
+  kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+## Amber ornaments
+Time estimates for amber ornaments are so far only based on conversations with Morten Kutschera. This can hopefully be expanded with more data in the future. 
+The raw material procurement, i.e. searching for amber on the beach, is counted at a flat rate of 2 PH. This may of course vary widely, but this would be impossible to quantify in this project. Kutschera mentioned that it is a good idea to go towards places with more bird activity because the under-current drives up the bottom along with food for the birds, which is also where amber may be transported to land. The distance to the nearest beach with amber can also be added to the calculation. Amber may well have shifted hands many times before becoming worked into an artefact or deposited in a grave. However, as all imported objects, this is impossible to quantify, and the minimum distance or travel time to a likely source is used instead. The distance to the nearest source of amber can be noted in the raw data table for amber grave goods, as has been done in the hypothetical example in table \@ref(tab:amber-ref). Working the amber depends both ont he complexity of the shape and how much the original piece has to be reduced to fit that shape. This is again very difficult to generally quantify, but it is assumed here that the raw piece that fit the desired shape the most would have been chosen. Some techniques that are used to work amber are removing the cortex, drilling (for any hanging ornament), cutting (e.g. with a knife), sawing (e.g. with a small saw of linen thread and wood), grinding (e.g. on a stone slab), and polishing (e.g. on felt, leather). These techniques can be seen in action in the video by Eryk Popkiewicz who specializes in prehistoric amber production https://www.youtube.com/watch?v=GKv_ZlDknQI and http://eryk.amberart.pl/index.php/filmy, unfortunately without time estimates. 
+
+Some of the amber ornaments known from the Corded Ware (mostly in Scandinavia) are V-perforated buttons, beads, and discs. However, none of these are represented in this case study. The system so far incorporates Kutschera's rough estimates for larger pendants or discs at c. 4-5 hours; smaller pendants, discs or buttons at c. 1 PH (including 10-20 minutes for rough shaping, and 30-60 minutes for grind and polish = a total of 40-80 minutes (mean 60 = 1 PH); and amber beads (only 10 minutes drilling and 30-45 minutes grind/polish) = 0.79 PH. 
+to this and other hanging ornaments we can add nettle string of c. 1 PH including harvest. 
+```{r amber-ref}
+source(here('analysis/scripts/PH_amber.R'), echo = FALSE, encoding = "UTF-8")
+
+knitr::kable(amber, 
+      col.names = c( 
+                'artefact type', 
+                'production stages', 
+                'Production time (PH) ', 
+                'Skill level',
+                'Reference', 
+                'Total graves', 
+                'Total number of graves with amber', 
+                'Distance to source (km)',
+                'Skill bonus', 
+                'Scarcity bonus', 
+                'Travel bonus',
+                'Total of PH, skill, scarcity, and travel hours'),
+      caption = "Person-hour estimates for amber ornaments.") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+```
+
+<br>
+
+## Birch bark tar for gluing object parts together
+Most hafted objects would also need birch bark tar for secure attachment along with sinew or leather thread. 
+For birch bark pitch, the outermost white layer of birch bark is used. The general concept is extracting the oils in the bark, which can be done in many ways. A simple, but not very effective method is simply burning birch bark next to some smooth stone, which the sod and oils will adhere to. The pitch can then be scraped off the stone to form small nodules in c. 10-45 minutes, but this is very low yield, see https://www.youtube.com/watch?v=_2Q3wNVkPAU.
+However, a more efficient method is creating a reduced atmosphere using two ceramic vessels (larger jug, and smaller bowl, the bowl used as lid for the jug). The larger jug is stuffed tightly with birch bark strips. The small vessel is then put over the larger vessel like a lid and sealed air tight with clay. The joint vessels are then put into the ground lid down (lid completely covered with soil). The upper vessel is covered with burning wood and burned for 1,5 hours. The bark inside the vessel undergoes pyrolysis releasing botulin which condenses in the lower underground and cooler vessel. The clay joint is removed and the upper part taken off leaving the lower vessel with liquid birch pitch which is boiled in the charcoal bed at least one more hour until the surface gets a “skim”. The liquid can then be poured into an unburnt, well-dried clay bowl, from where it can be easily removed with the fingers when cooled down, see video of this by Wulf Hein at https://www.youtube.com/watch?v=rSk10RYnwCg. 
+
+<br>
+
+# Estimated meat consumption from MNI of animal bones
+Animal bones may reflect meat intake and possibly a sign of feasting. Under this assumption, feasting may to some degree relate to the number of people that attended the given funeral and thus be an indicator of the impact of the death of the buried individual on the community, and the individual's social status in the community. The meat (or bones) in the grave itself was probably given to the deceased for the afterlife, perhaps as part of the larger feast. Whether or not all the meat was provided by the host family it was likely distributed to the attendants. Such funeral feasting is known in many cultures as a way of showing the family's surplus, wealth, and power to the community, strengthen their network and/or make new alliances in the process. Sacrificed animals may also have been borrowed from other families, thus not always representing the wealth of the deceased or the family, but rather indebting the family while other debts, e.g. as meat, may have been repaid by other attendants in a complex network @hayden09. This is however impossible to distinguish archaeologically, and using animal bones as proxy for sacrificed animals, one should keep this caveat in mind. Various combinations of these interpretations are possible.
+
+The Minimum Number of Individuals (MNI) of the animal bones were used here to estimate the amount of meat consumed in connection with the burial, keeping in mind the uncertainties of this approach. However, leaving out animal bones altogether might add another blind spot to the interpretation of wealth and status. 
+
+MNI was estimated from the Number of Individual Specimens (NISP) of animal bones and grouped into main species. Wild and domestic animals were not distinguished, primarily because this is not always determined archaeologically, and secondly because they may represent similar amounts of meat (according to their size) in the Neolithic. Wild animals slaughtered may have conveyed more symbolic meaning, while domestic animals slaughtered may represent more economic expenditure. Which of these carries higher value is unknown, and is therefore not taken into account here. 
+
+The estimated _usable_ meat for different animal sizes are based on General Meat Utility Indices (GMUI) from @outram_rowley-conwy98 for horse, @rowley-conwy_etal02 for pig and wild boar. Red deer is based on caribou (reindeer) @metcalfe_jones88. A GMUI or MUI could not be found for Neolithic cattle, so instead horse (c. 181 kg) was used and scaled up to the suggested weight of Neolithic cattle (c. 290 kg) in Cummings and Morris [-@cummings_morris18: 2]. Dog and wolf are assumed to be half the yield of sheep, fox: 1/3 of sheep meat, hare: 1/8 of sheep, and small amphibians (frog, tortoise): 1/10 of sheep. These numbers may of course vary widely with the sources used, and may need adjustments in the future. The reference meat yields are given in table \@ref(tab:ref-meat). 
+```{r ref-meat}
+source(here('analysis/scripts/Prestige.R'), echo = FALSE, encoding = "UTF-8")
+source(here('analysis/scripts/animals.R'), echo = FALSE, encoding = "UTF-8")
+
+
+knitr::kable(ref_meat_long, 
+      caption = "Usable meat estimates for various species.") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "250px", width = "50%", fixed_thead = T)
+```
+
+<br>
+
+The archaeological animal bone data is given in table \@ref(tab:arch-animal).
+```{r arch-animal}
+
+knitr::kable(animals, 
+      caption = "Archaeological animal bones reported by species. MNI estimated by the author from bone counts. Rodents excluded assuming they are intrusive to the grave context.") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+```
+
+<br>
+
+Animal bone scarcity, based on general appearance of animal bones in Moravian Corded Ware [@kolar18], is 43 of 413 total graves, and prestige value is 4.5 (median of TOT range for animal bones, see main paper). 
+Applying the estimated meat yields from the reference animals to the MNI of the archaeological animal bones, and the scarcity and prestige bonus we get table \@ref(tab:arch-meat-est).
+```{r arch-meat-est}
+
+knitr::kable(animals_all, 
+      caption = "Estimated usable meat consumption (kg) based on archaeological animal bones (MNI), as well as scarcity and prestige value.") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
+
+# Summary of materials, grave disturbance, and objects in infill.
+
+The combined scores for each main material per grave are given in table \@ref(tab:material-all-graves).
+
+```{r material-all-graves}
+
+source(here('analysis/scripts/material_total.R'), echo = FALSE, encoding = "UTF-8")
+
+material_all$total <- rowSums(material_all[3:9])
+
+knitr::kable(material_all, 
+      caption = "All graves with all grave good value aspects combined for each material.") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+
+```
+
+## Secondary manipulation of graves in this case study
+Secondary manipulations of the human remains, e.g. later grave disturbance, are rarely documented for excavations of Moravian CWC graves before the 1970s, and primarily after 1995 [@kolar18: 74-78]. The majority of the data are from Sebela which only has excavations from before 1991 [@sebela_rakovsky99: 15], and only 12 of these have complete documentation [denoted 'VN 1' and 'VN 2' in @sebela_rakovsky99: 16]. Therefore, undocumented secondary manipulations should be expected for some of this material. 
+
+## Objects in infill
+Objects in the infill occurred in 8 graves (155.1.3 (barrow preserved), 197.1.1, 347.1.5, 97.1.1, Hos_802, Iv4_800, Iv4_807, and Iv4_810, in most cases potsherds and pebbles, but also a two small copper items, a flint scraper and bone tools). Their role in the burial situation is therefore not clear, adding some uncertainty to the data. The differences between including and excluding grave fill objects were minute for the PCA (roughly same pattern (2% in PC1 variation, 0.2% in PC2), grave good Gini indices (0.001 for CAI, 0.012 for scarcity).
+
+# PCA
+To include grave depth in the PCA, some missing values were imputed using the missMDA package. Figures \@ref(fig:impute-precision1) and \@ref(fig:impute-precision2) show the precision of the predicted imputed grave depth (from 100 generated predicted datasets) compared to the observed grave depth, and the impact of the imputation on the PCA. The variation of the imputed values in the plots shows the possible variability of the prediction using a parametric bootsrap method which is preferable for evaluating uncertainty in PCA. 
+
+```{r impute-accuracy, results='hide', fig.cap="Estimated precision of imputed data in grave depth.", fig.show='hide'}
+source(here('analysis/scripts/PCA.R'), echo = FALSE, encoding = "UTF-8")
+imp_precision.p <- plot(imp_precision)
+```
+
+```{r impute-precision1, fig.cap="Precision of the PCA when imputing grave depth.", results='asis', out.width="100%"}
+library(patchwork)
+
+imp_precision.p$PlotIndProc + imp_precision.p$PlotDim 
+
+
+```
+
+```{r impute-precision2, fig.cap="Estimated precision of imputed grave depth.", results='asis', out.width="100%"}
+imp_precision.p$PlotVar
+```
+
+A principal components analysis (PCA) was carried out on the different wealth and value measures with materials overlayed. PCA of dimensions 1 and 2 can be seen in the main paper, while PCA of dimensions 2 and 3 is visualized here with two clusters highlighting the meat cluster on dimension 2, see figure \@ref(fig:pca-dim-2-3). 
+
+```{r pca-dim-2-3, fig.cap="Biplot of PCA on dimensions 2 and 3.", results='asis', out.width="100%"}
+PCA_paper_2_3
+```
+
+
+<br>
+
+# Acknowledgements
+I wish to sincerely thank the crafts people that endured my endless questioning on time estimates for endless numbers of objects at different production stages, in this regard especially Morten Kutschera, Inger Heebøl at Sagnlandet Lejre and Pauline Ferrisse, and Torben Johansen (referred to as the informants "MK", "IH", "PF", and "TJ") who have been crucial sources of manufacturing time reference data and craft knowledge. Their help, expertise and deep knowledge has been extremely valuable to me. I also wish to thank my supervisor Rune Iversen for his feedback and support, and Torben Johansen with whom I will keep carrying out metal forging experiments, and Johanna Brinkmann for fruitful discussions on metal technology and her metal person-hour framework which has been in part incorporated in this study, Also thanks to Roeland Paardekooper of EXARC for helping me make connections with some experimental archaeologists for follow-up questions. Finally, I deeply thank Solveig Chaudesaigues-Clausen for everyday sparring on experimental archaeology and Stone Age technology, and the Saxo Institute for providing me the funding for the PhD project that this paper is a part of. 
+
+
+<!-- The following line inserts a page break  -->
+
+\newpage
+
+
+# References
+## reference data sources 
+Sources not mentioned in this text but used in in the reference tables are given here (see main reference list below for full reference details): 
+@hein_lund12
+
+
+
+<!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
+
+::: {#refs}
+:::
+
+\newpage
+
+### Colophon
+
+This report was generated on `r Sys.time()` using the following computational environment and dependencies:
+
+```{r colophon, cache = FALSE}
+# which R packages and versions?
+if ("devtools" %in% installed.packages()) devtools::session_info()
+```
+
+The current Git commit details are:
+
+```{r}
+# what commit is this file at? 
+if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
+```
