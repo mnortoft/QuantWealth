@@ -5,6 +5,15 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/master?urlpath=rstudio)
 
+NB! Binder (or repo2docker) currently runs an outdated version of R
+(3.6.3) which gives problems with running the packages stat_lorenz, and
+magick (and thus problems with knitting the main paper (paper.Rmd) and
+the SI (SI.Rmd) when running this compendium in Binder), follow
+<https://github.com/jupyterhub/repo2docker/issues/1077> for updates on
+this issue). It therefore works best downloading the whole compendium,
+or the [:file_folder: zip file](/archive/QuantGraveWealth.zip) file and
+running the project from an updated R version.
+
 This repository contains the data and code for our paper:
 
 > Nørtoft, Mikkel, (2022). *Quantifying Grave Wealth*. Name of
