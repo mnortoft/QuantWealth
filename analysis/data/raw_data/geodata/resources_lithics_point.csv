@@ -1,0 +1,77 @@
+X	Y	fid	name	period	resource	abs_dates	reference	geo_type
+5122702.3167949	3156745.6240305	"1"	Krzemionki	Neolithic	flint		Sørensen 2014: fig 114	
+4543700.73262455	3489294.34666017	"2"	Rügen	Neolithic	flint		Sørensen 2014: fig 114	
+4524513.29222578	3611331.42973055	"3"	Sallerup	Neolithic	flint	4000 cal BCE onwards	"Sørensen 2014: fig 114; Vang Petersen 2007: 23"	Senonian flint from Zealand
+4482377.48390292	3583268.4577265	"4"	Stevns Klint	Neolithic	flint		Sørensen 2014: fig 114	Danien flint
+4376758.21052206	3708876.44238078	"5"	Fornæs/Sangstrup Klint	Neolithic	flint		Sørensen 2014: fig 114	
+4248583.82140307	3771776.10855802	"6"	Hov	Neolithic	flint	4000-2700 cal BCE	"Vang Petersen 2007: 23; Sørensen 2014: fig 114"	Senonian flint from Zealand
+4027437.84369443	3075042.08297483	"7"	Rijckholt	Neolithic	flint	4250/4000-3600 cal BCE	Sørensen 2014: fig 114	
+3894398.53585279	3054687.95383719	"8"	Spiennes	Neolithic	flint	4450-3500 cal BCE	Sørensen 2014: fig 114	
+3741890.06100993	3016487.08828177	"9"	Les Bouts du Mont	Neolithic	flint		Sørensen 2014: fig 114	
+3795282.77657387	2959259.53679335	"10"	Le fond Madelon Duriez	Neolithic	flint		Sørensen 2014: fig 114	
+3800297.56201358	2947460.0416411	"11"	La Porte aux Bergers	Neolithic	flint		Sørensen 2014: fig 114	
+3774928.64743624	2944805.15523184	"12"	Parc du Brimborion	Neolithic	flint		Sørensen 2014: fig 114	
+3867654.3293111	2914541.01457284	"13"	Rhomigny-Lhéry	Neolithic	flint		Sørensen 2014: fig 114	
+4013868.30452769	2759829.48883846	"14"	Vaux-Le-Montcelot	Neolithic	flint		Sørensen 2014: fig 114	
+4033456.03587762	2729794.96743523	"15"	Villers-Chemin-et-mont-Les-Etrelles	Neolithic	flint		Sørensen 2014: fig 114	
+3852865.87309435	2814088.49674518	"16"	"Villemaur-sur-Vanne ""Les Orlets"""	Neolithic	flint		Sørensen 2014: fig 114	
+3791166.76602677	2890376.55523759	"17"	Jablines	Neolithic	flint	4300-2900 cal BCE	Sørensen 2014: fig 114	
+3733418.83330343	2896151.34850993	"18"	Flins-sur-seine	Neolithic	flint		Sørensen 2014: fig 114	
+3582080.33605769	2898923.62415607	"19"	"Ri ""Le Fresne"""	Neolithic	flint	4200-3600/3100 cal BCE	Sørensen 2014: fig 114	
+3574690.54736711	2924982.35269653	"20"	"Bretteville-le-Rabet ""La Fordelle"""	Neolithic	flint		Sørensen 2014: fig 114	
+3701207.9855294	3313886.9255372	"21"	Buckenham Toft	Neolithic	flint		Sørensen 2014: fig 114	
+3693202.43590382	3303379.64165363	"22"	Grime's Graves	Neolithic	flint		Sørensen 2014: fig 114	
+3494064.38896767	3188800.21263761	"23"	Martin's Clump	Neolithic	flint		Sørensen 2014: fig 114	
+3501569.59174165	3182295.70356683	"24"	Easton Down	Neolithic	flint	c. 4400-3500 cal BCE	"Sørensen 2014: fig 114; Edinborough et al. 2020"	
+3506573.06025763	3177292.23505084	"25"	Durrington	Neolithic	flint		Sørensen 2014: fig 114	
+3545600.11468231	3153275.58617412	"26"	Church Hill	Neolithic	flint	c. 2800-1500 cal BCE	"Sørensen 2014: fig 114; Edinborough et al. 2020"	
+3559109.47967546	3141767.60858736	"27"	Blackpatch	Neolithic	flint	4000-3800 cal BCE and 200-1 cal BCE	"Sørensen 2014: fig 114; Edinborough et al. 2020"	
+3567115.02930104	3134762.75266498	"28"	Cissbury	Neolithic	flint	4000-3000 cal BCE	"Sørensen 2014: fig 114; Edinborough et al. 2020"	
+3586128.20966177	3136764.14007138	"29"	Harrow Hill	Neolithic	flint	4300/4000-3500 cal BCE	Sørensen 2014: fig 114	
+3592132.37188095	3137764.83377457	"30"	Long Down	Neolithic	flint		Sørensen 2014: fig 114	
+3596635.49354534	3136263.79321978	"31"	Stoke Down	Neolithic	flint		Sørensen 2014: fig 114	
+3593633.41243575	3130759.9778522	"32"	Nore Down	Neolithic	flint		Sørensen 2014: fig 114	
+4482991.19681826	3541993.55655178	"33"	Møns Klint		flint		Vang Petersen 2007: 23	Senonian flint
+4444108.79227894	3514022.48255964	"34"	Hasselø		flint		Vang Petersen 2007: 23	Senonian flint (striped Falster-variant)
+4371891.44258146	3566764.49418376	"35"	Klintholm		flint		Vang Petersen 2007: 23	Danien flint
+4322491.37558293	3770878.00549589	"36"	Skovbakken		flint		Vang Petersen 2007: 23	Senonian flint
+4236740.71089507	3776578.83496371	"37"	Bjerre		flint		Vang Petersen 2007: 23	Senonian flint from Zealand
+4809046.74776946	2880642.13085588	"38"	Palava hills	Corded Ware	chipped stone		Kolar 2018	cherts of Palava hills
+4791788.29373519	2901322.51974179	"39"	Krumlovsky les	"Corded Ware, Bell Beaker"	chipped stone	"3100-2200 cal BCE (intensified, but already some use in Mesolithic"	"Kolar 2018: figs 108, 111"	cherts of the Krumlovsky les type
+4805922.37247016	2918357.80411183	"40"	Brno	Corded Ware	chipped stone		Kolar 2018	Jurassic cherts of the Brno region
+4810683.3253072	2932566.27273487	"41"	Olomouc	"Corded Ware, Bell Beaker"	chipped stone		Kolar 2018	Jurassic cherts from Olomuchany
+4793127.31172061	2972513.64263318	"42"	Moravia	"Corded Ware, Bell Beaker"	chipped stone		Kolar 2018	cretaceous spongolites
+4806976.04927172	2919581.75943191	"43"	Stránská skála Hill	"Corded Ware, Bell Beaker"	chipped stone		Kolar 2018	chert (Stránská skála)
+4801605.51484153	3102659.21868113	"44"	Jańska Góra (Gogolów-Jordanów massif)	Eneolithic	rock		Kolar 2018: 154	Serpentinite
+4896018.90831397	2903290.24069775	"45"	Starý Hrozenkov (in the White Carpathians)	prehistory	rock		Kolar 2018: 157	basalt
+4884213.82085549	3007355.83670097	"46"	Otická sopka and Opava surrounding area	prehistory	rock		Kolar 2018: 157	basalt
+4887432.03066002	3026986.91650863	"47"	Nowa Cerekwa	prehistory	rock		Kolar 2018: 157	basalt
+4691958.24938395	3077010.8744515	"48"	Jizera Mountains (Jistebsko and Velké Hamry sites)	Early-Late Neolithic (extraction likely but not proven in the Final Eneolithic)	rock		Kolar 2018: 158	"metamorphic rocks (metabasite, greenschist, amphibolites)"
+4792240.00761488	3104061.6540293	"49"	Mount Ślęża (in Gogolów-Jordanów massif)	Eneolithic	rock		Kolar 2018: 158 and fig. 134	gabbro
+4857089.02011942	3007674.66521719	"50"	Venušina Sopka u Bruntálu		rock		Kolar 2018: fig. 132	basalt
+4813402.56946255	3049505.40872648	"51"	Zálesí u Javorníka and Lądek Zdroj		rock		Kolar 2018: fig. 132	basalt
+4863637.29900354	3080708.47861758	"52"	Ligota Tułowicka		rock		Kolar 2018: fig. 132	basalt
+4899708.93299113	3069643.56021648	"53"	Góra Św. Anny		rock		Kolar 2018: fig. 132	basalt
+4828391.11352699	3011654.69776159	"54"	Sobotín		rock		Kolar 2018: fig. 133	metabasite
+4712325.77666555	2988618.82937688	"55"	Markovice near Čáslav		rock		Kolar 2018: fig. 133	amphibolite
+4735213.97922728	2828106.07979877	"56"	Rehberg		rock		Kolar 2018: fig. 133	amphibolite
+4457952.73028399	2857112.37400476	"57"	Abensberg-Arnhofen	Corded Ware	chipped stone		Müller et al. 2009 (Corded Ware settlement)	silex
+4450245.6412691	2873018.49388656	"58"	Baiersdorf	Corded Ware	chipped stone		Müller et al. 2009	silex
+4432699.71521392	2927624.03946015	"59"	Heldmannsberg	Corded Ware	chipped stone		Müller et al. 2009	silex
+4401707.37853702	2992314.39300003	"60"	Grossziegenfeld	Corded Ware	chipped stone		Müller et al. 2009	silex
+4404659.02964911	2995921.96658147	"61"	Mährenhüll	Corded Ware	chipped stone		Müller et al. 2009	silex
+4398427.76619026	2996249.92781614	"62"	Kümmersreuth	Corded Ware	chipped stone		Müller et al. 2009	silex
+4407774.66137853	2991166.52867866	"63"	Pfaffendorf	Corded Ware	rock		Müller et al. 2009	
+4413186.02175069	2988542.83880125	"64"	Fesselsdorf	Corded Ware	rock		Müller et al. 2009	
+4406954.75829184	2986083.12954118	"65"	Stadelhofen/Wotzendorf	Corded Ware	rock		Müller et al. 2009	
+4396787.96001688	2988214.87756657	"66"	Stübig/Weichenwasserlos	Corded Ware	rock		Müller et al. 2009	
+4398099.80495558	3003629.05559636	"67"	Lichtenfels/Klosterlangheim	Corded Ware	rock		Müller et al. 2009	
+4431387.87027522	2996905.85028549	"68"	Trebgast/Harsdorf	Corded Ware	rock		Müller et al. 2009	
+4465659.81929888	3001169.34633628	"69"	Göpfersgrün/Kirchenlamitz	Corded Ware	rock		Müller et al. 2009	
+3347442.88929664	3405466.0640092	"70"	Mynydd Rhiw East	Early Neolithic	flint		Edinborough et al. 2020	
+3399347.06693665	3433555.38367321	"71"	Graig Lwyd	Early Neolithic	flint		Edinborough et al. 2020	
+3478060.13135161	3563009.23592769	"72"	Great Langdale	Early Neolithic	flint	c. 3800-3500 cal BCE	Edinborough et al. 2020	
+3254540.59180741	3501460.37721262	"73"	Lambay Island	Early Neolithic	flint		Edinborough et al. 2020	
+3263179.02811829	3677468.51704694	"74"	Tievebulliagh	Early Neolithic	flint		Edinborough et al. 2020	
+3587631.03193606	3137104.32195926	"75"	New Born Down	Early Neolithic	flint	3960-3790 cal BCE	Edinborough et al. 2020	
+3572580.43002712	3139647.29769668	"76"	Long Down	Early Neolithic	flint	c. 3800-2900 cal BCE and 1900-1700 cal BCE	Edinborough et al. 2020	

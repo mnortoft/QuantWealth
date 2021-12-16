@@ -1,0 +1,246 @@
+X	Y	fid	resource	Reference	OreDeposit	metallurgy	date	mine	sitename	type	res_simple	auxiliary_storage_labeling_positionx	auxiliary_storage_labeling_positiony
+4526522.56931743	3049376.14714341	"1"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4595068.4903772	3091812.99483572	"2"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4541652.70775564	3002186.10726732	"3"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4602787.23650451	3008428.26474765	"4"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4622788.88096871	2947908.61365318	"5"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4667712.43300698	2980742.76347656	"6"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+4686967.31551752	2918315.39917607	"7"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+4807269.61019833	2859916.14713182	"8"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4866426.80493658	2868988.56099863	"9"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4867873.42150309	2728865.75185822	"10"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4991815.3481389	2966657.6832712	"11"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4949295.9886855	2895134.86472031	"12"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+4983935.28159417	2906147.57380609	"13"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5059415.88378275	2943386.81964893	"14"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5115123.21503713	2936050.30311252	"15"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5069475.31504992	2869278.73334411	"16"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5053185.56457598	2781848.53911348	"17"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5148425.29006732	2873905.82990084	"18"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+5197828.46993746	2996964.51520721	"19"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5209612.90892611	2945887.22574133	"20"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5277663.36254159	2940491.46700979	"21"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5320864.89326466	2911994.92951727	"22"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5402556.93458498	2868249.59781402	"23"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5467284.91578303	2862172.81144269	"24"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5557867.94559154	2869769.19320379	"25"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5280586.2398434	2738944.84997175	"26"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5193748.00890074	2688892.63496066	"27"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4399572.24137288	2719986.74544527	"28"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4340264.24043633	2714251.60013489	"29"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4386359.09780402	2653427.25625645	"30"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4461902.60362514	2668848.42881069	"31"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4089872.09589926	2519109.73575262	"32"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4791859.39900819	2535446.11946222	"33"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5106572.5265206	2618608.95083276	"34"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4090644.90603514	2443145.58287401	"35"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4862022.6842688	2437942.55842596	"36"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4918668.91695234	2404789.26627201	"37"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5000760.13860657	2452348.50183685	"38"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5078631.28202458	2404583.9550139	"39"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+5028217.68056263	2372347.28382032	"40"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4500903.70912614	3123366.28248642	"41"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+5240879.31565249	2624652.80632648	"42"	Gold (alluvial)	"Anthony and Pernicka 2010; Cristea-Stan and Constantinescu 2016"	alluvial				Lipova	Alluvial	Gold		
+5311576.37169469	2682577.69125086	"43"	Gold (alluvial)	"Anthony and Pernicka 2010; Cristea-Stan and Constantinescu 2016"	alluvial				Valea Tebei	Alluvial	Gold	5310041.39892061	2689674.57154585
+5378575.61259368	2627895.70329881	"44"	Gold (alluvial)	"Anthony and Pernicka 2010; Cristea-Stan and Constantinescu 2016"	alluvial				Sebes	Alluvial	Gold		
+5337827.55738524	2684524.12044662	"45"	Gold (alluvial)	"Anthony and Pernicka 2010; Cristea-Stan and Constantinescu 2016"	alluvial				Lupsa V Ariesului	Alluvial	Gold		
+5319922.66394268	2738755.11078804	"46"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5414801.90729435	2691741.85236751	"47"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5400761.73603026	2804053.33406267	"48"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5540888.35039512	2757954.22555905	"49"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5364464.27995409	2613472.3185386	"50"	Gold (alluvial)	"Anthony and Pernicka 2010; Cristea-Stan and Constantinescu 2016"	alluvial				Valea Pianului	Alluvial	Gold		
+5535898.88104515	2650892.3718019	"51"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5444263.15617489	2572473.77543873	"52"	Gold (alluvial)	"Anthony and Pernicka 2010; Cristea-Stan and Constantinescu 2016"	alluvial				Valea Oltului	Alluvial	Gold		
+5832071.8983139	2858400.9776362	"53"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5813805.45252284	2796273.00919947	"54"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5296540.21481596	2553299.37715074	"55"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5159294.25034701	2511538.21701432	"56"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3912529.52789504	2381392.13645566	"57"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3820239.93317087	2340340.86753447	"58"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+3745489.76361083	2382280.7119384	"59"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6862080.81680843	3947424.51694255	"60"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7325056.9582718	4158059.39318119	"61"	copper mine	Anthony and Pernicka 2010	TRUE			copper mine	Kargaly	Mine	Copper		
+6730491.37902185	2915337.12467592	"62"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6820211.48625007	2932806.64012968	"63"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6891272.43455841	2898833.64195318	"64"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6966499.13454645	2902632.78255298	"65"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+6943964.10214	2722150.83610667	"66"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+5167329.4342932	2483279.45964586	"67"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5165551.56804776	2414497.47944671	"68"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5188549.50301281	2410378.1669369	"69"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5190789.00034493	2447895.70070303	"70"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5228815.69526025	2442509.24695206	"71"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5275646.10453809	2453662.52526403	"72"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5264102.68139016	2393882.84784128	"73"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5259082.52075154	2338499.39706327	"74"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5368681.01243183	2445272.25486351	"75"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5342688.51275993	2397515.59116845	"76"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5435030.57082899	2463143.33937252	"77"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5480965.69583203	2387023.21934871	"78"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5413018.18844537	2339927.49206967	"79"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5498641.9495908	2321718.7329528	"80"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5308825.4208194	2348392.295667	"81"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5140679.50894206	2317398.78969894	"82"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5089137.70249753	2336901.51827579	"83"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5060923.56700008	2320229.09798021	"84"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5212755.50329016	2247947.09075332	"85"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5212190.17155894	2180794.57402803	"86"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5307907.80220632	2241557.96422359	"87"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5349766.60341378	2157673.70143708	"88"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5386226.24647357	2198779.12774292	"89"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5415783.84461239	2172896.1623603	"90"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5464415.99751566	2208962.9726972	"91"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5452426.97603931	2278272.9323394	"92"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5551706.53521177	2295749.35294214	"93"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5604840.82908196	2271913.38956525	"94"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5735786.59146491	2299227.55695376	"95"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5597326.12526926	2209839.3730381	"96"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5531422.81080739	2151430.77613489	"97"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+4429015.95891126	2246080.68763138	"98"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5569416.5803327	2105703.00121385	"99"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+5677713.47738012	2201566.70377963	"100"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+5579201.23089131	2052048.14255893	"101"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+4250134.73386848	1901193.83376334	"102"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+5935130.356106	2087177.04642484	"103"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+5579310.2320248	1760459.16295134	"104"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+3485511.9967718	2882949.24653795	"105"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3342767.72062444	2861690.32686946	"106"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3567241.5314008	2661811.44425168	"107"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3693226.56299663	2295321.2609985	"108"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3180437.83089574	2327013.95210526	"109"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3240585.25107757	3467795.31798613	"110"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3418385.3285403	3352547.12946813	"111"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3510071.85715995	3939058.33670497	"112"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+3428736.59602932	3901924.35712457	"113"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3491104.8123083	3866326.23035621	"114"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3524865.31371885	3796633.9722306	"115"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3418864.8865778	3810278.91373888	"116"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3484247.97525	3737130.5180672	"117"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3442437.97511691	3697883.31336379	"118"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3504346.40645737	3565693.7181855	"119"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3057372.31226734	3562764.57755425	"120"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3054299.50113831	3463765.29454626	"121"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3119989.1840305	3399392.95188463	"122"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3024813.12560009	3378265.41093224	"123"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3406591.92544359	3423974.74826374	"124"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3359752.75376204	3314700.19552194	"125"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3493288.45513476	3398641.37719354	"126"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3350692.56835166	3148665.90099479	"127"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+4380323.54378817	2260351.0706439	"128"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+3689130.36457746	2649504.0260588	"129"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+3473997.19818288	2794876.99854442	"130"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+3412776.02795205	2873029.90943811	"131"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+3300661.47648	2908895.81783248	"132"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+2995540.19544928	2429493.58195889	"133"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+2846305.09849816	2364463.25087731	"134"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+2851471.96499466	2275027.93855862	"135"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+2939125.60137301	2224923.17181203	"136"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+2988321.31616231	2125131.31169633	"137"	Tin	Anthony and Pernicka 2010	TRUE					Unspecified	Tin		
+2714808.94825177	2026026.98074068	"138"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3117629.55563878	2309513.96607732	"139"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+3346427.5230395	1735363.29348844	"140"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+2956627.53549043	1797964.94761451	"141"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+3513323.0653358	2186581.97760602	"142"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3562661.39720379	2111106.02186803	"143"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+2960113.05331646	1748701.75503105	"144"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+2903471.27049378	1714808.64381406	"145"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+3093823.37296472	1673124.9426821	"146"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+5645660.5635993	1666655.84151628	"147"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+5678986.2270202	1704533.80915494	"148"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+5832175.40072791	2066564.50736953	"149"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+5799710.00035929	1989931.70447477	"150"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+5964407.91801738	1850603.52186381	"151"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7135633.71081344	2683277.43646734	"152"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7324608.2924935	2628193.98398049	"153"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6919667.10774547	2625693.77889586	"154"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6951691.732737	2582610.09368049	"155"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6890420.38239135	2589478.19706796	"156"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6926674.04989491	2525222.01602686	"157"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6865709.93908813	2541134.64026878	"158"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6664703.69986782	2420844.10392086	"159"	Gold	Anthony and Pernicka 2010	TRUE					Unspecified	Gold		
+6611201.62891096	2391507.42355089	"160"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6713268.74574908	2414029.142901	"161"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6695135.14210625	2347162.84443189	"162"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6946554.85802333	2288011.70802748	"163"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7057579.99236675	2308214.0632236	"164"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7078719.27751499	2292168.04009587	"165"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6899579.63594702	2269650.17221258	"166"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6833663.50915884	2252197.34513515	"167"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6877597.95387297	2228505.22256964	"168"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6787513.90707605	2191130.17210116	"169"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6780557.77104226	2146224.39394468	"170"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6734628.50658918	2153186.93127813	"171"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6686940.75829916	2061278.77773827	"172"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6374659.83458089	1844197.2401448	"173"	Silver	Anthony and Pernicka 2010	TRUE					Unspecified	Silver		
+6422603.91380362	1668344.76303051	"174"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6460579.25040929	1707935.65327253	"175"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6509084.01336155	1694001.21014331	"176"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7722495.11144063	2416643.70088999	"177"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7747007.51240358	2398547.03782348	"178"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7782091.40104095	2377315.01376843	"179"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7950611.45870495	2320971.4988936	"180"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+7996194.2762686	2244213.39867672	"181"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6776836.80782572	1265147.07781531	"182"	Copper	Anthony and Pernicka 2010	TRUE					Unspecified	Copper		
+6733975.11918893	1150007.22078135	"183"	copper mine	Anthony and Pernicka 2010	TRUE		c. 4500 BCE - 400 CE	copper mine	Wadi Feynan	Mine	Copper		
+4826492.54555293	2965275.62488931	"184"	Copper metallurgy	"Gebauer et al. 2020; Klassen 2014 (Causewayed Enclosures): 231 fig 135"		TRUE	3600-3200 BCE			Metallurgy	Copper		
+3024813.12560009	3378265.41093224	"185"	copper mine	O'Brien 2015				copper mine	Ross Island	Mine	Copper		
+3013250.24764415	3330193.92459242	"186"	copper mine	O'Brien 2015				copper mine	Derrycarhoon	Mine	Copper		
+3376708.2741757	3457113.41956382	"187"	copper mine	O'Brien 2015				copper mine	Parys Mountain	Mine	Copper		
+3415621.43080244	3435023.1984457	"188"	copper mine	O'Brien 2015				copper mine	Great Orme	Mine	Copper		
+3519223.94297717	3421622.68722935	"189"	copper mine	O'Brien 2015				copper mine	Alderley Edge	Mine	Copper		
+3547906.04902086	3389355.21048908	"190"	copper mine	O'Brien 2015				copper mine	Ecton	Mine	Copper		
+3025598.52203096	2397470.27366614	"191"	copper mine	O'Brien 2015				copper mine	El Aramo	Mine	Copper		
+3035952.12682994	2361567.66973428	"192"	copper mine	O'Brien 2015				copper mine	La Profunda	Mine	Copper		
+3072182.22047147	2382668.60075628	"193"	copper mine	O'Brien 2015				copper mine	El Milagro	Mine	Copper		
+2821452.60268144	1896671.90354333	"194"	copper mine	O'Brien 2015				copper mine	Mocissos	Mine	Copper		
+2909080.89054158	1752708.67583436	"195"	copper mine	O'Brien 2015				copper mine	Chinflon	Mine	Copper		
+3379032.77081882	2062727.61722584	"196"	copper mine	O'Brien 2015				copper mine	Loma de la Tejeria	Mine	Copper		
+3330821.14582269	1717645.36235097	"197"	copper mine	O'Brien 2015				copper mine	Sierra de Orihuela	Mine	Copper		
+3567600.55538376	2060189.73419427	"198"	copper mine	O'Brien 2015				copper mine	Montsant	Mine	Copper		
+3711082.28396513	1866398.64627302	"199"	copper mine	O'Brien 2015				copper mine	Mallorca*	Mine	Copper		
+3816688.53734728	1892008.01459679	"200"	copper mine	O'Brien 2015				copper mine	Mitja Lluna	Mine	Copper		
+4243264.74641321	1851633.7700663	"201"	copper mine	O'Brien 2015				copper mine	Funtana Raminosa*	Mine	Copper		
+3399660.34283907	2313672.79525929	"202"	copper mine	O'Brien 2015				copper mine	Causiat	Mine	Copper		
+3762592.13064721	2331742.18684145	"203"	copper mine	O'Brien 2015				copper mine	Bouco-Payrol	Mine	Copper		
+3791600.56836165	2304214.09563835	"204"	copper mine	O'Brien 2015				copper mine	Cabrières	Mine	Copper		
+4000067.06866485	2242763.07654185	"205"	copper mine	O'Brien 2015				copper mine	Maraval	Mine	Copper		
+4016802.97554734	2456105.39068412	"206"	copper mine	O'Brien 2015				copper mine	Les Rousses	Mine	Copper		
+4049592.30793857	2410327.30149544	"207"	copper mine	"O'Brien 2015; Bourgarit et al. 2008"		TRUE	c. 2400-1700 cal BCE	copper mine	Saint-Véran	Mine	Copper		
+4071430.21229388	2332668.3144054	"208"	copper mine	O'Brien 2015				copper mine	Clue de Roua	Mine	Copper		
+4255123.5026709	2361695.00847905	"209"	copper mine	O'Brien 2015				copper mine	Libiola	Mine	Copper		
+4289090.58301936	2352204.2476487	"210"	copper mine	O'Brien 2015				copper mine	Monte Loreto	Mine	Copper		
+4344106.32592277	2543004.65908397	"211"	copper mine	O'Brien 2015				copper mine	Campolungo	Mine	Copper		
+4405577.57493287	2620266.68458569	"212"	copper mine	O'Brien 2015				copper mine	Trentino*	Mine	Copper		
+4462939.00224259	2706865.93736535	"213"	copper mine	O'Brien 2015			Copper Age (4500-3500 cal BCE)	copper mine	Schwaz-Brixlegg	Mine	Copper		
+4482172.31175344	2720577.11744677	"214"	copper mine	O'Brien 2015				copper mine	Kitzbühel-Kelchalm	Mine	Copper		
+4513176.42559928	2665252.44780764	"215"	copper mine	O'Brien 2015				copper mine	Virgental*	Mine	Copper		
+4521944.42366515	2709361.84321208	"216"	copper mine	O'Brien 2015				copper mine	Saalfelden-Becken	Mine	Copper		
+4567692.64940687	2732987.86056707	"217"	copper mine	"O'Brien 2015; Stöllner 2016"			1940-1320 calBCE	copper mine	Mitterberg	Mine	Copper		
+4571546.95068559	2711368.42825602	"218"	copper mine	"O'Brien 2015; Stöllner 2016"			1741-1499 calBCE	copper mine	St. Veit	Mine	Copper		
+4711535.49117994	2739794.45206623	"219"	copper mine	O'Brien 2015				copper mine	Eisenerz*	Mine	Copper		
+4773968.90271614	2761972.81276323	"220"	copper mine	O'Brien 2015				copper mine	Prein*	Mine	Copper		
+4967893.92425011	2903131.13467838	"221"	copper mine	"O'Brien 2015; Krause 2003: 41-42"	"chalcopyrite, tetraedite, malachite"	TRUE	"Chalcolithic (4th mill. BCE ""spätlengyel""), Early Bronze Age and Late Bronze Age (Lausitz)"	copper mine	Spania Dolina-Piesky	Mine	Copper		
+5069475.31504992	2869278.73334411	"222"	copper mine	O'Brien 2015			Chalcolithic-Early Bronze Age? (stone hammers)	copper mine	Spanie Pole	Mine	Copper		
+5282401.30481021	2434910.44333639	"223"	copper mine	"O'Brien 2015; Kienlin 2010 (date)"			from c. 5400 cal BCE (and small scale likely earlier)	copper mine	Rudna Glava	Mine	Copper		
+5608234.81825718	2306451.0510473	"224"	copper mine	O'Brien 2015				copper mine	Ai Bunar	Mine	Copper		
+5412049.03851449	1859759.60352602	"225"	copper mine	O'Brien 2015				copper mine	Othrys Mountains*	Mine	Copper		
+5591686.67734076	1702333.24174053	"226"	copper mine	O'Brien 2015				copper mine	Kythnos*	Mine	Copper		
+5607018.65064944	1664676.78369039	"227"	copper mine	O'Brien 2015				copper mine	Seriphos*	Mine	Copper		
+5591682.11169274	1488865.18555414	"228"	copper mine	O'Brien 2015				copper mine	Troodos Mountains	Mine	Copper		
+3005860.15274807	3325663.55962541	"229"	copper mine	O'Brien 2015				copper mine	Mount Gabriel	Mine	Copper		
+3414737.38461695	3359643.32040021	"230"	copper mine	O'Brien 2015				copper mine	Cwmystwyth	Mine	Copper		
+5085559.13939345	2340812.25994429	"231"	copper mine	O'Brien 2015				copper mine	Jarmovac	Mine	Copper		
+7121502.75538765	2664493.93541725	"232"	Gold mine	Stollner et al. 2016			c. 3500-2500 cal BCE	TRUE	Sakdrisi	Mine	Gold		
+4371369.73567465	2217914.65985513	"233"	copper mine	Artioli et al. 2017	TRUE		late 4th mill. BCE	copper mine	Campiglia Marittima	Mine	Copper		
+4397209.37567974	2231112.24789256	"234"	copper mine	Artioli et al. 2017	copper mine		late 4th mill. BCE	copper mine	Colline Metallifere	Mine	Copper		
+5268935.50701275	2442153.43694753	"235"	copper mine	Siklósi and Szilágyi 2019	TRUE		5th millennium BCE	copper mine	Majdanpek	Mine	Copper		
+5356818.44838656	2825176.59547321	"236"	Gold (veins)	Cristea-Stan and Constantinescu 2016	primary (veins)				Cavnic-Roata	Veins	Gold	5301534.16147796	2808607.73297764
+5369200.70644507	2598376.07477254	"237"	Gold (alluvial)	Cristea-Stan and Constantinescu 2016	alluvial				Fizesti	Alluvial	Gold		
+5382372.87540455	2606826.14542579	"238"	Gold (alluvial)	Cristea-Stan and Constantinescu 2016	alluvial				Rahau	Alluvial	Gold		
+5402255.39458866	2570540.54791478	"239"	Gold (veins)	Cristea-Stan and Constantinescu 2016	primary (veins)				Valea lui Stan	Veins	Gold		
+5311056.45043179	2661384.21849532	"240"	Gold (veins)	Cristea-Stan and Constantinescu 2016	primary (veins)				Valea Morii	Veins	Gold		
+5312858.62398906	2648318.4602051	"241"	Gold (veins)	Cristea-Stan and Constantinescu 2016	primary (veins)				Musariu	Veins	Gold		
+5327114.52252472	2666436.92143288	"242"	Gold (veins)	Cristea-Stan and Constantinescu 2016	primary (veins)				Rosia Montana	Veins	Gold	5334404.06401152	2661500.3731903
+4463351.63050692	2703882.65826105	"243"	Copper metallurgy	"Hansen 2013 ""Innovative Metals"": 147"		TRUE	4400-4200 BCE		Mariahilflbergl	Metallurgy	Copper		
+6450105.78878677	3216563.7092061	"244"	copper mine	Brovender 2009	YES	YES	Bronze Age?	YES	"Bakhmut lowland (incl. Vyskrivske, Kyslyi Buhor, Klynove)"		copper mine		
+6466136.79853407	3236277.34008141	"245"	copper mine	"Brovender 2009; Brovender 2021; Grigoriev 2015: 464"	YES	YES	c. 1700-1400 cal BCE (possibly already active in EBA and MBA 3rd mill. BCE)	YES	Chervone Ozero I-III	"mines, metallurgy, settlement, etc"	copper mine		
