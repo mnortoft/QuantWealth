@@ -71,12 +71,13 @@ Docker images to ensure a consistent and reproducible computational
 environment. These Docker images can also be used locally.
 
 You can download the compendium as a zip from this URL:
-[master.zip](/archive/master.zip). After unzipping: - open the `.Rproj`
-file in RStudio - run `devtools::install()` to ensure you have the
-packages this analysis depends on (also listed in the
-[DESCRIPTION](/DESCRIPTION) file). - finally, open
-`analysis/paper/paper.Rmd` and knit to produce the `paper.docx`, or run
-`rmarkdown::render("analysis/paper/SI.Rmd")` in the R console
+[QuantGraveWealth.zip](/archive/QuantGraveWealth.zip). After unzipping:
+- open the `.Rproj` file in RStudio - run `devtools::install()` to
+ensure you have the packages this analysis depends on (also listed in
+the [DESCRIPTION](/DESCRIPTION) file). - finally, open
+`analysis/paper/paper.Rmd` and knit to produce the `paper.pdf`, or run
+`rmarkdown::render("analysis/paper/SI.Rmd")` in the R console to produce
+the `SI.html`
 
 ### Licenses
 
