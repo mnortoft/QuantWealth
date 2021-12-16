@@ -10,12 +10,27 @@ This repository contains the data and code for our paper:
 > Nørtoft, Mikkel, (2022). *Quantifying Grave Wealth*. Name of
 > journal/book <https://doi.org/xxx/xxx>
 
+The paper quantifies grave wealth from eight different parameters, and
+uses these to identify potential wealth classes and calculate Gini
+indices using Moravian Corded Ware Culture (CWC) graves as a case study.
+One of the eight parameters is (estimated) manufacturing time of grave
+goods. The extensive Supplementary Information (SI) in this repository
+goes into more detail about how manufacturing time is calculated based
+on primarily experimental reference data, and then applied to
+archaeological data from different material-specific parameters. The SI
+(open SI.html in a separate window or tab) also elaborates on other
+theoretical, methodological, and contextual aspects that could not fit
+in the main paper. Apart from this, all R-scripts, reference data and
+archaeological data (grave goods from Moravian CWC and house sizes for
+various regions/periods as baseline for Gini indices) used in the main
+paper and the SI can be found in this repository.
+
 ### How to cite
 
 Please cite this compendium as:
 
 > Authors, (2021). *Compendium of R code and data for Quantifying Grave
-> Wealth*. Accessed 15 dec 2021.
+> Wealth*. Accessed 16 dec 2021.
 
 ## Contents
 
@@ -32,8 +47,7 @@ The **analysis** directory contains:
     analysis.
 -   [:file_folder: figures](/analysis/figures): Plots and other
     illustrations
--   [:file_folder:
-    supplementary-materials](/analysis/supplementary-materials):
+-   [:file_folder: supplementary-materials](/analysis/paper/SI.html):
     Supplementary materials including notes and other documents prepared
     and collected during the analysis.
 
