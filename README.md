@@ -3,7 +3,7 @@
 
 # Quantifying Grave Wealth
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/main?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/master?urlpath=rstudio)
 
 This repository contains the data and code for our paper:
 
@@ -46,10 +46,14 @@ The **analysis** directory contains:
 -   [:file_folder: scripts](/analysis/scripts): Scripts used in the
     analysis.
 -   [:file_folder: figures](/analysis/figures): Plots and other
-    illustrations
--   [:file_folder: supplementary-materials](/analysis/paper/SI.html):
-    Supplementary materials including notes and other documents prepared
-    and collected during the analysis.
+    illustrations for the main paper
+-   [:file_folder: supplementary-information](/analysis/paper/SI.html):
+    Supplementary information (SI) with specifics on how manufacturing
+    time and other value parameters in the main paper were calculated as
+    well as extended description theoretical and methodological, and
+    contextual aspects that did not fit in the main paper.
+    -   [:file_folder: figures_SI](/analysis/figures_SI): Plots and
+        other illustrations for the Supplementary Information.
 
 ## How to run in your browser or download and run locally
 
@@ -60,7 +64,7 @@ software](https://cloud.r-project.org/) itself and optionally [RStudio
 Desktop](https://rstudio.com/products/rstudio/download/).
 
 The simplest way to explore the text, code and data is to click on
-[binder](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/main?urlpath=rstudio)
+[binder](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/master?urlpath=rstudio)
 to open an instance of RStudio in your browser, which will have the
 compendium files ready to work with. Binder uses rocker-project.org
 Docker images to ensure a consistent and reproducible computational
