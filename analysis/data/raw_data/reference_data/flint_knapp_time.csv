@@ -1,13 +1,18 @@
-time,reference,object_type,comments,skill_level,work_activity,flint_type,ref_URL
-1.8,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided,high,knapping,,
-1.33,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided,high,knapping,,
-2.2,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided,high,knapping,,
-2.28,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided,high,knapping,,
-2.25,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided,high,knapping,,
-2,Informant (MK),Thin-butted axe (four-sided),Four-sided,high,knapping,,
-2,Wulf Hein 2013 (Youtube),Thin-butted axe (four-sided),Four-sided,high,knapping,Grey Danian flint,https://www.youtube.com/watch?v=Q-EPqWdkdw4&ab_channel=ulfr23 
-0.38,Will Lord 2019 and 2017 uncut videos,British Neolithic flint axe (two-sided),Two-sided,high,knapping,,https://www.youtube.com/watch?v=sRQCfuzvfXM&ab_channel=WillLordPrehistoricSurvival and https://www.youtube.com/watch?v=AENymqT6V4g&ab_channel=WillLordPrehistoricSurvival
-0.72,Will Lord 2020 uncut video,Dagger,"26 min rough knapping, 17 min pressure flaking incl. Tang",expert,knapping + pressure flaking,high quality dark British flint,https://www.youtube.com/watch?v=JWS-5JzUII0
-2.33,Olausson 1983a: table 3,Thin-butted axe (four-sided),"140 minutes total time (blank, preform-unpolished axe), four-sided, axe ID: 81EC45L, knapper Errett Callahan",high,blank+knapping preform + pressure flaking,Senonian flint (Stevns Klint),
-1.87,Olausson 1983a: table 3,Thick-butted axe (four-sided),"112 minutes (excl. 5 minutes for blank), AxeID: TB3, pressure flaking: upscaled time estimate for antler from copper-tipped tool, knapper Thor-Bjørn Petersen",high,knapping preform + pressure flaking,Senonian flint (Kvarnby),
-2.12,Olausson 1983a: table 3,Hollow-ground axe (four-sided),"127 minutes (excl. 5 minutes for blank), pressure flaking: upscaled time estimate for antler from copper-tipped tool, knapper Thor-Bjørn Petersen",high,knapping preform + pressure flaking,Senonian flint (Kvarnby),
+time,experiment_ID,axe_length_cm,flint_knapper,reference,object_type,comments,skill_level,work_activity,flint_type,ref_URL
+1.8,IV A,,BM,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided (type VI),high,knapping,,
+1.33,IV B,,BM,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided (type VI),high,knapping,,
+2.2,IV C,,BM,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided (type VI),high,knapping,,
+2.28,IV D,,BM,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided (type VI),high,knapping,,
+2.25,IV E,,BM,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided (type VI),high,knapping,,
+1.93,III,28,BM,Hansen and Madsen 1983,Thin-butted axe (four-sided),Four-sided,high,knapping,,
+2,,,MK,Informant (MK),Thin-butted axe (four-sided),Four-sided,high,knapping,,
+2,,,ML,Wulf Hein 2013 (Youtube),Thin-butted axe (four-sided),"Four-sided, knapper Marquardt Lund",high,knapping,Grey Danian flint,https://www.youtube.com/watch?v=Q-EPqWdkdw4&ab_channel=ulfr23 
+0.38,,,WL,Will Lord 2019 and 2017 uncut videos,British Neolithic flint axe (two-sided),Two-sided,high,knapping,,https://www.youtube.com/watch?v=sRQCfuzvfXM&ab_channel=WillLordPrehistoricSurvival and https://www.youtube.com/watch?v=AENymqT6V4g&ab_channel=WillLordPrehistoricSurvival
+0.72,,,WL,Will Lord 2020 uncut video,Dagger,"26 min rough knapping, 17 min pressure flaking incl. Tang",high,knapping + pressure flaking,high quality dark British flint,https://www.youtube.com/watch?v=JWS-5JzUII0
+2.33,81EC45L,,EC,Olausson 1983a: table 3,Thin-butted axe (four-sided),"140 minutes total time (blank, preform-unpolished axe), four-sided, axe ID: 81EC45L, knapper Errett Callahan",high,blank+knapping preform + pressure flaking,Senonian flint (Stevns Klint),
+1.87,TB3,22.7,TBP,Olausson 1983a: table 3,Thick-butted axe (four-sided),"112 minutes (excl. 5 minutes for blank), AxeID: TB3, pressure flaking: upscaled time estimate for antler from copper-tipped tool, knapper Thor-Bjørn Petersen",high,knapping preform + pressure flaking,Senonian flint (Kvarnby),
+2.12,TB2,19.5,TBP,Olausson 1983a: table 3,Thick-butted axe (four-sided),"Hollow-ground thick-butted axe, 127 minutes (excl. 5 minutes for blank), pressure flaking: upscaled time estimate for antler from copper-tipped tool, knapper Thor-Bjørn Petersen",high,knapping preform + pressure flaking,Senonian flint (Kvarnby),
+2,,22,SS,Informant (SS),Thick-butted axe (four-sided),"Thick-butted axes generally smaller than thin-butted axes, and thus often need shorter time (Stenak pers.comm, Feb 2022)",high,knapping,,
+2,,20,SS,Informant (SS),Thin-butted axe (four-sided),"Time and skill for axes increases greatly with length, but many other factors (number of flakes, regularity of shape and flakes. However, skill may be high in regular with low number of flakes as well (made faster by master knapper)",Very high,knapping,,
+3.5,,30,SS,Informant (SS),Thin-butted axe (four-sided),"Time and skill for axes increases greatly with length, but many other factors (number of flakes, regularity of shape and flakes. However, skill may be high in regular with low number of flakes as well (made faster by master knapper)",Very high,knapping,,
+9,,40,SS,Informant (SS),Thin-butted axe (four-sided),"Time and skill for axes increases greatly with length, but many other factors (number of flakes, regularity of shape and flakes. However, skill may be high in regular with low number of flakes as well (made faster by master knapper)",Very high,knapping,,

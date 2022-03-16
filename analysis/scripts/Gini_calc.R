@@ -43,8 +43,71 @@ hist_PH_raw <- ggplot(grave_PH_raw, aes(total_PH_raw))+
 
 
 #calculate TOT Gini:
-TOT_num <- unlist(CW_binary$TOT[-16])
-Gini_TOT <- round(Gini(TOT_num, conf.level = 0.80, unbiased = TRUE, type = "bca", R = 4000), 3)
+# TOT_num <- unlist(CW_binary$TOT[-16])
+# Gini_TOT <- round(Gini(TOT_num, conf.level = 0.80, unbiased = TRUE, type = "bca", R = 4000), 3)
+
+
+#Script calculating changes to the Gini depending on number of added offset (0-10)
+source(here('analysis/scripts/Gini_TOT_diff.R'), echo = FALSE)
+
+
+sweet_spot <- filter(Gini_TOT_diff, Gini_drop > 0)
+drop_perc_cap <- filter(Gini_TOT_diff[-c(1:2),], drop_perc <= 5.0)
+sweet_drop_perc <- max(drop_perc_cap$drop_perc)
+CI_gap_sweet_spot <- max(drop_perc_cap[-c(1:2),c("CI_gap")])
+addition_sweet_spot <- min(sweet_spot[,c("addition")])
+Gini_sweet_spot <- filter(sweet_spot, CI_gap == CI_gap_sweet_spot)
+
+
+#plot the changes (Moravia) to the Gini and its CI depending on added values (0-10)
+Gini_TOT_diff.p_prep <- Gini_TOT_diff[-c(1,12),]
+Gini_TOT_diff.p_prep$addition <- as.factor(Gini_TOT_diff.p_prep$addition)
+Gini_TOT_diff.p_prep$addition <- c("max mult.", "max+1", "max+2", "max+3", "max+4", "max+5", "max+6", "max+7", "max+8", "max+9")
+
+TOT_Gini_stats.p <- ggplot(Gini_TOT_diff.p_prep, aes(addition, (drop_perc/100)))+
+  geom_col()+
+  #geom_line()+
+  geom_hline(aes(yintercept = (sweet_drop_perc/100), color = "red"), show.legend = FALSE)+
+  geom_point(aes(addition, gini))+
+  #scale_x_discrete(breaks = Gini_TOT_diff.p_prep$addition)+
+  #scale_x_discrete(breaks = c("x max", "1", "2", "3", "4", "5", "6", "7", "8", "9"))+
+  scale_y_continuous(breaks = c(0.0, 0.1, 0.2, 0.3, 0.4, 0.5))+
+  ylab("Gini drop % (bars) vs. Gini (dots)")+
+  xlab("TOT added")+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.02), hjust = 0, label=paste("Gini drop <5%: ", as.name(sweet_drop_perc))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.04), hjust = 0, label=paste("TOT added: ", as.name(addition_sweet_spot))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.06), hjust = 0, label=paste("Orig. Gini: ", as.name(Gini_TOT_diff$gini[1]))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.08), hjust = 0, label=paste("Adj. Gini: ", as.name(Gini_sweet_spot$gini))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.10), hjust = 0, label=paste("CI: ", as.name(CI_gap_sweet_spot))), size = 2.5)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+sweet_spot_vli <- filter(Gini_diff_vli, Gini_drop > 0)
+drop_perc_cap_vli <- filter(Gini_diff_vli[-c(1:2),], drop_perc <= 5.0)
+sweet_drop_perc_vli <- max(drop_perc_cap_vli$drop_perc)
+CI_gap_sweet_spot_vli <- max(drop_perc_cap_vli[-c(1:2),c("CI_gap")])
+addition_sweet_spot_vli <- min(filter(sweet_spot_vli, drop_perc <= 5.0)[,c("addition")])
+Gini_sweet_spot_vli <- filter(sweet_spot_vli, CI_gap == CI_gap_sweet_spot_vli)
+
+#plot the changes to the Gini (Vlineves) and its CI depending on added values (0-10)
+Gini_diff_vli.p_prep <- Gini_diff_vli[-c(1,12),]
+Gini_diff_vli.p_prep$addition <- as.factor(Gini_diff_vli.p_prep$addition)
+Gini_diff_vli.p_prep$addition <- c("max mult.", "max+1", "max+2", "max+3", "max+4", "max+5", "max+6", "max+7", "max+8", "max+9")
+
+TOT_Gini_stats_vli.p <- ggplot(Gini_diff_vli.p_prep, aes(addition, (drop_perc/100)))+
+  geom_col()+
+  #geom_line()+
+  geom_hline(aes(yintercept = (sweet_drop_perc_vli/100), color = "red"), show.legend = FALSE)+
+  geom_point(aes(addition, gini))+
+  scale_y_continuous(breaks = c(0.0, 0.1, 0.2, 0.3, 0.4, 0.5))+
+  ylab("Gini drop % (bars) vs. Gini (dots)")+
+  xlab("TOT added")+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.02), hjust = 0, label=paste("Gini drop <5%: ", as.name(sweet_drop_perc_vli))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.04), hjust = 0, label=paste("TOT added: ", as.name(addition_sweet_spot_vli))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.06), hjust = 0, label=paste("Orig. Gini: ", as.name(Gini_diff_vli$gini[1]))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.08), hjust = 0, label=paste("Adj. Gini: ", as.name(Gini_sweet_spot_vli$gini))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.10), hjust = 0, label=paste("CI: ", as.name(CI_gap_sweet_spot_vli))), size = 2.5)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 
 hist_TOT <- ggplot(CW_binary, aes(TOT))+
   geom_density()
@@ -55,7 +118,7 @@ LC_TOT.p <- ggplot(CW_binary, aes(TOT))+
   theme_bw()+
   xlab("Sample population %")+
   ylab("Total Object Types (TOT) %")+
-  geom_text(aes(0.2, 1, size = 36, label=paste("Gini ", as.name(Gini_TOT))))+
+  geom_text(aes(0.2, 1, size = 36, label=paste("Gini ", as.name(Gini_sweet_spot$gini))))+
   theme(axis.title = element_text(size = 10),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
@@ -175,9 +238,9 @@ LC_GG_normed.p <- ggplot(as.data.frame(grave_normed_sum), aes(grave_normed_sum))
   geom_abline(color = "grey")+
   theme_bw()+
   xlab("Sample population %")+
-  ylab("Summed (normalized) grave good values %.")+
+  ylab("grave good values* %.")+
   geom_text(aes(0.2, 1, size = 25, label=paste("Gini ", as.name(Gini_norm_single))))+
-  theme(axis.title = element_text(size = 7),
+  theme(axis.title = element_text(size = 10),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"),

@@ -55,6 +55,7 @@ knitr::opts_chunk$set(
 ```{r}
 require(here)
 here("analysis")
+
 ```
 
 
@@ -89,7 +90,7 @@ Skill of manufacture of various objects was added as a factor as percentages of 
 <br>
 
 ## Imported objects
-For imported objects, active travel hours have been added from raw material source map data compiled (and in large part also mapped) from the literature by the author. Only one-way travel hours from material source to the destination of deposition has been used, under the assumption that many materials were circulating widely and that a direct out-and-back journey only for the purposes of a given material was not the norm. The point that materials may have circulated in many ways and even reused [e.g. @wentink20: 174-177] is extremely difficult (if not impossible) to track for each object, so this more likely represents a minimum travel time of a given material if its suggested source area is taken at face value. Map data for various materials traded over long distances will be updated continuously and a QGIS Geodatabase file with the data is added to this project's Github page, see figure \@ref(fig:cwc-ressource-map). Apart from the geo-lithological polygon layer from @donnini_etal20, and the point data of Neolithic mines and quarries from the Neomine project [https://www.ucl.ac.uk/neomine/maps and @schauer_etal20] and the reader is directed to these sources for that part of the data, the rest is manually mapped by the author through georeferencing of maps from @pernicka_anthony10; @obrien15; @cristea-stan_constantinescu16; @kolar18; @sorensen15; @edinborough_etal20; @artioli_etal17; @brovender_okalelov19; @brovender_etal21; @gebauer_etal21; @klassen14; @hansen13; @siklosi_szilagyi19; @stollner16; @kienlin10; @krause03; @bourgarit_etal08; @muller_etal09; @vangpetersen08; @lexa_etal00; @grigorev15; and flintsource.net. The latter data is available on @Github at https://github.com/mattbeets/. 
+For imported objects, active travel hours have been added from raw material source map data compiled (and in large part also mapped) from the literature by the author. Only one-way travel hours from material source to the destination of deposition has been used, under the assumption that many materials were circulating widely and that a direct out-and-back journey only for the purposes of a given material was not the norm. The point that materials may have circulated in many ways and even reused [e.g. @wentink20: 174-177] is extremely difficult (if not impossible) to track for each object, so this more likely represents a minimum travel time of a given material if its suggested source area is taken at face value. Map data for various materials traded over long distances will be updated continuously and a QGIS Geodatabase file with the data is added to this project's Github page, see figure \@ref(fig:cwc-ressource-map). Apart from the geo-lithological polygon layer from @donnini_etal20, and the point data of Neolithic mines and quarries from the Neomine project [https://www.ucl.ac.uk/neomine/maps and @schauer_etal20] and the reader is directed to these sources for that part of the data, the rest is manually mapped by the author through georeferencing of maps from @pernicka_anthony10; @obrien15; @cristea-stan_constantinescu16; @kolar18; @sorensen15; @edinborough_etal20; @artioli_etal17; @brovender_okalelov19; @brovender_etal21; @gebauer_etal21; @klassen14; @hansen13; @siklosi_szilagyi19; @stollner16; @kienlin10; @krause03; @bourgarit_etal08; @muller_etal09; @vangpetersen08; @lexa_etal00; @grigorev15; and flintsource.net. The latter data is available on the author's @Github at (hidden to ensure blind peer review). 
 
 It should be noted that although metal deposits may exist in a given place on the map, there is often no evidence that it was used in prehistory. It is therefore best to consult the literature for the relevant area and period, including metal provenance studies, to determine the most likely source of a given material. 
 The map data is given in the European LAEA true distance projection (EPSG 3035) in order to make more accurate distance measures. The often default WGS84 is not suitable for measuring distance, and local projections, such as UTM zones, may introduce problems calculating distances that cross UTM zones. 
@@ -312,40 +313,62 @@ knitr::kable(other_ceramic_predict,
 <br>
 
 ## Flint artefacts
-Knapping and grinding times for flint artefacts (mostly axes) were collected from @hansen_madsen83; @madsen84; Olausson [-@olausson83a: table 3], Olausson [-@olausson83b: 62], uncut YouTube videos of flint axe manufacture by the highly experienced flint knapper Will Lord [-@lord19; @lord17; @lord20], and one YouTube comment (written 2013) by Wulf Hein on his own experimental video of axe grinding (see reference data tables for YouTube URLs), as well as from an interview with flint knapper and all-round prehistoric crafts specialist Morten Kutschera. 
+Knapping and grinding times for flint artefacts (mostly axes) were collected from @hansen_madsen83; @madsen84; Olausson [-@olausson83a: table 3], Olausson [-@olausson83b: 62], uncut YouTube videos of flint axe manufacture by the highly experienced flint knapper Will Lord [-@lord19; @lord17; @lord20], and one YouTube comment (written 2013) by Wulf Hein on his own experimental video of axe grinding (see reference data tables for YouTube URLs), as well as from interviews with flint knapper and all-round prehistoric crafts specialist Morten Kutschera and flint knapper Sofus Stenak. 
 
 <br>
 
 ### Thin-butted flint axe (four-sided) manufacture person-hours
 ```{r Flint-axe-grind, fig.cap="Box plots of thin-butted flint axe person-hours. Left: knapping times, middle: grinding time with different methods coloured by information source type, right: conflated boxplot of both hand grinding and weighted grinding estimates (excluding old ethnographical source).", results='markup', fig.show='asis'}
-#load flint reference person-hour calculations:
-source(here('analysis/scripts/PH_flint.R'), echo = TRUE, encoding = "UTF-8")
+#load flint reference person-hour calculations and values used in the text:
+source(here('analysis/scripts/PH_flint.R'), echo = FALSE, encoding = "UTF-8")
+#load flint person-hour calculations:
+source(here('analysis/scripts/flint_predict.R'), echo = FALSE, encoding = "UTF-8")
 
-gridExtra::grid.arrange(knapp_plot, thinButt_grindPlot, box_all, ncol = 3, top = grid::textGrob("Grinding and knapping time (in PH) for different methods and sources",gp=grid::gpar(fontsize=6,font=3)), widths=c(2, 5, 4))
+
+#deprecated plots
+#thinButt_grindPlot 
+#box_all
+# gridExtra::grid.arrange(, ncol = 2, top = grid::textGrob("Grinding and knapping time (in PH) for different methods and sources",gp=grid::gpar(fontsize=6,font=3)), widths=c(5, 4))
+
+```
+
+Thin-butted axes, not represented in the Moravian Corded Ware case study, have a wide variety of lengths while some maintain low thickness. This may affect the knapping time, but primarily for long axes. On the other hand, thick-butted axes are generally smaller and thus the median of reference knapping times is used for thick-butted axes. 
+
+The reference data on knapping a flint axe from both the experimental literature and the informant had a median of `r thick_butt_knap_median` and a standard deviation of `r thick_butt_knap_sd`, making it fairly reliable. 
+Axe length has also been noted ethnographically as a marker of prestige [@olausson83b: 12-14]. The larger surface of long axes (above c. 27 cm) also affects the person-hours needed for several stages of manufacture, from finding or extracting larger nodules, fine-knapping a larger area, and larger grinding stone needed for grinding extra large axes (Sofus Stenak pers.comm February 2022). A fixed mining, knapping and grinding bonus is added to axes longer than 30 cm, but a more flexible incorporation of these additional factors may be incorporated into the system in future versions. For thin-butted axes that may vary more in size, the length is taken into account in the knapping time, see Figure \@ref(fig:flint-knap-plot).
+
+The ethnographic example is less reliable because it is reported in days (a mean of 5-8 hour work days used here), and the knapping of this axe was done by direct percussion which would require extra grinding time [@vial40: 160; via @madsen84: 57-58]. 
+
+```{r flint-knap-plot, fig.cap="Scatterplot of thin-butted flint axe knapping hours in relation to axe length (left). Thick-butted axes seem quite similar in knapping time, and thus, the median is used for those (right).", results='markup', fig.show='asis', fig.height=4}
+require(patchwork)
+thin_knap.p + thick_knapp.p
+
+```
+
+
+<br>
+
+The long time for grinding in Sehested's 19th century experiment is regarded by Madsen [-@madsen84: 57] to be unreliable because it was done on granite with added gravel giving less friction, the flaking quality of the axe is unknown, and it may have included resting time. Average ground area in cm^2^ per minute may be easier to quantify flexibly. Madsen [-@madsen84: 55], summarizes such general measures from various studies: 0.1-0.12 cm^2^/minute (Sehested, unreliable), 2 cm^2^/minute with sandstone, grindstone and water (Andersen, more reliable), and 0.5-10 cm^2^/minute (Madsen and Pelegrin's own experiments, obviously unquantifiable). However, the reference data indicates that grinding 1.3 cm^2^/minute fits better (assuming surface area is (LengthxWidth)x2+(LengthxThickness)x2), see Figure \@ref(fig:flint-axe-grind). These are of course crude estimations not taking curvature and a number of other factors into account, not least the experience of the grinder, the knapping quality, weight applied in grinding, and stroke length and speed. Extra weight, however, would probably need more people, thus driving up person-hours [@madsen84: fig. 10]. In the experiments in @madsen84, width and thickness of the axe before grinding are generally reduced 0.3-0.4 cm after full grinding. Due to the very different amounts of grinding of the archaeological artefacts, usually quite limited in the Corded Ware culture, this size difference is probably much less than 0.3-0.4 cm, and is not accounted for in this case study, although it may be incorporated in future versions of this system. 
+
+```{r flint-axe-grind, fig.cap="Scatterplot of flint axe length and grinding hours. red represents reference data, green represents estimated data (for the same objects). Person-hours for weighted grinding by 2-3 people, four-sided and two-sided axes, and not fully ground axes are also included. The line is computed on fully ground axes (and excluding Sehested's axe), and multiplied by the estimated ground surface percentage when applied to the archaeological data.", results='markup', fig.show='asis'}
+
+flint_grind_ref.p
+
+# grind_PH <- ggplot(flintAxe_grind, aes(length_cm, PH_grindTime, color = source_type, shape = grinding_method)) +
+#    geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
+#    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
+
+# total_grind_h <- ggplot(flintAxe_grind, aes(length_cm, total_grinding_hours, color = source_type, shape = grinding_method)) +
+#   geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
+#   theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
+
+# gridExtra::grid.arrange(grind_PH, total_grind_h, ncol = 2, top = grid::textGrob("Grinding person-hours vs. grinding total hours",gp=grid::gpar(fontsize=10,font=3)), widths=c(5, 5))
+
 ```
 
 <br>
 
-The reference data on knapping a flint axe from both the experimental literature and the informant had a median of `r thin_butt_knap_median` and a standard deviation of `r thin_butt_knap_sd`, making it fairly reliable. 
-Axe length has also been noted ethnographically as a marker of prestige [@olausson83b: 12-14]. The larger surface of longer axes might in theory also affect the person-hours needed for grinding. This may also be the case for the reference data. However, this could also be due to the increased person-hours noted for weighted (2-3 persons) experiments and ethnographically (often reported in days making conversion to hours very uncertain). If the focus is only total hours of grinding (i.e. irrespective of the persons involved in the weighted experiments), there is no clear increase (in this data) in grinding time with increased length, except perhaps for the longest axes (29-31 cm). Again, the ethnographic example is less reliable because it is reported in days (the mean of 5-8 hour work days used here), and the knapping of this axe was done by direct percussion which would require extra grinding time according to the author [@vial40: 160; via @madsen84: 57-58]. The lack of a clear relationship between length and grinding time could be due to grinding the axe in longer movements across the grinding surface, in which case time may rely more on the grinding skill keeping as much surface contact between the axe and the grindstone as possible in each movement. 
-
-```{r Flint-axe-length, fig.cap="Scatterplots comparing thin-butted flint axe length vs. grinding hours: left: person-hours, right: total labour-hours (for weighted grinding by multiple people).", results='markup', fig.show='asis'}
-
-grind_PH <- ggplot(flintAxe_grind, aes(length_cm, PH_grindTime, color = source_type, shape = grinding_method)) +
-  geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
-
-total_grind_h <- ggplot(flintAxe_grind, aes(length_cm, total_grinding_hours, color = source_type, shape = grinding_method)) +
-  geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
-
-gridExtra::grid.arrange(grind_PH, total_grind_h, ncol = 2, top = grid::textGrob("Grinding person-hours vs. grinding total hours",gp=grid::gpar(fontsize=10,font=3)), widths=c(5, 5))
-
-```
-
-<br>
-
-If we remove the two less reliable ethnographic examples of grinding, we get a median of `r thinButt_grind_median`. The degree of polish, however, may also be a factor, in the sense that extraordinarily polished axes would have taken more time, or required more skill, e.g. for axes that are extraordinarily long and thin, with one example being 27-30 cm long and only 0.8-1.5 cm thick as is noted for special ceremonial axes by [@olausson83b: 12]. Ceremonial axes with special and exotic (e.g. varicoloured) stone quality may also have added extra value. Therefore, it may still be justified using length of above 27 cm as a factor of value along with lower thickness, extra polish/shine, and rare or variegated colours. If each of these adds, e.g. 10% to the raw person-hour estimate, this could potentially add 40% value. To this could be added estimated travel-hours from the quarry, which may have been very distant. 
+Apart from grinding, the degree of polish may also be a factor, in the sense that extraordinarily polished axes would have taken more time, or required more skill. Axes that are extraordinarily long and thin may also have added extra value, e.g. 27-30 cm long and only 0.8-1.5 cm thick as is noted for special ceremonial axes by [@olausson83b: 12], although not present in this pilot case study. Ceremonial axes with special and exotic (e.g. varicoloured) stone quality may also have added extra value. Thus, in this system, lengths above 30 cm are given extra value along with lower thickness, extra polish/shine, and rare or variegated colours. To this is added estimated travel-hours from the quarry, which may have been very far away from the find site. 
 
 <br>
 
@@ -353,29 +376,30 @@ If we remove the two less reliable ethnographic examples of grinding, we get a m
 @hansen_madsen83 refer to experiments in flint mining at Grimes Graves in England in which 6-7 persons could mine 8000 kg flint over 6 months. 
 If we take this at face value and scale this down to flint yield/person/hour, we get the following formula: 
 <br>8000 kg flint / 6.5 persons / 6 months / 30 days / 8 hours
-<br>= `r flint_raw_1` kg/person (over 6.5 months) = `r flint_raw_2` kg/person/month = `r flint_raw_3` kg/person/day = `r flint_raw_4` kg/person/hour. 
+<br>= `r flint_raw_1` kg/person (over 6 months) = `r flint_raw_2` kg/person/month = `r flint_raw_3` kg/person/day = `r flint_raw_4` kg/person/hour. 
 One axe blank is 4-6 kg (mean 5 kg) according to Hansen and Madsen [-@hansen_madsen83: 48] and it takes c. 8-11 minutes (mean 9.5 minutes) or 0.16 PH to knap one axe blank according to Hansen and Madsen [-@hansen_madsen83: 48], and flint knapping demonstration videos by Will Lord who has worked with flint since childhood. 
 <br>One axe blank altogether thus takes `r flint_raw_4` PH *  5 kg (= `r flint_raw_5`) + 0,16 PH
 <br>= `r axe_blank` PH per axe blank
 
 <br><br>
-Taking an example of a typical thin-butted flint axe quarried 14 travel hours away, the formula for flint axes would be as follows: 
+Taking an example of a typical thin-butted flint axe 20 x 8 x 4 cm long, quarried 14 travel hours away, the formula for flint axes would be as follows: 
 <br>axe blank `r axe_blank` PH (quarrying and blank knapping) + 
 <br>knapping `r thin_butt_knap_median` PH +
-<br>grinding `r thinButt_grind_median` PH +
+<br>grinding `r flint_ground_surface_example*thinButt_grind_median` PH +
 <br>sharpening `r round(flint_axe_sharp, 2)` PH +
 <br>travel time `r flint_travel_PH` PH +
 <br>wooden handle `r axeAdze_handleMedian` PH (if assuming that all axeheads in graves had been hafted)
 <br>= `r flint_axeAdze_total_PH`
 
 <br>A flint axe with all possible bonuses could reach a score up to: 
-<br>length >30 cm (+50% to knapping and grinding PH) `r flint_long` + 
-<br>thickness < 2 cm (+50% to knapping and grinding PH) `r flint_axe_thin` + 
-<br>extra polish/shine (+50% to grinding PH) `r flint_shine` + 
-<br>rare/variegated colours (+50% to axe blank and grinding PH) `r flint_colour`
-<br>= `r round(flint_axeAdze_total_PH + flint_long + flint_axe_thin + flint_shine + flint_colour, 2)` total score. To this we may add extra long distance to the raw material, exclusivity ("prestige" measure) and scarcity in the given community, 
+<br>length >30 cm (+50% to mining, knapping, and grinding PH) = `r flint_long` + 
+<br>thickness < 2 cm (+50% to knapping and grinding PH) = `r flint_axe_thin` + 
+<br>extra polish/shine (+50% to grinding PH) = `r flint_shine` + 
+<br>rare/variegated colours (+50% to axe blank and grinding PH) = `r flint_colour`
+<br>= `r round(flint_axeAdze_total_PH + flint_long + flint_axe_thin + flint_shine + flint_colour, 2)` total score. 
+To this we may add extra long distance to the raw material, exclusivity ("prestige" measure) and scarcity in the given community. 
 
-Based on the calculations above, the raw person-hours for making hafted flint tools such as axes and daggers can thus be summarised as follows (raw material for flint daggers assumed to be half of axes, here without travel hours, scarcity, "prestige", and extraordinary features): 
+Based on the calculations above, the raw person-hours for making hafted flint tools such as axes and daggers can thus be summarised as follows (here without travel hours, scarcity, "prestige", and extraordinary features): 
 
 ```{r echo = FALSE}
 #adding tables side by side (not working properly)
@@ -401,19 +425,17 @@ kable(Flint_PH_all,
 <br>
 
 ### Scarcity of flint
-Scarcity of imported flints is based on the numbers in Kolar 2018: total Corded Ware graves known: 413/total count of Corded Ware flint types by origin (@kolar18: table 52). Number of graves with each flint type were not available in this work, so the total count has been used instead. Scarcity for local and indeterminable cherts is based on the total number of flint objects in Corded Ware (255) in @kolar18: table 51. The total number of flint/silicite axes (18) is based on @kolar18: table 55.
+Scarcity of imported flints is based on the numbers in Kolar [-@kolar18: Table 13]. Total Corded Ware graves: 413/total count of Corded Ware flint types by origin (@kolar18: table 52). Number of _graves_ with each flint type were not available in this work, so the total count has been used instead. Scarcity for local and indeterminable cherts is based on the total number of flint _objects_ in the Moravian Corded Ware (255) in @kolar18: table 51. The total number of flint/silicite axes (18) is based on @kolar18: table 55. It would of course be desirable to always use the same criteria (graves or objects) for scarcity, but the data in different regions may not always be described in the same way. It should thus preferrably be stated clearly whether the scarcity measure is based on the number of _graves_ with a specific material or the number of _objects_ of a specific material. 
 
 <br>
 
 #### Flint axe estimated manufacture time in archaeological grave data
 
-The total value points for flint axes, taken from the reference data and applied to the archaeological data, is given in table \@ref(tab:flint-axe-arch).
+No the value points from the reference data can be applied to the archaeological data. For flint axes, this requires estimating the surface area of each axe, as described above: ((LengthxWidth)x2)+((LengthxThickness)x2). The total value points for flint axes, based on the reference data and applied to the archaeological data, is given in table \@ref(tab:flint-axe-arch).
 ```{r flint-axe-arch}
-#load flint person-hour calculations:
-source(here('analysis/scripts/flint_predict.R'), echo = TRUE, encoding = "UTF-8")
 
 kable(flintAxe_predict,
-      caption = "Value points for archaeological flint axes") %>% #caption also gives table reference number
+      caption = "Value points for archaeological flint axes.") %>% #caption also gives table reference number
   kable_styling(bootstrap_options = "striped") %>% 
   kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
   
@@ -437,7 +459,7 @@ kable(grave_total_flint_axe,
 <br>
 
 ### Other flint tools
-For flint tools that can be produced from the flakes of making an axe blank, estimates are much lower, often as a result of one or a few blows and a bit of adjustments. [@hansen_madsen83] documented a number of different tools made as a byproduct of one axe blank given in table \@ref(tab:table-other-flint) (standardised by the author).
+For flint tools that can be produced from the flakes of making an axe blank, estimates are much lower, often as a result of one or a few blows and a bit of adjustments. @hansen_madsen83 documented a number of different tools made as a byproduct of one axe blank given in table \@ref(tab:table-other-flint) (standardised by the author).
 
 ```{r table-other-flint, echo = TRUE, results='markup'}
 kable(HansenMadsen83_flakes, 
@@ -463,7 +485,7 @@ kable(HansenMadsen83_flakes,
 
 <br>
 
-If we compare this with the knapping time given by the informant (MK), we can see the similarity for most of these (table \@ref(tab:inf-flintknap-time).
+If we compare this with the knapping time given by the informant (MK), we can see the similarity for most of these, see table \@ref(tab:inf-flintknap-time).
 
 ```{r inf-flintknap-time, echo = FALSE}
 kable(other_flint[,-8], 
@@ -479,14 +501,14 @@ kable(other_flint[,-8],
 The reference data is then applied to the archaeological grave data (table \@ref(tab:flint-other-arch-points).
 ```{r flint-other-arch-points}
 kable(flint_other_predict,
-      caption = "Summarised value points per grave for archaeological flint axes") %>% #caption also gives table reference number
+      caption = "Summarised value points per grave for archaeological flint axes.") %>% #caption also gives table reference number
   kable_styling(bootstrap_options = "striped") %>% 
   kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
 ```
 
 <br>
 
-Summing the non-axe flint objects by grave we get (table \@ref(tab:flint-other-arch-total).
+Summing the non-axe flint objects by grave we get Table \@ref(tab:flint-other-arch-total).
 ```{r flint-other-arch-total}
 
 kable(grave_total_flint_other,
@@ -509,7 +531,7 @@ Stone tools may be manufactured from a natural stone that already resembles the 
 
 Smaller adze blade blanks made with the fast technique on an anvil were also identified, which were transported to the settlements for grinding. Another technique for longer and more regular adze blades were also identified from the 5th millennium BCE, using naturally rectangular og prismatic blocks, most likely initially splitting them into blades on an anvil, and rounding any extremities by percussion making them ready to be polished. However, this technique is still not adequate for making the very long blades (some 40 cm and longer) from the Neolithic (@petrequin_etal12: 262-263). Such long slabs for blanks would require an extraction technique using fire (similar to the experiments by @cresson_etal21), that may yield cracks in the surface, sometimes receiving extra polish leaving a curved adze blade (@petrequin_etal12: 264-266). After three extraction experiments with thermal shock from fire (on eclogite), only the third experiment was successful in obtaining a longer blade (30 cm), but because only the rock that was not in direct contact with the fire was usable, it took an 80 kg block to produce one slab usable as an axe. So much waste is not found at the sites showing thermal shock extraction, and so the technical knowledge for extracting axe-suitable slabs of this length must have been quite specific and handed down over generations by on-site teaching. However, the one successful experiment used 15 kg of split pine wood for heating the rock for 20 minutes (@petrequin_etal12: 267). 
 
-Preforming a thermally shocked, relatively deformed jadeitite blank (23 cm) by knapping and pecking took 1h20m (@petrequin_etal12: 271). From these and more experiments in @petrequin_etal12, it seems that different methods may have been used for different rock types and lengths of axes, each giving widely varying production time in the different stages. One of these methods may be more effective in making a blank, but then it may take more time for the preform, or the grinding, and vice versa. Another aspect is the aesthetic and mechanical quality and durability of the final axe. Of course, the degree and area of polish greatly affects the production time, but the hardness (measured on the logarithmic Moh's scale) and toughness of the rock material can also greatly affect time [@petrequin_etal12]. For jadeitite axes, it seemed more effective to do a combination of both chipping and grinding. Serpentinite and amphibolite are less hard and durable than jadeitite, and therefore take less time to produce [@petrequin_etal12]. There are still many unknowns about how these factors affect the final result and the manufacturing time, and so the time estimates used here are only tentative and a very rough simplification of the processes taking place. The median of the various quarrying methods is used here, see figure \$ref(fig:stone-extract-plot).
+Preforming a thermally shocked, relatively deformed jadeitite blank (23 cm) by knapping and pecking took 1h20m (@petrequin_etal12: 271). From these and more experiments in @petrequin_etal12, it seems that different methods may have been used for different rock types and lengths of axes, each giving widely varying production time in the different stages. One of these methods may be more effective in making a blank, but then it may take more time for the preform, or the grinding, and vice versa. Another aspect is the aesthetic and mechanical quality and durability of the final axe. Of course, the degree and area of polish greatly affects the production time, but the hardness (measured on the logarithmic Moh's scale) and toughness of the rock material can also greatly affect time [@petrequin_etal12]. For jadeitite axes, it seemed more effective to do a combination of both chipping and grinding. Serpentinite and amphibolite are less hard and durable than jadeitite, and therefore take less time to produce [@petrequin_etal12]. There are still many unknowns about how these factors affect the final result and the manufacturing time, and so the time estimates used here are only tentative and a very rough simplification of the processes taking place. The median of the various quarrying methods is used here, see figure \@ref(fig:stone-extract-plot).
 
 
 ```{r stone-extract-plot}
@@ -860,7 +882,7 @@ Animal bones may reflect meat intake and possibly a sign of feasting. Under this
 
 The Minimum Number of Individuals (MNI) of the animal bones were used here to estimate the amount of meat consumed in connection with the burial, keeping in mind the uncertainties of this approach. However, leaving out animal bones altogether might add another blind spot to the interpretation of wealth and status. 
 
-MNI was estimated from the Number of Individual Specimens (NISP) of animal bones and grouped into main species. Wild and domestic animals were not distinguished, primarily because this is not always determined archaeologically, and secondly because they may represent similar amounts of meat (according to their size) in the Neolithic. Wild animals slaughtered may have conveyed more symbolic meaning, while domestic animals slaughtered may represent more economic expenditure. Which of these carries higher value is unknown, and is therefore not taken into account here. 
+MNI was estimated from the Number of Identified Specimens (NISP) of animal bones and grouped into main species. Wild and domestic animals were not distinguished, primarily because this is not always determined archaeologically, and secondly because they may represent similar amounts of meat (according to their size) in the Neolithic. Wild animals slaughtered may have conveyed more symbolic meaning, while domestic animals slaughtered may represent more economic expenditure. Which of these carries higher value is unknown, and is therefore not taken into account here. 
 
 The estimated _usable_ meat for different animal sizes are based on General Meat Utility Indices (GMUI) from @outram_rowley-conwy98 for horse, @rowley-conwy_etal02 for pig and wild boar. Red deer is based on caribou (reindeer) @metcalfe_jones88. A GMUI or MUI could not be found for Neolithic cattle, so instead horse (c. 181 kg) was used and scaled up to the suggested weight of Neolithic cattle (c. 290 kg) in Cummings and Morris [-@cummings_morris18: 2]. Dog and wolf are assumed to be half the yield of sheep, fox: 1/3 of sheep meat, hare: 1/8 of sheep, and small amphibians (frog, tortoise): 1/10 of sheep. These numbers may of course vary widely with the sources used, and may need adjustments in the future. The reference meat yields are given in table \@ref(tab:ref-meat). 
 ```{r ref-meat}
@@ -902,6 +924,20 @@ knitr::kable(animals_all,
 
 # Summary of materials, grave disturbance, and objects in infill.
 
+The raw counts of objects in each grave are given in table \@ref(tab:grave-good-counts)
+
+```{r grave-good-counts}
+source(here('analysis/scripts/prestigeObjectsBoxPlots.R'), echo = FALSE, encoding = "UTF-8")
+
+graves_raw_count <- CW_raw[,c(1,2, 7, 8, 9, 11, 12:47)]
+
+knitr::kable(graves_raw_count, 
+      caption = "All graves with raw counts for each grave good category.") %>% #caption also gives table reference number
+  kableExtra::kable_styling(bootstrap_options = "striped") %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%", fixed_thead = T)
+```
+
+<br>
 The combined scores for each main material per grave are given in table \@ref(tab:material-all-graves).
 
 ```{r material-all-graves}
@@ -917,6 +953,7 @@ knitr::kable(material_all,
 
 ```
 
+
 ## Secondary manipulation of graves in this case study
 Secondary manipulations of the human remains, e.g. later grave disturbance, are rarely documented for excavations of Moravian CWC graves before the 1970s, and primarily after 1995 [@kolar18: 74-78]. The majority of the data are from Sebela which only has excavations from before 1991 [@sebela_rakovsky99: 15], and only 12 of these have complete documentation [denoted 'VN 1' and 'VN 2' in @sebela_rakovsky99: 16]. Therefore, undocumented secondary manipulations should be expected for some of this material. 
 
@@ -924,7 +961,7 @@ Secondary manipulations of the human remains, e.g. later grave disturbance, are 
 Objects in the infill occurred in 8 graves (155.1.3 (barrow preserved), 197.1.1, 347.1.5, 97.1.1, Hos_802, Iv4_800, Iv4_807, and Iv4_810, in most cases potsherds and pebbles, but also a two small copper items, a flint scraper and bone tools). Their role in the burial situation is therefore not clear, adding some uncertainty to the data. The differences between including and excluding grave fill objects were minute for the PCA (roughly same pattern (2% in PC1 variation, 0.2% in PC2), grave good Gini indices (0.001 for CAI, 0.012 for scarcity).
 
 # PCA
-To include grave depth in the PCA, some missing values were imputed using the missMDA package. Figures \@ref(fig:impute-precision1) and \@ref(fig:impute-precision2) show the precision of the predicted imputed grave depth (from 100 generated predicted datasets) compared to the observed grave depth, and the impact of the imputation on the PCA. The variation of the imputed values in the plots shows the possible variability of the prediction using a parametric bootsrap method which is preferable for evaluating uncertainty in PCA. 
+To include grave depth in the PCA, some missing values were imputed using the missMDA package. Figures \@ref(fig:impute-precision1) and \@ref(fig:impute-precision2) show the precision of the predicted imputed grave depth (from 100 generated predicted datasets) compared to the observed grave depth, and the impact of the imputation on the PCA. The variation of the imputed values in the plots shows the possible variability of the prediction using a parametric bootstrap method which is preferable for evaluating uncertainty in PCA. 
 
 ```{r impute-accuracy, results='hide', fig.cap="Estimated precision of imputed data in grave depth.", fig.show='hide'}
 source(here('analysis/scripts/PCA.R'), echo = FALSE, encoding = "UTF-8")
@@ -932,7 +969,7 @@ imp_precision.p <- plot(imp_precision)
 ```
 
 ```{r impute-precision1, fig.cap="Precision of the PCA when imputing grave depth.", results='asis', out.width="100%"}
-library(patchwork)
+
 
 imp_precision.p$PlotIndProc + imp_precision.p$PlotDim 
 
@@ -943,17 +980,18 @@ imp_precision.p$PlotIndProc + imp_precision.p$PlotDim
 imp_precision.p$PlotVar
 ```
 
-A principal components analysis (PCA) was carried out on the different wealth and value measures with materials overlayed. PCA of dimensions 1 and 2 can be seen in the main paper, while PCA of dimensions 2 and 3 is visualized here with two clusters highlighting the meat cluster on dimension 2, see figure \@ref(fig:pca-dim-2-3). 
+A principal components analysis (PCA) was carried out on the different wealth and value measures with materials overlayed. PCA of dimensions 1 and 2 can be seen in the main paper. The same PCA with animal species as supplementary variables is visualized here, see figure \@ref(fig:pca-meat). 
 
-```{r pca-dim-2-3, fig.cap="Biplot of PCA on dimensions 2 and 3.", results='asis', out.width="100%"}
-PCA_paper_2_3
+```{r pca-meat, fig.cap="Biplot of PCA with animal species as supplementary quantitative variables and age groups as supplementary qualitative variables.", results='asis', out.width="100%"}
+PCA_paper_meat
 ```
 
 
 <br>
 
 # Acknowledgements
-I wish to sincerely thank the crafts people that endured my endless questioning on time estimates for endless numbers of objects at different production stages, in this regard especially Morten Kutschera, Inger Heebøl at Sagnlandet Lejre and Pauline Ferrisse, and Torben Johansen (referred to as the informants "MK", "IH", "PF", and "TJ") who have been crucial sources of manufacturing time reference data and craft knowledge. Their help, expertise and deep knowledge has been extremely valuable to me. I also wish to thank my supervisor Rune Iversen for his feedback and support, and Torben Johansen with whom I will keep carrying out metal forging experiments, and Johanna Brinkmann for fruitful discussions on metal technology and her metal person-hour framework which has been in part incorporated in this study, Also thanks to Roeland Paardekooper of EXARC for helping me make connections with some experimental archaeologists for follow-up questions. Finally, I deeply thank Solveig Chaudesaigues-Clausen for everyday sparring on experimental archaeology and Stone Age technology, and the Saxo Institute for providing me the funding for the PhD project that this paper is a part of. 
+Acknowledgements hidden in this version to ensure blind peer review
+<!-- I wish to sincerely thank the crafts people that endured my endless questioning on time estimates for endless numbers of objects at different production stages, in this regard especially Morten Kutschera, Inger Heebøl at Sagnlandet Lejre, Sofus Stenak at the Saxo Institute, and Pauline Ferrisse, and Torben Johansen (referred to as the informants "MK", "IH", "SS", "PF", and "TJ") who have been crucial sources of manufacturing time reference data and craft knowledge. Their help, expertise and deep knowledge has been extremely valuable to this study. I also wish to thank my supervisor Rune Iversen for his feedback and support, Torben Johansen with whom I will keep carrying out metal forging experiments for future versions of this system, and Johanna Brinkmann for fruitful discussions on metal technology and her metal person-hour framework which has been partly incorporated in this study, Also thanks to Roeland Paardekooper of EXARC for helping me make connections with some experimental archaeologists for follow-up questions. Finally, I deeply thank Solveig Chaudesaigues-Clausen for everyday sparring on experimental archaeology and Stone Age technology, and the Saxo Institute for providing me the funding for the PhD project that this paper is a part of.  -->
 
 
 <!-- The following line inserts a page break  -->
@@ -961,13 +999,14 @@ I wish to sincerely thank the crafts people that endured my endless questioning 
 \newpage
 
 
+
+
 # References
-## reference data sources 
-Sources not mentioned in this text but used in in the reference tables are given here (see main reference list below for full reference details): 
+## References in data tables 
+Sources not mentioned in this text but used in the reference tables are cited here (see main reference list below for full reference details): 
 @hein_lund12
 
-
-
+## Full reference list
 <!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
 
 ::: {#refs}
@@ -976,17 +1015,18 @@ Sources not mentioned in this text but used in in the reference tables are given
 \newpage
 
 ### Colophon
+Session info hidden in this version to ensure blind peer review
 
-This report was generated on `r Sys.time()` using the following computational environment and dependencies:
+<!-- This report was generated on `r Sys.time()` using the following computational environment and dependencies: -->
 
-```{r colophon, cache = FALSE}
-# which R packages and versions?
-if ("devtools" %in% installed.packages()) devtools::session_info()
-```
+<!-- ```{r colophon, cache=FALSE} -->
+<!-- # which R packages and versions? -->
+<!-- if ("devtools" %in% installed.packages()) devtools::session_info() -->
+<!-- ``` -->
 
-The current Git commit details are:
+<!-- The current Git commit details are: -->
 
-```{r}
-# what commit is this file at? 
-if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
-```
+<!-- ```{r} -->
+<!-- # what commit is this file at?  -->
+<!-- if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())   -->
+<!-- ``` -->

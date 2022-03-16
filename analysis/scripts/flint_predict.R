@@ -21,37 +21,54 @@ flintAxe_predict <- read.csv(here("analysis/data/raw_data/flint_axe_predict.csv"
 #if wanting to remove objects in the grave fill:
 #flintAxe_predict <- dplyr::filter(flintAxe_predict, is.na(grave_fill))
 
+#Here we get the whole surface area (cm2 from mm artefact measures) of four-sided axes: (L*W)*2+(L*T)*2
+flintAxe_predict$flint_axe_surface <- #convert measures to cm, then get cm2 for each side
+  case_when(flintAxe_predict$number_of_sides == 4 ~
+              (((flintAxe_predict$length_mm/10)*(flintAxe_predict$width_mm/10))*2)+
+              (((flintAxe_predict$length_mm/10)*(flintAxe_predict$thickness_mm/10))*2),
+            flintAxe_predict$number_of_sides == 2 ~
+              (((flintAxe_predict$length_mm/10)*(flintAxe_predict$width_mm/10))*2)
+  )
 
+#pick values for each axe type in the final reference axe PH dataframe (Flint_PH_all)
 PH_flint_axe_2_side = Flint_PH_all[Flint_PH_all$Object == "Flint Axe (two-sided)",]
 PH_flint_axe_thinButt = Flint_PH_all[Flint_PH_all$Object == "thin-butted axe (four-sided)",]
 PH_flint_axe_thickButt = Flint_PH_all[Flint_PH_all$Object == "thick-butted axe (four-sided)",]
 
+#applying the above values for the archaeological axes
 flintAxe_predict$knapping <- dplyr::case_when(
   flintAxe_predict$object_type == "axe two-sided" ~ PH_flint_axe_2_side$knappingPH,
-  flintAxe_predict$object_type == "axe four-sided simple" ~ PH_flint_axe_thickButt$knappingPH,
-  flintAxe_predict$object_type == "axe four-sided simple" ~ PH_flint_axe_thickButt$knappingPH,
+  flintAxe_predict$object_type == "axe four-sided simple" ~ PH_flint_axe_thickButt$knappingPH/2,
   flintAxe_predict$object_type == "axe thick-butted" ~ PH_flint_axe_thickButt$knappingPH,
-  flintAxe_predict$object_type == "axe thin-butted" ~ PH_flint_axe_thinButt$knappingPH,
+  flintAxe_predict$object_type == "axe thin-butted" ~ ((flintAxe_predict$length_mm/10)*0.1)*(1+thin_knap.lm_coef),
 )
 
-flintAxe_predict$grind <-
-  thinButt_grind_median * flintAxe_predict$grind_perc
+#assuming 1.3 cm2/minute (fitting the reference data), assuming fully ground axes
+flintAxe_predict$flint_axe_fullgrind_PH <-
+  flintAxe_predict$flint_axe_surface*flint_grind_median
+
+flintAxe_predict$grind_actual <-
+  flintAxe_predict$flint_axe_fullgrind_PH*flintAxe_predict$grind_perc
 
 flintAxe_predict$sharpen <- flint_axe_sharp
 
 flintAxe_predict$total_PH <-
   flintAxe_predict$knapping +
-  flintAxe_predict$grind +
+  flintAxe_predict$grind_actual +
   flintAxe_predict$sharpen
 
 flintAxe_predict$handle <- axeAdze_handleMedian
 
 flintAxe_predict$scarcity_bonus <- flintAxe_predict$total_graves/flintAxe_predict$total_material_grave
 
+#very long axes also require more grinding time
 flintAxe_predict$length_bonus <-  dplyr::case_when(
-  flintAxe_predict$length_mm  > 270 & flintAxe_predict$length_mm < 300 ~ PH_flint_axe_2_side$grindPH*0.2,
-  flintAxe_predict$length_mm  > 300 ~ PH_flint_axe_2_side$grindPH*0.5,
-  flintAxe_predict$length_mm < 280 ~ PH_flint_axe_2_side$grindPH*0.0
+  flintAxe_predict$length_mm  > 270 & flintAxe_predict$length_mm < 300 ~ flintAxe_predict$grind_actual*0.5,
+  flintAxe_predict$length_mm  > 300 & flintAxe_predict$length_mm < 350 ~ flintAxe_predict$grind_actual*1,
+  flintAxe_predict$length_mm  > 350 & flintAxe_predict$length_mm < 400 ~ flintAxe_predict$grind_actual*2,
+  flintAxe_predict$length_mm  > 400 & flintAxe_predict$length_mm < 450 ~ flintAxe_predict$grind_actual*3,
+  flintAxe_predict$length_mm  > 450 ~ flintAxe_predict$grind_actual*5,
+  flintAxe_predict$length_mm < 270 ~ flintAxe_predict$grind_actual*0.0
   )
 
 #Thin_bonus adds points to axes with thickness less than 5% of length using thickness/length (both in mm)
@@ -71,7 +88,7 @@ flintAxe_predict$knap_length <- rowSums(flintAxe_predict[,c("knapping", "length_
 
 flintAxe_predict$PH_total <- rowSums(flintAxe_predict[,c(
   "knap_length",
-  "grind",
+  "grind_actual",
   "sharpen",
   "handle")])
 

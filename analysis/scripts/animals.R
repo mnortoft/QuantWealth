@@ -8,7 +8,8 @@ require(tidyr) #for gather function
 here("analysis")
 
 source(here('analysis/scripts/prestigeObjectsBoxPlots.R'), echo = FALSE) # take the animal prestige value from this script
-
+source(here('analysis/scripts/Prestige.R'), echo = FALSE)
+source(here('analysis/scripts/age_Groups.R'), echo = FALSE) #get simplified age groups
 
 
 animals <- read.csv(here("analysis/data/raw_data/animal_bones.csv"),
@@ -17,7 +18,41 @@ animals <- read.csv(here("analysis/data/raw_data/animal_bones.csv"),
                      sep = ",",
                      encoding = "UTF-8",
                      dec = ',')
+animals2 <- animals
+animals2 <- merge(age_Group_freq[,c(1, 48)], animals, by = "Grave_ID")
 
+animal_age_means <- animals2
+animal_age_means[is.na(animal_age_means)] <- 0
+animal_age_means$total <- rowSums(animal_age_means[,-c(1:2)], na.rm = TRUE)
+animal_age_means <- animal_age_means %>%
+  filter(total > 0)
+
+animals_age_means2 <- animal_age_means %>%
+  group_by(ageGroup_simple) %>%
+  dplyr::summarise(means = mean(total, na.rm = TRUE))
+
+chisq.test(animals_age_means2[,c("means")])
+
+animals_age_group <- animals2 %>%
+  group_by(ageGroup_simple) %>%
+  dplyr::summarise(cattle = sum(cattle, na.rm = TRUE),
+                   red_deer = sum(red_deer, na.rm = TRUE),
+                   horse = sum(horse, na.rm = TRUE),
+                   dog = sum(dog_wolf, na.rm = TRUE),
+                   pig = sum(pig, na.rm = TRUE),
+                   sheep_goat = sum(sheep_goat, na.rm = TRUE))
+
+
+animals_age_group.t <- data.frame(t(animals_age_group))
+names(animals_age_group.t) <- animals_age_group.t[1,]
+animals_age_group.t <- animals_age_group.t[-1,]
+
+animals_age_group.t$infans <- as.numeric(animals_age_group.t$infans)
+animals_age_group.t$juvenis <- as.numeric(animals_age_group.t$juvenis)
+animals_age_group.t$adultus <- as.numeric(animals_age_group.t$adultus)
+animals_age_group.t$maturus <- as.numeric(animals_age_group.t$maturus)
+animal_age_fish <- fisher.test(animals_age_group.t)
+animal_age_chisq <- chisq.test(animals_age_group.t)
 # categories adapted from Kolar 2018 Table 64:
 # animals$large <- rowSums(animals[c("cattle", "red_deer", "horse")], na.rm = TRUE)
 # animals$medium <- rowSums(animals[c("dog_wolf", "fox", "pig", "sheep_goat")], na.rm = TRUE)
@@ -34,7 +69,6 @@ meat_horse <- 126.00 # from Outram and Rowley-Conwy 1998 see notes below
 meat_cow <- meat_horse*1.6 # scaled up from horse live weight (181 kg) to match Neolithic cattle (290 kg)
 meat_reindeer <- 30.23 #from Metcalfe and Jones 1988
 meat_whitetailed_deer <- 11.468+0.133 #meat + marrow kg, meat is mean of three specimens in Madrigal et al
-
 
 
 #Neolithic cattle weight 280-300 kg (Cummings and Morris 2018: 2)
@@ -95,4 +129,57 @@ animals_all$total_animal <- rowSums(animals_all[,c("kg_total", "animal_prestige"
 summary(animals_all)
 #animal_normed <- data.frame(animals_all[,1], lapply(animals_all[,2:4], min_max_norm))
 
+animals_sexgender <- data.frame(merge(CW_raw[,c(1,16)], animals_all, by = "Grave_ID"))
+
+meat_boolean <- data.frame(SexGender = animals_sexgender$SexGender, meat = animals_sexgender$total_animal)
+meat_boolean$meat_boolean <- case_when(meat_boolean$meat > 0 ~ TRUE,
+                                       meat_boolean$meat == 0 ~ FALSE, )
+
+
+animals_sex <- merge(CW_raw[,c(1,16)], animals[,-c(6,10)], by = "Grave_ID")
+#FactoMineR::PCA(animals_sexgender[,c(2:11)], quali.sup = c(1))
+
+animals_sex_group <- animals_sex %>%
+  group_by(SexGender) %>%
+  dplyr::summarise(cattle = sum(cattle, na.rm = TRUE),
+                   red_deer = sum(red_deer, na.rm = TRUE),
+                   horse = sum(horse, na.rm = TRUE),
+                   dog = sum(dog_wolf, na.rm = TRUE),
+                   pig = sum(pig, na.rm = TRUE),
+                   sheep_goat = sum(sheep_goat, na.rm = TRUE))
+
+
+#make animal species count ready for ggplot and testing
+animals_sex_group.t <- data.frame(t(animals_sex_group))
+animals_sex_group2 <- janitor::row_to_names(animals_sex_group.t, row_number = 1)
+animals_sex_group2 <- as.data.frame(animals_sex_group2)
+colnames(animals_sex_group2) <- c("ambiguous", "female", "male", "unknown")
+animals_sex_group2$Species <- rownames(animals_sex_group2)
+animals_sex_group2[,-5] <- as.data.frame(lapply(animals_sex_group2[,-5], as.numeric))
+animals_sex_group_long <- animals_sex_group2 %>%
+  pivot_longer(!Species, names_to = "SexGender") #for ggplot
+
+#Do Chi.squared test and fishers' exact test for count data
+chisq_spec_sex <- chisq.test(animals_sex_group2[,-5])
+fisher_spec_sex <- fisher.test(animals_sex_group2[,-5])
+
+#do Mann-Whitney U/Wilcoxon non-parametric test (two variables only)
+wilcox_female <- animals_sex_group2$female
+wilcox_male <- animals_sex_group2$male
+wilcox.test(wilcox_female, wilcox_male, paired = TRUE)
+
+animal_sex_total <- data.frame(total = colSums(animals_sex_group2[,-5]))
+animal_sex_total$SexGender <- rownames(animal_sex_total)
+animal_sex_total.p <- ggplot(animal_sex_total, aes(SexGender, total))+
+  geom_col(position = "dodge")
+
+#meat_DF <- data.frame(animals_prop)
+
+#Barplot for all animal species present by SexGender
+animal_sexgender.p <- ggplot(animals_sex_group_long, aes(Species, value, fill = SexGender))+
+  geom_col(position = "dodge")
+
+#Barplot showing presence/absence of animal bones by sex
+# meat_sexgender.p <- ggplot(meat_DF, aes(meat, Freq, fill = SexGender))+
+#   geom_col(position = "dodge")
 #animal_total <- data.frame(Grave_ID = animal_normed[,1], animal_total = rowSums(animal_normed[,-1], na.rm = TRUE))
