@@ -92,13 +92,6 @@ flintAxe_predict$PH_total <- rowSums(flintAxe_predict[,c(
   "sharpen",
   "handle")])
 
-# flintAxe_predict$final_total <- rowSums(flintAxe_predict[,c(
-#   "PH_raw",
-#   "scarcity_bonus",
-#   "skill_bonus",
-#   "travel_bonus"
-#   )])
-
 
 grave_total_flint_axe <- flintAxe_predict %>%
   group_by(Grave_ID) %>%
@@ -111,6 +104,7 @@ grave_total_flint_axe <- flintAxe_predict %>%
 
 
 #### Archaeological other flint objects  ####
+
 #set skill bonuses
 other_flint$skill_factor = dplyr::case_when(
   other_flint$skill_level == "low" ~ 0.0,

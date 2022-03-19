@@ -61,7 +61,7 @@ kruskal.test(PC2 ~ age_group, data = KruskWall_PCA) #PC2 all age groups against 
 KruskWall_nonAdultus <- filter(KruskWall_PCA, age_group != "adultus")
 kruskal.test(PC2 ~ age_group, data = KruskWall_nonAdultus)
 
-#prepare to
+#prepare Kruskal Wallis test on adultus and maturus vs infans on PC1
 KruskWall_adu_mat_vs_inf <- KruskWall_PCA
 KruskWall_adu_mat_vs_inf <- filter(KruskWall_adu_mat_vs_inf, age_group != "juvenis")
 KruskWall_adu_mat_vs_inf$adult_vs_subadult <- case_when(KruskWall_adu_mat_vs_inf$age_group == "adultus" |
@@ -73,6 +73,18 @@ kruskal.test(PC1 ~ adult_vs_subadult, data = KruskWall_adu_mat_vs_inf)
 ggplot(KruskWall_adu_mat_vs_inf, aes(adult_vs_subadult, PC1))+
   geom_boxplot()+
   geom_jitter(width = 0.1)
+
+
+###prepare Kruskal Wallis test on adultus vs the rest on PC2 used in the main paper:
+KruskWall_adu_vs_juvenis <- KruskWall_PCA
+KruskWall_adu_vs_juvenis <- filter(KruskWall_adu_vs_juvenis, age_group != "maturus")
+KruskWall_adu_vs_juvenis <- filter(KruskWall_adu_vs_juvenis, age_group != "infans")
+KW_adu_vs_juv_PC2 <- kruskal.test(PC2 ~ age_group, data = KruskWall_adu_vs_juvenis)
+
+ggplot(KruskWall_adu_vs_juvenis, aes(age_group, PC2))+
+  geom_boxplot()+
+  geom_jitter(width = 0.1)
+
 
 
 

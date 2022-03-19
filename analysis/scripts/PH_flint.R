@@ -182,3 +182,4 @@ other_flint <- read.csv(here("analysis/data/raw_data/reference_data/other_flint.
 
 #sum knapping and handle PH into total PH:
 other_flint$total_PH <- rowSums(other_flint[c("knapping_PH", "handle_PH")], na.rm = TRUE)
+

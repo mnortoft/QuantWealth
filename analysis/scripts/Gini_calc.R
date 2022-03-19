@@ -238,7 +238,7 @@ LC_GG_normed.p <- ggplot(as.data.frame(grave_normed_sum), aes(grave_normed_sum))
   geom_abline(color = "grey")+
   theme_bw()+
   xlab("Sample population %")+
-  ylab("grave good values* %.")+
+  ylab("Grave good values %.")+
   geom_text(aes(0.2, 1, size = 25, label=paste("Gini ", as.name(Gini_norm_single))))+
   theme(axis.title = element_text(size = 10),
         panel.grid.major = element_blank(),

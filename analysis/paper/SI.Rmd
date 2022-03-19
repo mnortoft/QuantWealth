@@ -85,23 +85,25 @@ Person-hour (PH) estimates for production of objects in this paper have been col
 <br>
 
 ## Skill in manufacture of artefacts
-Skill of manufacture of various objects was added as a factor as percentages of manufacturing person-hours in the following scheme guided by estimated training needed to succesfully manufacture these objects as we find them in archaeology: low 0.0 (no dedicated training needed), medium 0.4 (1 month to 1 year training), high 2.0 (1 to 5 years training), very high 5.0 (5-10 years training), and a hypothetical expert 10.0 (more than 10 years focused training, only in exceptional cases). The determination was done based on the experimental and ethnographic literature as well as the interviews with crafts people. While the subjective nature of such ratios is apparent, and may skew the result, they can be adjusted with more data and sources. The important thing is that they are included as a factor which is often mentioned in archaeology, and that they generally seem intuitive, and are transparent. 
+Skill of manufacture of various objects was added as a factor as percentages of manufacturing person-hours in the following scheme guided by estimated training needed to succesfully manufacture these objects as we find them in archaeology: low 0.0 (no dedicated training needed), medium 0.4 (1 month to 1 year training), high 2.0 (1 to 5 years training), very high 5.0 (5-10 years training), and a hypothetical expert 10.0 (more than 10 years focused training, only in exceptional cases not relevant in the Moravian Corded Ware case study). The determination of skill was done based on the experimental and ethnographic literature as well as the interviews with crafts people, but is admittedly still somewhat subjective. While the subjective nature of such ratios is apparent, and may skew the result, they can be adjusted with more data and sources. The important thing is that they are included as a factor which is often mentioned in archaeology, that they generally seem intuitive, and that they are transparent. The various skill levels for each material are embedded in the csv-files and in the code. 
 
 <br>
 
 ## Imported objects
-For imported objects, active travel hours have been added from raw material source map data compiled (and in large part also mapped) from the literature by the author. Only one-way travel hours from material source to the destination of deposition has been used, under the assumption that many materials were circulating widely and that a direct out-and-back journey only for the purposes of a given material was not the norm. The point that materials may have circulated in many ways and even reused [e.g. @wentink20: 174-177] is extremely difficult (if not impossible) to track for each object, so this more likely represents a minimum travel time of a given material if its suggested source area is taken at face value. Map data for various materials traded over long distances will be updated continuously and a QGIS Geodatabase file with the data is added to this project's Github page, see figure \@ref(fig:cwc-ressource-map). Apart from the geo-lithological polygon layer from @donnini_etal20, and the point data of Neolithic mines and quarries from the Neomine project [https://www.ucl.ac.uk/neomine/maps and @schauer_etal20] and the reader is directed to these sources for that part of the data, the rest is manually mapped by the author through georeferencing of maps from @pernicka_anthony10; @obrien15; @cristea-stan_constantinescu16; @kolar18; @sorensen15; @edinborough_etal20; @artioli_etal17; @brovender_okalelov19; @brovender_etal21; @gebauer_etal21; @klassen14; @hansen13; @siklosi_szilagyi19; @stollner16; @kienlin10; @krause03; @bourgarit_etal08; @muller_etal09; @vangpetersen08; @lexa_etal00; @grigorev15; and flintsource.net. The latter data is available on the author's @Github at (hidden to ensure blind peer review). 
-
-It should be noted that although metal deposits may exist in a given place on the map, there is often no evidence that it was used in prehistory. It is therefore best to consult the literature for the relevant area and period, including metal provenance studies, to determine the most likely source of a given material. 
-The map data is given in the European LAEA true distance projection (EPSG 3035) in order to make more accurate distance measures. The often default WGS84 is not suitable for measuring distance, and local projections, such as UTM zones, may introduce problems calculating distances that cross UTM zones. 
+For imported objects, active travel hours have been added from raw material source map data compiled (and in large part also mapped) from the literature by the author. Only one-way travel hours from material source to the destination of deposition has been used, under the assumption that many materials were circulating widely and that a direct out-and-back journey only for the purposes of a given material was not the norm. The point that materials may have circulated in many ways and even reused [e.g. @wentink20: 174-177] is extremely difficult (if not impossible) to track for each object, so this more likely represents a minimum travel time of a given material if its suggested source area is taken at face value. Map data for various materials traded over long distances is shown in Figure \@ref(fig:cwc-ressource-map). For the geo-lithological polygon layer from @donnini_etal20, and the point data of Neolithic mines and quarries from the Neomine project [https://www.ucl.ac.uk/neomine/maps and @schauer_etal20], the reader is directed to these sources. The rest is manually mapped by the author through georeferencing of maps from @pernicka_anthony10; @obrien15; @cristea-stan_constantinescu16; @kolar18; @sorensen15; @edinborough_etal20; @artioli_etal17; @brovender_okalelov19; @brovender_etal21; @gebauer_etal21; @klassen14; @hansen13; @siklosi_szilagyi19; @stollner16; @kienlin10; @krause03; @bourgarit_etal08; @muller_etal09; @vangpetersen08; @lexa_etal00; @grigorev15; and flintsource.net. The latter data will be updated for future case studies and is already available on the author's github at URL hidden to ensure blind peer review. 
 
 ```{r cwc-ressource-map, results='asis', fig.cap="Map of raw material source data with the Moravian pilot study area marked (black square). Copper deposits (red dots), copper mines (red stars), gold deposits (yellow dots), gold mines (yellow stars), identified prehistoric alluvial and vein gold sources (yellow symbols with black edges), other colours (points and polygons) represent different flint/chert, stone, and amber sources (see shapefile for the identification of each) some of which from the supplementary data in Schauer et al. 2020. Geological polygon layer of Western Europe from Donnini et al. 2018. Collected and mapped in QGIS by the author. Rivers are from the United Nations HydroSHEDS data (https://www.hydrosheds.org/) and background map is from ESRI's (Shaded Relief).", out.width="100%", out.height="25%", fig.show='hold', fig.align='center'}
+
 require(png)
 
 knitr::include_graphics(here::here(
   'analysis/figures_SI/resource_map_SI.png'))
 
 ```
+
+
+It should be noted that although metal deposits may exist in a given place on the map, there is often no evidence that it was used in prehistory. It is therefore best to consult the literature for the relevant area and period, including metal provenance studies, to determine the most likely source of a given material. 
+The map data is given in the European LAEA true distance projection (EPSG 3035) in order to make more accurate distance measures. The often default WGS84 is not suitable for measuring distance, and local projections, such as UTM zones, may introduce problems calculating distances that cross UTM zones.
 
 <br>
 
@@ -111,12 +113,11 @@ The advantage of this method is its simplicity being relatively fast and easy to
 Grossmann uses this system together with grave pit size data (volume where available, otherwise bottom surface area) to give a total “burial value” which may give a more holistic picture of burial elaboration. One possible issue with pit size in volume and area is that these may be affected by natural body size and number or size of grave goods that need to fit into the graves. Grossman uses grave pit size especially for diachronic comparison of Gini coefficients. Grossmann [-@grossmann21: 31] rightly accounts for this by removing graves of infans individuals, with naturally smaller bodies, in pit size calculations, but does not account for the natural difference in body size between males and females. Thus, pit sizes should in theory be scaled to account for differences in body size (which requires good bone preservation), or separately for males and females. Alternatively, the grave (bottom) pit depth could be used, which usually is less affected by body size, and would be closely correlated with the labour needed to dig the whole grave assuming relatively flat bottom surfaces. The original grave pit depth may be affected by erosion processes, but these may be independent of the body size. Despite this caveat, this study follows @bosel08: 51 in using grave pit depth as an approximate measure of digging effort connected to the burial. 
 
 
-# Calculating manufacturing time, skill, import travel time, and scarcity of grave goods
+# Calculating manufacturing time
 
 <br>
 
 ## Ceramics
-### Ceramic Manufacturing time reference 
 
 Reference data for pottery manufacture was achieved primarily by speaking with two potters working with reconstruction of Stone Age pottery, including Pauline Ferrisse from France, and for the largest part Inger Heebøl at Sagnlandet Lejre. Heebøl provided, apart from records of her own pottery manufacture, also records from an earlier project for reconstructed pottery made for an exhibition in 2009 about Klekkendehøj, a reconstructed Neolithic passage grave on Møn, Denmark. This exhibition was carried out in connection with the project "Oldtiden i Landskabet" led by the Danish Cultural Heritage Agency. The reference data for pottery manufacture is given in table \@ref(tab:ref-pots). 
 
@@ -141,14 +142,14 @@ knitr::kable(PH_pottery,
 
 <br>
 
-#### Clay extraction and pre-processing
+### Clay extraction and pre-processing
 Experiments by @martineau_etal07: 37 used an average clay extraction time of `r min_clay_extract` min/kg, `r min_water_clay_mix` min/kg for mixing with water, and @manea_etal19, although based on loom weight clay preparation, used an average of `r min_kneading_clay` min/kg for kneading the clay into a paste giving a total of `r min_clay_all` equaling `r PH_clay_extract`
 
 A clay density of 1.75 kg/L, while of course variable depending on the clay used, is taken from https://www.aqua-calc.com/page/density-table/substance/clay-coma-and-blank-wet-blank-excavated giving `r clay_PH_L` PH/L for extracted humid clay. 
 
 <br>
 
-#### Tempers
+### Tempers
 Clay extraction and temper preparation is usually given in kg or in L in experimental studies but weight and volume of archaeological pots is rarely given, making direct clay amount uesd for each pot uncertain. Therefore, the weight of the archaeological pots is estimated by the weight of the reference pots and the density of clay, again using their max measure as a reference point, but with the temper percentage subtracted, see figure \@ref(fig:shape-polish-plot). 
 From these estimated weights, the amount of clay needed for each pot is estimated. 
 
@@ -178,7 +179,7 @@ There are still some uncertainties in these estimates concerning the difference 
 
 <br>
 
-#### Shaping pots
+### Shaping pots
 
 Different size units were tested in order to test the best relationship with shaping time in the reference data (Figure \@ref(fig:PH-plot)). These included largest measure in cm (in any direction), a ratio of largest measure/pot wall thickness (cm), and largest measure/(square-rooted) wall thickness, as well as a ratio of $(height/max.width)/wall. thickness$ (also square-rooted wall thickness). The height/max width ratio gave the worst fit for either version of wall thickness (not plotted here), the max measure vs. wall thickness was somewhat better, while max measure vs. $\sqrt{wall.thickness}$ and especially the simple max measure gave the best fits.  For this reason, and for easier application by others, max measure (cm) is used as proxy for size in this study. 
 ```{r PH-plot, fig.cap="shaping time (minutes) vs  (respectively) max measure/thickness (cm), max measure/squareroot of thickness (cm), and max measure (cm).", results='hide', fig.show='asis'}
@@ -218,7 +219,7 @@ weight_size_arch + shape_time_arch + polish_time_arch
 
 <br>
 
-#### Firing pots
+### Firing pots
 Firing time for pots in open fire was based on well-documented experiments by Inger Heebøl in Sagnlandet Lejre as well as the author's first hand observation of pot firing in late July 2021 at Steinzeitpark Dithmarschen. Only active firing time was included, and when used in overall ceramic person-hours calculations, the author assumed 2 persons actively participating in managing the fire and turning and moving pots gradually closer to the fire in order to slowly increase their temperature. After the active firing, the pots were left in the fire or embers to slowly cool down. This cooling process is not included in the calculations as the work here does not require much participation if any. Around 20 successfully fired pots were assumed to have been fired in a batch at the same time, which greatly reduces the time used for each pot. 
 ```{r fire-plot, fig.cap="Left: Experimental firing times for pottery. The median is used as reference for firing archaeological pots. Right: pottery firing in Steinzeitpark Dithmarschen (photo by the author 2021).", results='asis', fig.show='asis', out.width="100%", out.height="600px"}
 
@@ -235,7 +236,7 @@ A test estimate of the total person-hours was made on the reference data from th
 
 <br>
 
-#### Time estimates for decorated pots
+### Time estimates for decorated pots
 Time for decoration, both impressed and plastic, was estimated as well. According to Wentink [-@wentink20: 57], a pot fully decorated with complex impressions may have taken easily the same time for decoration as the shaping itself, and may have conveyed important symbolic information of identity, etc. This suggestion is supported by the data from Inger Heebøl's highly decorated "Skarpsalling" pot for which decoration comprises a bit more than the shaping time itself. Skarpsalling is an extreme example, so in this system, full (i.e. 100% of surface in the data) impressed decoration, not area texture by e.g. nets, is taken to be the same as shaping time. Thus, the approximate percentage of the decorated surface is noted in the archaeological data (very simple but fully covering decoration may be downgraded a bit and vice versa) and is thus automatically added to the pots production time. 
 
 Extra value points in terms of the skill needed to produce larger pots (derived from shaping, polishing, and firing) were calculated as well. These are especially related to the knowledge needed to prevent deformation and collapse of the pot during shaping, getting an evenly polished surface, and preventing breakage in the fire. This skill bonus is added according to three levels, based on approximately estimated years of training needed: medium (x0.4 bonus), medium-high (x0.6 bonus), and high (x2.0 bonus). These are of course hypothetical estimates because the amount of training needed varies with talent, training intensity, and other conditions.
@@ -310,7 +311,7 @@ knitr::kable(other_ceramic_predict,
 ```
 
 <br>
-<br>
+
 
 ## Flint artefacts
 Knapping and grinding times for flint artefacts (mostly axes) were collected from @hansen_madsen83; @madsen84; Olausson [-@olausson83a: table 3], Olausson [-@olausson83b: 62], uncut YouTube videos of flint axe manufacture by the highly experienced flint knapper Will Lord [-@lord19; @lord17; @lord20], and one YouTube comment (written 2013) by Wulf Hein on his own experimental video of axe grinding (see reference data tables for YouTube URLs), as well as from interviews with flint knapper and all-round prehistoric crafts specialist Morten Kutschera and flint knapper Sofus Stenak. 
@@ -318,17 +319,13 @@ Knapping and grinding times for flint artefacts (mostly axes) were collected fro
 <br>
 
 ### Thin-butted flint axe (four-sided) manufacture person-hours
-```{r Flint-axe-grind, fig.cap="Box plots of thin-butted flint axe person-hours. Left: knapping times, middle: grinding time with different methods coloured by information source type, right: conflated boxplot of both hand grinding and weighted grinding estimates (excluding old ethnographical source).", results='markup', fig.show='asis'}
+
+```{r echo=FALSE, results='hide'}
 #load flint reference person-hour calculations and values used in the text:
 source(here('analysis/scripts/PH_flint.R'), echo = FALSE, encoding = "UTF-8")
 #load flint person-hour calculations:
 source(here('analysis/scripts/flint_predict.R'), echo = FALSE, encoding = "UTF-8")
 
-
-#deprecated plots
-#thinButt_grindPlot 
-#box_all
-# gridExtra::grid.arrange(, ncol = 2, top = grid::textGrob("Grinding and knapping time (in PH) for different methods and sources",gp=grid::gpar(fontsize=6,font=3)), widths=c(5, 4))
 
 ```
 
@@ -354,15 +351,6 @@ The long time for grinding in Sehested's 19th century experiment is regarded by 
 
 flint_grind_ref.p
 
-# grind_PH <- ggplot(flintAxe_grind, aes(length_cm, PH_grindTime, color = source_type, shape = grinding_method)) +
-#    geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
-#    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
-
-# total_grind_h <- ggplot(flintAxe_grind, aes(length_cm, total_grinding_hours, color = source_type, shape = grinding_method)) +
-#   geom_jitter(width = 0.01, size = 3, alpha = 0.6)+
-#   theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))
-
-# gridExtra::grid.arrange(grind_PH, total_grind_h, ncol = 2, top = grid::textGrob("Grinding person-hours vs. grinding total hours",gp=grid::gpar(fontsize=10,font=3)), widths=c(5, 5))
 
 ```
 
@@ -429,7 +417,7 @@ Scarcity of imported flints is based on the numbers in Kolar [-@kolar18: Table 1
 
 <br>
 
-#### Flint axe estimated manufacture time in archaeological grave data
+### Flint axe estimated manufacture time in archaeological grave data
 
 No the value points from the reference data can be applied to the archaeological data. For flint axes, this requires estimating the surface area of each axe, as described above: ((LengthxWidth)x2)+((LengthxThickness)x2). The total value points for flint axes, based on the reference data and applied to the archaeological data, is given in table \@ref(tab:flint-axe-arch).
 ```{r flint-axe-arch}
@@ -534,7 +522,7 @@ Smaller adze blade blanks made with the fast technique on an anvil were also ide
 Preforming a thermally shocked, relatively deformed jadeitite blank (23 cm) by knapping and pecking took 1h20m (@petrequin_etal12: 271). From these and more experiments in @petrequin_etal12, it seems that different methods may have been used for different rock types and lengths of axes, each giving widely varying production time in the different stages. One of these methods may be more effective in making a blank, but then it may take more time for the preform, or the grinding, and vice versa. Another aspect is the aesthetic and mechanical quality and durability of the final axe. Of course, the degree and area of polish greatly affects the production time, but the hardness (measured on the logarithmic Moh's scale) and toughness of the rock material can also greatly affect time [@petrequin_etal12]. For jadeitite axes, it seemed more effective to do a combination of both chipping and grinding. Serpentinite and amphibolite are less hard and durable than jadeitite, and therefore take less time to produce [@petrequin_etal12]. There are still many unknowns about how these factors affect the final result and the manufacturing time, and so the time estimates used here are only tentative and a very rough simplification of the processes taking place. The median of the various quarrying methods is used here, see figure \@ref(fig:stone-extract-plot).
 
 
-```{r stone-extract-plot}
+```{r stone-extract-plot, fig.cap="Time used for different groundstone blank extraction methods in the reference data.", out.width="100%"}
 ggplotly(stoneaxe_blank_plot, width = 400, height = 400)
 ```
 
@@ -545,7 +533,7 @@ Apart from this, a combination of (logarithmic) Moh's hardness and fracture toug
 
 A tentative reference overview of Moh's hardness and fracture toughness with reference links is provided in table \@ref(tab:mohs-tough-list) and figure \@ref(fig:mohs-tough-fig).
 
-```{r mohs-tough-fig}
+```{r mohs-tough-fig, fig.cap="Estimated Mohs hardness and fracture toughness for different stone materials. These values are only guidelines, and may vary between literature and specific rock mixtures.", out.width="100%"}
 ggplotly(mohs_tough_list, width = 800, height = 400)
 ```
 
@@ -559,7 +547,7 @@ kable(mohs_tough_ref_list,
 <br>
 
 The time recorded for the various knapping and grinding methods is given in figure \@ref(fig:knap-grind-plot). 
-```{r knap-grind-plot}
+```{r knap-grind-plot, fig.cap="Time used for knapping preforms (left) and grinding or polishing (right) of different axe or adze types and knappers in relation to Mohs hardness and fracture toughness ratio.", out.width="100%"}
 gridExtra::grid.arrange(stoneaxe_preform, stoneaxe_grind, ncol = 2,
                         top = grid::textGrob(
 "Manufacturing time for stone tools by toughness, and Mohs+toughness",
@@ -568,7 +556,7 @@ gridExtra::grid.arrange(stoneaxe_preform, stoneaxe_grind, ncol = 2,
 
 <br>
 
-However, when adding data from [-@olausson83a] which generally has shorter production times, the reference data for stone axes, showed no clear relationship between Mohs-toughness and the time for making the blank and the preform. This may be partly due to the very different methods for each step in the experiments, each step affecting the working time of the others, but different axe types, and different stone knappers and study designs probably also play a major role as evident in the discrepancy between Olausson's and Pétrequin's studies even when considering the different rock materials. Even within each study, and for each knapper, a clear pattern seems unclear, also when including various combinations of Mohs hardness and toughness. The same is the case for grinding. 
+However, when adding data from Olausson [-@olausson83a] which generally has shorter production times, the reference data for stone axes, showed no clear relationship between Mohs-toughness and the time for making the blank and the preform. This may be partly due to the very different methods for each step in the experiments, each step affecting the working time of the others, but different axe types, and different stone knappers and study designs probably also play a major role as evident in the discrepancy between Olausson's and Pétrequin's studies even when considering the different rock materials. Even within each study, and for each knapper, a clear pattern seems unclear, also when including various combinations of Mohs hardness and toughness. The same is the case for grinding. 
 
 A boxplot of the total times for stone axe production in the reference data, divided by the different main types, coloured by degree of grinding, and with shapes according to each knapper, is given in \@ref(fig:stone-medians-plot). 
 ```{r stone-medians-plot}
@@ -579,7 +567,7 @@ ggplotly(stoneaxe_total_plot, width = 400, height = 400)
 
 Because no systematic pattern in the production times for stone axes could be found, it remains difficult to reliably separate the time for each step in the _chaîne operatoire_, and time estimates for archaeological data will therefore be done from total working time. Similarly to the flint axes, the median will be used, split between Alpine stone axes/adzes, axe-hammers, faceted axe-hammers, flat axes, and other stone tools (anvils, whetstones, etc.). However, to still give Moh's hardness and toughness a small effect on the working time following the literature [e.g. @petrequin_etal12] the (admittedly hypothetical) logarithm of (already logarithmic) Moh's hardness + fracture toughness) has been used as multiplication factor (ranging here from 0.8-2.2) on the median PH for each type in the archaeological stone tools adding a maximum of c. 5 PH to the items at the top of the PH range (originally around 15 PH). 
 
-The degree of grinding or polishing is also still taken into account as percentages of fully ground axes, where edge-ground or lesser ground axes have multiplications below 1, and extra polished axes have multiplication between 1 and 2. Axe-hammers, which are not included in the reference data, however, take the median of flat axes multiplied by 2 (with extra time for drilling the shaft-hole), and faceted axe-hammers (both drilling shaft hole and extra facet shaping), are multiplied by 3. An interactive overview plot of the time estimates for the different stone tools in the archaeological data is given in figure \@ref(fig:stone-tool-plot)). 
+The degree of grinding or polishing is also still taken into account as percentages of fully ground axes, where edge-ground or lesser ground axes have multiplications below 1, and extra polished axes have multiplication between 1 and 2. Axe-hammers, which are not included in the reference data, however, take the median of stone flat axes multiplied by 2 (with extra time for drilling the shaft-hole), and faceted axe-hammers (both drilling shaft hole and extra facet shaping), are multiplied by 3. An interactive overview plot of the time estimates for the different stone tools in the archaeological data is given in figure \@ref(fig:stone-tool-plot)). 
 
 ```{r stone-tool-plot, fig.cap="total estimated person-hours for different stone tools in the archaeological dataset incorporating degree of grind/polish"}
 
