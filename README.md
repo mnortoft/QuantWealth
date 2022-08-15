@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Quantifying Grave Wealth
+# Repository for the paper “A new Framework for Quantifying Grave Wealth”
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/master?urlpath=rstudio)
 
@@ -16,8 +16,9 @@ running the project from an updated R version.
 
 This repository contains the data and code for our paper:
 
-> Nørtoft, Mikkel, (2022). *Quantifying Grave Wealth*. Name of
-> journal/book <https://doi.org/xxx/xxx>
+> Nørtoft, Mikkel, (2022). *Repository for the paper A new Framework for
+> Quantifying Grave Wealth*. Name of journal/book
+> <https://doi.org/xxx/xxx>
 
 The paper quantifies grave wealth from eight different parameters, and
 uses these to identify potential wealth classes and calculate Gini
@@ -38,8 +39,9 @@ paper and the SI can be found in this repository.
 
 Please cite this compendium as:
 
-> Authors, (2021). *Compendium of R code and data for Quantifying Grave
-> Wealth*. Accessed 16 dec 2021.
+> Authors, (2022). *Compendium of R code and data for Repository for the
+> paper A new Framework for Quantifying Grave Wealth*. Accessed 15 aug
+> 2022.
 
 ## Contents
 
@@ -80,13 +82,13 @@ Docker images to ensure a consistent and reproducible computational
 environment. These Docker images can also be used locally.
 
 You can download the compendium as a zip from this URL:
-[QuantGraveWealth.zip](/archive/QuantGraveWealth.zip). After unzipping:
-- open the `.Rproj` file in RStudio - run `devtools::install()` to
-ensure you have the packages this analysis depends on (also listed in
-the [DESCRIPTION](/DESCRIPTION) file). - finally, open
-`analysis/paper/paper.Rmd` and knit to produce the `paper.pdf`, or run
-`rmarkdown::render("analysis/paper/SI.Rmd")` in the R console to produce
-the `SI.html`
+[QuantGraveWealth.zip](/archive/QuantGraveWealth.zip). After
+unzipping: - open the `.Rproj` file in RStudio - run
+`devtools::install()` to ensure you have the packages this analysis
+depends on (also listed in the [DESCRIPTION](/DESCRIPTION) file). -
+finally, open `analysis/paper/paper.Rmd` and knit to produce the
+`paper.pdf`, or run `rmarkdown::render("analysis/paper/SI.Rmd")` in the
+R console to produce the `SI.html`
 
 ### Licenses
 
