@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 # Please put your title here to include it in the file below.
-Title <- "Repository for the paper A new Framework for Quantifying Grave Wealth"
+Title <- "A new Framework for Quantifying Grave Wealth"
 ```
 
 # Repository for the paper "A new Framework for Quantifying Grave Wealth"

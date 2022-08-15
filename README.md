@@ -16,9 +16,8 @@ running the project from an updated R version.
 
 This repository contains the data and code for our paper:
 
-> Nørtoft, Mikkel, (2022). *Repository for the paper A new Framework for
-> Quantifying Grave Wealth*. Name of journal/book
-> <https://doi.org/xxx/xxx>
+> Nørtoft, Mikkel, (2022). *A new Framework for Quantifying Grave
+> Wealth*. Name of journal/book <https://doi.org/xxx/xxx>
 
 The paper quantifies grave wealth from eight different parameters, and
 uses these to identify potential wealth classes and calculate Gini
@@ -39,9 +38,8 @@ paper and the SI can be found in this repository.
 
 Please cite this compendium as:
 
-> Authors, (2022). *Compendium of R code and data for Repository for the
-> paper A new Framework for Quantifying Grave Wealth*. Accessed 15 aug
-> 2022.
+> Authors, (2022). *Compendium of R code and data for A new Framework
+> for Quantifying Grave Wealth*. Accessed 15 aug 2022.
 
 ## Contents
 
