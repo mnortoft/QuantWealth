@@ -6,7 +6,6 @@ require(FactoMineR)
 here()
 source(here('analysis/scripts/PCA.R'), echo = FALSE) #to grab results from PCA script
 
-
 # Non-parametric test of PCA SexGender and age
 ## Mann-Whitney-Wilcox rank sum test (only comparing two groups)
 PCA_ready_all <- mesh_PCA5[,c(2, 4:9, 17)] #take only columns active in PC , SexGender and agegroup columns
@@ -14,7 +13,45 @@ all.pca <- PCA(PCA_ready_all, quali.sup = c(1,8), graph = FALSE)
 
 pre_wilcox <- data.frame(PC1 = all.pca$ind$coord[,1], PC2 = all.pca$ind$coord[,2], SexGender = PCA_ready_all$SexGender)
 
-#choose only males and females (in separate objects)
+###test various wealth measures vs. sexGender
+#Exploratory boxplot and various wealth measures vs. sexGender
+travel_sex_boxplot <- ggplot(PCA_ready_all[-c(14,16),], aes(SexGender, skill))+
+  geom_boxplot()+
+  geom_jitter(width = 0.01, height = 0.01)
+
+#PH vs. SexGender: significant!
+PH_M <- subset(PCA_ready_all[,c(1,2)], SexGender == c('male'))
+PH_F <- subset(PCA_ready_all[,c(1,2)], SexGender == c('female'))
+Wilcox_PH_sex <- wilcox.test(PH_M$PH, PH_F$PH, exact = FALSE)
+
+#Prestige vs. SexGender: not significant
+prestige_M <- subset(PCA_ready_all[,c(1,3)], SexGender == c('male'))
+prestige_F <- subset(PCA_ready_all[,c(1,3)], SexGender == c('female'))
+Wilcox_prestige_sex <- wilcox.test(prestige_M$prestige, prestige_F$prestige, exact = FALSE)
+
+#Scarcity vs. SexGender: not significant
+scarcity_M <- subset(PCA_ready_all[,c(1,4)], SexGender == c('male'))
+scarcity_F <- subset(PCA_ready_all[,c(1,4)], SexGender == c('female'))
+Wilcox_scarcity_sex <- wilcox.test(scarcity_M$scarcity, scarcity_F$scarcity, exact = FALSE)
+
+#travel vs. SexGender: not significant
+travel_M <- subset(PCA_ready_all[,c(1,5)], SexGender == c('male'))
+travel_F <- subset(PCA_ready_all[,c(1,5)], SexGender == c('female'))
+Wilcox_travel_sex <- wilcox.test(travel_M$travel, travel_F$travel, exact = FALSE)
+
+#skill vs. SexGender: significant !
+skill_M <- subset(PCA_ready_all[,c(1,6)], SexGender == c('male'))
+skill_F <- subset(PCA_ready_all[,c(1,6)], SexGender == c('female'))
+Wilcox_skill_sex <- wilcox.test(skill_M$skill, skill_F$skill, exact = FALSE)
+
+
+#skill vs. SexGender: significant !
+meat_M <- subset(PCA_ready_all[,c(1,7)], SexGender == c('male'))
+meat_F <- subset(PCA_ready_all[,c(1,7)], SexGender == c('female'))
+Wilcox_meat_sex <- wilcox.test(meat_M$meat, meat_F$meat, exact = FALSE)
+
+#PC Wilcox tests
+#First choose only males and females (in separate objects)
 wilcox_prep_M <- subset(pre_wilcox, SexGender == c('male'))
 wilcox_prep_F <- subset(pre_wilcox, SexGender == c('female'))
 
@@ -27,11 +64,11 @@ PC1_2_MF <- pre_wilcox %>%
   filter(!is.na(SexGender)) %>%
   filter(SexGender != "ambiguous")
 #boxplot PC1 and Sex (MF)
-ggplot(PC1_2_MF, aes(SexGender, PC1))+
+PC1_sex_boxplot <- ggplot(PC1_2_MF, aes(SexGender, PC1))+
   geom_boxplot()+
   geom_jitter(width = 0.01, height = 0.01)
 #plot PC2 and Sex (MF)
-ggplot(PC1_2_MF, aes(SexGender, PC2))+
+PC2_sex_boxplot <- ggplot(PC1_2_MF, aes(SexGender, PC2))+
   geom_boxplot()+
   geom_jitter(width = 0.01, height = 0.01)
 
@@ -43,15 +80,15 @@ KruskWall_PCA <- filter(KruskWall_PCA, !is.na(KruskWall_PCA$age_group))
 KruskWall_raw <- filter(PCA_ready_all, !is.na(ageGroup))
 
 #boxplot age and PC1
-ggplot(KruskWall_raw, aes(x = ageGroup, y = meat)) +
+ageGroup_meat_boxplot <- ggplot(KruskWall_raw, aes(x = ageGroup, y = meat)) +
   geom_boxplot()+
   geom_jitter(width = 0.01, height = 0.01)
 #boxplot age and PC1
-ggplot(KruskWall_PCA, aes(x = age_group, y = PC1)) +
+ageGroup_PC1_box <- ggplot(KruskWall_PCA, aes(x = age_group, y = PC1)) +
   geom_boxplot()+
   geom_jitter(width = 0.01, height = 0.01)
 #boxplot age and PC2
-ggplot(KruskWall_PCA, aes(x = age_group, y = PC2)) +
+ageGroup_PC2_box <- ggplot(KruskWall_PCA, aes(x = age_group, y = PC2)) +
   geom_boxplot()+
   geom_jitter(width = 0.01, height = 0.01)
 
@@ -70,7 +107,7 @@ KruskWall_adu_mat_vs_inf$adult_vs_subadult <- case_when(KruskWall_adu_mat_vs_inf
                                          KruskWall_adu_mat_vs_inf$age_group == "infans" ~ "infans")
 kruskal.test(PC1 ~ adult_vs_subadult, data = KruskWall_adu_mat_vs_inf)
 
-ggplot(KruskWall_adu_mat_vs_inf, aes(adult_vs_subadult, PC1))+
+adu_subadult_PC1_box <- ggplot(KruskWall_adu_mat_vs_inf, aes(adult_vs_subadult, PC1))+
   geom_boxplot()+
   geom_jitter(width = 0.1)
 
@@ -81,7 +118,7 @@ KruskWall_adu_vs_juvenis <- filter(KruskWall_adu_vs_juvenis, age_group != "matur
 KruskWall_adu_vs_juvenis <- filter(KruskWall_adu_vs_juvenis, age_group != "infans")
 KW_adu_vs_juv_PC2 <- kruskal.test(PC2 ~ age_group, data = KruskWall_adu_vs_juvenis)
 
-ggplot(KruskWall_adu_vs_juvenis, aes(age_group, PC2))+
+adu_juvenis_PC2_box <- ggplot(KruskWall_adu_vs_juvenis, aes(age_group, PC2))+
   geom_boxplot()+
   geom_jitter(width = 0.1)
 

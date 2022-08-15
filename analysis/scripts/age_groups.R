@@ -38,15 +38,20 @@ SexAge.propDF <- data.frame(SexAge.prop)
 
 SexAge.propDF$age_group <- factor(SexAge.propDF$age_group, levels=c("infans", "juvenis", "adultus", "maturus"))
 #levels(SexAge.propDF$age_group) <- factor(c("infans", "juvenis", "adultus", "maturus"))
+
+#plot age and sex groups of sample population
 SexAge.p <- ggplot(SexAge.propDF, aes(age_group, (Freq*100), fill = SexGender))+
   geom_col(position = "dodge")+
   scale_y_continuous(limits = c(0,30), breaks = c(0, 5, 10, 15, 20, 25, 30))+
-  labs(x = "Sex-Gender and age group", y = "Percentage")
+  labs(x = "Sex-Gender and age group", y = "Percentage")+
+  theme(axis.text = element_text(size = 6), axis.title = element_text(size = 8))
 
+#plot age groups of sample population
 Age.p <- ggplot(age.propDF, aes(Age_stats, (Freq*100)))+
   geom_col()+
   #scale_y_continuous(limits = c(0,45), breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45))+
-  labs(x = "Age group", y = "Percentage")
+  labs(x = "Age group", y = "Percentage")+
+  theme(axis.text = element_text(size = 6), axis.title = element_text(size = 8))
 
 
 #make a dataframe with frequency of meat or no meat for each age group
@@ -82,3 +87,4 @@ fisher.test(age_meat_simple)
 age_meat.prop <- data.frame((age_meat.t[1,]/(age_meat.t[1,]+age_meat.t[2,]))*100)
 rownames(age_meat.prop) <- c("meat_percent")
 age_meat_tab_all <- rbind(age_meat.t, age_meat.prop)
+

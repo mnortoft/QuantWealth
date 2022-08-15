@@ -5,15 +5,15 @@ require(gglorenz)
 
 here("analysis")
 
+#TOT is usually (for the Neolithic) somewhere between 0 and 10. The Gini is quite sensitive to these low numbers,
+#so this script is used to see how much the Gini drops with every added TOT point to the TOT distribution
+#in the Gini input, and how much the confidence intervals decrease.
 
 
 source(here('analysis/scripts/prestigeObjectsBoxPlots.R'), echo = FALSE)
 
-TOT_num <- data.frame(TOT_original = CW_binary$TOT[-16]) #without extreme outlier
-#TOT is usually (for the Neolithic) somewhere between 0 and 10. The Gini is quite sensitive to these low numbers,
-#so this script is used to see how much the Gini drops with every added TOT point to the TOT distribution
-#in the Gini input, and how much the confidence intervals decrease.
-TOT_num$TOT_x_max <- CW_binary$TOT[-16]*max(CW_binary$TOT) #without extreme outlier, problem gone if multiplying TOT with 10
+TOT_num <- data.frame(TOT_original = CW_binary$TOT) #without extreme outlier
+TOT_num$TOT_x_max <- CW_binary$TOT*max(CW_binary$TOT) #without most extreme outlier, problem gone if multiplying TOT with 10
 #TOT_num <- data.frame(TOT = grave_scarcity$total_scarcity[-16])
 #TOT_num <- data.frame(TOT = graveDepth[,-1])
 TOT_num$TOTadd1 <- TOT_num$TOT_x_max+1
@@ -132,8 +132,8 @@ LC_comb <- ggplot()+
   theme_bw()+
   xlab("Sample population %")+
   ylab("TOT %")+
-  geom_text(aes(0.05, 1, size = 36, hjust = 0, label=paste("Gini Vli ", as.name(Gini_TOT_vli))), color = "red")+
-  geom_text(aes(0.05, 0.9, size = 36, hjust = 0, label=paste("Gini Mor ", as.name(Gini_TOT_norm))), color = "blue")+
+  geom_text(aes(0.05, 1, hjust = 0, label=paste("Gini Vli ", as.name(Gini_TOT_vli))), size = 4, color = "red")+
+  geom_text(aes(0.05, 0.9, hjust = 0, label=paste("Gini Mor ", as.name(Gini_TOT_norm))), size = 4, color = "blue")+
   theme(axis.title = element_text(size = 10),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
@@ -151,8 +151,8 @@ LC_comb_trans <- ggplot()+
   theme_bw()+
   xlab("Sample population %")+
   ylab("TOT %")+
-  geom_text(aes(0.05, 1, size = 36, hjust = 0, label=paste("Gini Vli ", as.name(Gini_TOT_trans_sweet_vli))), color = "red")+
-  geom_text(aes(0.05, 0.9, size = 36, hjust = 0, label=paste("Gini Mor ", as.name(Gini_TOT3))), color = "blue")+
+  geom_text(aes(0.05, 1, hjust = 0, label=paste("Gini Vli ", as.name(Gini_TOT_trans_sweet_vli))), size = 4, color = "red")+
+  geom_text(aes(0.05, 0.9, hjust = 0, label=paste("Gini Mor ", as.name(Gini_TOT3))), size = 4, color = "blue")+
   theme(axis.title = element_text(size = 10),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),

@@ -1,0 +1,504 @@
+---
+title: "A New Framework For Quantifying Prehistoric Grave Wealth"
+author:
+  - Author:
+    email: author@author.com
+    institute: institute of author
+    correspondence: true
+always_allow_html: true  
+output: 
+  bookdown::word_document2:
+      
+    fig_caption: yes
+    number_sections: no
+    reference_docx: "../templates/template.docx" # Insert path for the DOCX file
+    pandoc_args:
+      #- --lua-filter=../templates/scholarly-metadata.lua
+      #- --lua-filter=../templates/author-info-blocks.lua
+      - --lua-filter=../templates/pagebreak.lua
+header-includes:
+  \usepackage{float} %>% 
+  #\usepackage{url} %>% 
+  #\usepackage{xr} \externaldocument{SI}
+bibliography: ../paper/references2.bib
+csl: "../templates/journal-of-computer-applications-in-archaeology_mod.csl" # Insert path for the bib-style
+abstract: |
+  Quantifying wealth in prehistoric graves is a long-standing unresolved issue. Previous approaches have focused on only one or a few aspects of grave wealth or grave good value, e.g. scarcity, or total number of object types (TOT), thus neglecting other value aspects, or, if combining value parameters, not in a reproducible or transparent way which makes application or comparison with other cases difficult. This study presents a new framework, QuantWealth, for combining different aspects of grave good value such as manufacturing time and skill, case-specific scarcity, prestige, and raw material distance, as well as estimated meat consumption from animal bones, all equally weighted and, in this study, used to perform PCA and calculate a Gini index. This Gini index can then be combined with Gini indices from more general grave wealth measures, including TOT and grave pit depth to form a more balanced Gini index of overall grave wealth. All of these parameters are calculated in a flexible and semi-automated framework based on experimental and prehistoric crafts reference data, which can be continuously updated and fine-tuned, flexibly integrates the respective _chaînes opératoires_, and which is openly available. As a case study, QuantWealth was applied to a dataset of 81 graves with preserved skeletal remains from 46 sites of the Corded Ware Culture (CWC) in Moravia, Czech Republic. PCA analysis of the grave good measures on these data along with age and sex/gender determination shows that males are overall richer in grave goods than females, that juveniles have the highest meat expenditure, and that young adults rarely have visible meat expenditure. 
+keywords: |
+  grave goods; grave wealth; Moravia; Corded Ware Culture; Gini index; prehistoric inequality
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
+
+<!-- With the following code you can access and display values from the yml header above. -->
+
+Keywords: `r rmarkdown::metadata$keywords`
+
+Highlights: `r rmarkdown::metadata$highlights`
+
+<!-- The following code chunk defines some general settings how code chunks should behave. -->
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  results = FALSE,
+  fig.pos = 'H',
+  comment = "#>",
+  fig.path = "../figures/",
+  dpi = 300, 
+  options('huxtable.bookdown')
+)
+
+```
+
+```{r}
+require(bookdown)
+require(plotly)
+require(DescTools)
+require(flextable)
+require(huxtable)
+set_flextable_defaults(font.size = 8, padding.right = 0, padding.left = 0, border.color = "black")
+```
+
+<!-- The actual document text starts here: -->
+
+# Introduction
+Wealth may be defined in different ways in a given society, and may have varying focus in different economies, regions and periods. A general framework for characterizing main wealth types based on a comparative analysis of ethnographic data has been proposed by @mulder_etal09 and @smith_etal10, summarized in @smith_etal18. This includes embodied wealth (e.g. body weight, grip strength, practical skills, and reproductive success), relational wealth (social ties in food-sharing networks and other types of assistance), and material wealth (land, livestock, and house and household goods). 
+
+The Gini coefficient, which summarizes inequality in a population as a single number between 0 (100% equal) and 1 (100% unequal) based on income, has been a popular tool in modern populations because of its simplicity and because it can be compared across countries around the world [e.g. by @worldbank21]. However, income data are not available for prehistoric populations, and thus, different proxy-measures have been utilized to calculate Gini coefficients. These include grave goods, domestic artefacts, house floor area, and storage sizes [see @smith_etal18 for an overview of studies]. 
+
+Another measure for modern populations, the Human Development Index (HDI), combines income, life expectancy, and education in order to measure human development in a way that can be compared across countries. @oka_etal18, inspired by the HDI, proposed a Composite Archaeological Inequality (CAI) index to combine inequality measures based on different material sources and across historical and archaeological sample populations, also with the purpose of comparing populations of different economies. 
+
+Grave good wealth is particularly difficult to quantify as perceived object value may vary considerably between populations and periods and is unknown to us from prehistoric materials. Some studies attempt quantification by grave good plurality [@hedeager92; @mittnik_etal19; @nieszery_etal95; @szmyt02], referred to as Total number of Object Types (TOT) in this study. However, this treats each object with equal value, no matter the manufacturing skill or time, material or count, which may skew grave wealth distributions [@nieszery_etal95: 205]. Ethnographic [e.g. @dalton77; @olausson83b: 12-14] and archaeological studies [@grossmann21; @nieszery_etal95; @todorova02] do mention some overlapping grave good value parameters, such as scarcity, manufacturing hours, distance to raw materials, required manufacturing skill, and exaggerated shapes, which can be quantified to some extent. However, in quantification studies, the focus has usually been on one parameter (e.g. scarcity) or, when combined in point systems, transparency for each value point is lacking (see Supplementary Information section 2 for more detail on this). This makes cross-study comparison difficult. The present study attempts to combine multiple value and wealth parameters (including TOT) in a transparent and reproducible way, and introduces an additional case-specific 'prestige' value measure derived from the median of the TOT range for each object category. As a case study, these measures are applied to grave data from the Moravian Corded Ware Culture.
+
+The size of a grave pit may reflect status [e.g. @grossmann21], and this can be measured using volume, area or depth (the bottom of the grave in this study). However, both area and volume likely depend on body size, and thus are difficult to tie to status or wealth. Large grave goods (e.g. large pots) may also affect the grave pit area and volume while smaller items (e.g. metals) may have been more valuable. Grave depth should be less affected by body size [@bosel08: 51], and it is therefore used here as an additional measure of status. However erosion and varying measurement methods especially in older excavations adds some uncertainty to this measure [@kolar18: 82]. 
+
+```{r wealth-measure-table, results='asis'}
+require(dplyr)
+mesh_units <- data.frame("Wealth_parameter" = c(
+  "TOT", 
+  "manufacturing time", 
+  "skill (5 main levels based on years training)", 
+  "import value ('travel')",
+  "scarcity", 
+  "prestige", 
+  "estimated meat (from MNI of animal bones)",
+  "grave depth"), 
+  
+  "Measure_unit" = c(
+    "represented number of grave good categories", 
+    "person-hours", 
+    "percentage (0.0, 0.4, 2.0, 5.0, 10.0) of person-hours", 
+    "travel hours (with 7 km/h) to raw material",
+    "total number of graves/number of graves with X material", 
+    "median of TOT range for each grave good category", 
+    "kg + separate scarcity and prestige bonus",
+    "cm"))
+
+
+units_tab <- huxtable::huxtable(
+  mesh_units) %>% 
+  set_caption('Wealth parameter measures and their units used in this study.')
+huxtable::as_flextable(units_tab)
+
+# knitr::kable(mesh_units, 
+#              col.names = c("Wealth parameter", "Measure unit"),
+#       caption = "Wealth parameter measures and their units used in this study.") 
+  #kableExtra::row_spec(0,bold=TRUE) %>% 
+  #kableExtra::kable_styling(latex_options = c("striped", "hold_position"))
+
+```
+
+
+# Source Critical Considerations
+Using grave data as direct and universal measures of grave wealth is not straightforward. While there may be correlations between, e.g. metal-bearing or polished stone-bearing graves and more protein or nutrition intake from high trophic food such as meat and dairy reflected in $\delta^{15}$N and $\delta ^{13}$C stable isotopes [@budd_etal20; @masclanslatorre_etal20], a universal association between high trophic diet and metal-bearing grave goods is still uncertain. 
+
+Even when taking grave goods at face value, it is uncertain whether they reflect the material wealth of the individual in life or material household wealth transmitted by next of kin at the burial, or perhaps even by the whole community in which case it may rather reflect social status and relational wealth. Thus material wealth and social status (and relational wealth) in a community are difficult to disentangle. However, use-wear studies of grave goods have shown that it may be possible to see if an object has been freshly manufactured (no or little use-wear), perhaps specifically as a grave good, or used or worn for a long time before the burial [@frinculeasa_etal20; @masclanslatorre_etal20] by the individual or those adding their used belongings in the grave. The former could indicate lived material wealth, and the latter could indicate transmitted affectionate value. However, the grave goods in this study have not been studied in such detail, and social status and material wealth are therefore not distinguished here. 
+
+Organic remains (apart from skeletal material) such as textiles are very laborious to make and may have reflected important symbology and status, but are rarely preserved. If females expressed status or wealth more through textiles than males did, a male bias would appear in terms of gendered wealth and status. Some funerary rituals, potentially conveying important meaning and status, are also difficult to reconstruct, except for the sprinkling of red ochre or funeral feasting, possibly indicated by animal bones in the graves. The latter is included here as estimated usable meat of whole animals in kg (by meat utility indices and minimal number of individuals (MNI)), including scarcity and prestige bonus (Supplementary Information section 5). Grave disturbance also adds uncertainty to the interpretation of burials [cf. @kolar12]. 
+
+
+# Case Study
+## Background
+With the rise of ancient genomics, it is now clear that the 3rd millennium BCE saw a major male-driven population influx from the Pontic-Caspian steppe/forest-steppe to Central and Northern Europe [@papac_etal21; @scorrano_etal21], although not on horseback [@librado_etal21], perhaps due to a population increase from intensified herding on the steppe in the late 4th millennium BCE [@wilkin_etal21]. This new influx of people correlates extraordinarily well with the linguistic 'steppe-hypothesis' of Indo-European language dispersal [@anthony17; @anthony_brown17; @anthony_ringe15; @chang_etal15], including borrowing agricultural vocabulary from Neolithic farmers [@iversen_kroonen17]. Recent archaeogenomic studies have shown that Corded Ware (CWC) and Bell Beaker (BBC) societies of the 3rd millennium BCE tend to have been patrilinear, and practicing female exogamy [@mittnik_etal19; @papac_etal21; @sjogren_etal20], also supported by reconstructed Indo-European kinship vocabulary [@olsen19; @sjogren_etal20]. A non-random decrease in Y-haplogroup diversity from early to late CWC in Bohemia, and elsewhere, during the early 3rd millennium BCE may also reflect competition between male lineages or 'an isolated mating network with strictly exclusive social norms' [@papac_etal21: 6; @zeng_etal18]. 
+
+The CWC has been interpreted as relatively mobile with a mixed agricultural and herding and gathering economy [@lechterbeck_etal13], and more focused on the individual and the core family than the preceding agricultural societies [@harrison_heyd07; @kristiansen_etal17: 343]. CWC burial rituals are associated with burials under mounds in clear gender differentiation, reflected in body position (males lying on their right side, females on their left side) and in grave goods (males with battle-axes, females with ornaments) [@iversen15: 135, 166; @wiermann02]. However, exceptions to this pattern occur [@furholt14a], and males generally show more supra-regional patterns than females [@bourgeois_kroon17; @olerud21].  
+
+Moravian CWC radiocarbon dates, while still relatively few in number, indicate a later occupation around 2700/2600-2200/2000 cal BCE than in other areas of Europe, thus overlapping with the Moravian BBC (2500-2000 cal BCE), Proto-Unětice (c. 2450-1900/1700 cal BCE), and other cultures [@kolar18: 43-44; @peska21].
+Due to the lack of large cemeteries and available radiocarbon dates, the data in this study is spread over several hundred years and several different sites, and therefore do not represent one coherent community, which limits the power of conclusions made here. 
+
+Moravian CWC dwellings are absent and generally rare across the CWC [@kolar18: 142; @peska21: 515], and thus this analysis focuses on graves. Unlike northwestern CWC, Moravian (and other Central European) CWC graves have metals [at least 13%, @kolar18: Table 13]. However, less than 0.1% of CWC graves are interpreted as metallurgist graves (by metal-working tools), while Bell Beaker metallurgist graves are less than 1% [@peska16: 2-4]. 
+The Morava river likely kept the CWC community connected with metal producers around the Upper Danube, the Carpathian Basin, the Balkans, and possibly the steppe [@kolar18: 189]. Moravian CWC metals have not been provenanced by lead isotope studies, but may have come from the Špania Dolina copper mine in Central Slovakia (about 200 km) and perhaps the Northeastern Alpine foothills [@kolar18: 170]. Gold may have come from the Aries river in the Apuseni Mountains in Romania (about 700 km away, only one gold hair-decoration was included in this study, grave 155.1.4) where roughly contemporary alluvial gold sources have been identified [@cristea-stan_constantinescu16, see Figure \@ref(fig:cwc-moravia-map), right, and Supplementary Information 3.2].
+
+```{r cwc-moravia-map, results='asis', fig.cap="Left: Map of CWC sites in the study region from Šebela 1999 and Kolář 2011. Sites with skeletal remains (black) and sites without skeletal remains, not included in the analysis (white). Right: raw material source data (see larger map with literature and legend in the SI) with the study area marked (black square). Collected and mapped in QGIS by the author.", out.width="59%", out.height="26%", fig.show='hold', fig.align='center'}
+require(png)
+
+knitr::include_graphics(here::here(c(
+  'analysis/figures/Fig_1_left_Moravia_CWC_graves.png', 
+  'analysis/figures/Fig_1_right_resource_map.png')))
+
+```
+
+```{r}
+#load sex and age group data for chisq tests and plots
+source(here::here('analysis/scripts/age_groups.R'), echo = FALSE)
+
+#This sets a hook inline numbers called from objects are written with scientific notation
+inline_hook <- function(x) {
+  if (is.numeric(x)) {
+    format(x, digits = 3)
+  } else x
+}
+knitr::knit_hooks$set(inline = inline_hook)
+```
+
+## Materials and Methods
+Grave and grave good data for 82 Moravian CWC individuals in 81 graves from 46 sites, mostly from ploughed-away single barrows, barrow groups, or small cemeteries were collected from the catalogues by @kolar11 and @sebela99. Most of them are not absolutely dated but concentrate in the later Corded Ware period (some from find group II, most from find group III, see Supplementary Information Table 6.1).
+Only single graves with preserved skeletal materials were collected [except for one double grave, Iv4_807A/B, where the grave goods were listed separately; @kolar11], so that grave goods could be connected to the individual with reasonable likelihood, and so that age and sex/gender determinations could be used as qualitative variables (see Figure \@ref(fig:cwc-moravia-map), left). Many burial mounds in Moravia were poorly excavated and documented before World War II or destroyed by modern agriculture [@kolar18: 58, 79, 90] which makes it difficult to use mound size (or the presence or absence of mounds) as a wealth-proxy. The same, along with preservation conditions for wood, can be argued for internal grave constructions as an uncertain wealth-proxy.
+
+Corded Ware body position in burials (females lying on their left side, males on their right side) is highly correlated with biological sex (osteological or genetic), but DNA is lacking for this case material and skeletal remains are not always in a state that allows morphological sex determination. Therefore, a combined sex/gender variable was created in which if  either morphological sex or body position (or both) is present it is assigned to the sex/gender variable. However, if either of them do not agree, the sex/gender determination is given the category _ambiguous_. This ensures enough sex/gender-determined individuals to use in the analyses, with 11 individuals not determined at all (NA category, 9 of which were subadults), and still allowing for an open interpretation of individuals with ambiguous sex or gender characteristics, not speculating here on their perceived or experienced gender identities. There is of course still some uncertainty when only morphological sex or gender from body position is present, which should be kept in mind when interpreting the results. Age groups were simplified from 8 (infans I-senilis) down to four (infans, juvenis, adultus, maturus), to still get meaningful results from the relatively limited sample size of 82 individuals, and to include adult individuals with age ranges wider than 10 years.
+
+Some of these graves may have been disturbed which remains a caveat, see Supplementary Information 6.1 for more details. 
+Objects in the infill occurred in 8 graves adding some uncertainty to the data, see Supplementary Information Table 6.1. However, the differences between including and excluding grave fill objects were minute for both PCA and grave good Gini indices, see Supplementary Information 6.2.
+
+In order to calculate grave good value, five different value parameters were defined: manufacturing time (in person-hours, PH, see Supplementary Information section 4 for details), prestige/symbolic value (median of TOT range for each grave good category), scarcity (total number of graves / graves with that material as in @grossmann21, using the overall Moravian CWC numbers from Kolář [-@kolar18: Table 13], Supplementary Information 3.3), travel hours for imported objects (assuming an average speed of 7 km/h), and a separate measure of skill bonus as percentage of person-hours in different levels (low=0.0, medium=0.4, high=2.0, very high=5.0, and a hypothetical expert=10.0, for exceptional artefacts requiring >10 years of focused training to make), see Supplementary Information 3.1. 
+Estimated consumption of animal meat at the burial, which may reflect feasting [@hayden09], was calculated from the MNI of animal bones (assuming bones represent whole animals slaughtered), including scarcity bonus of animal bones and prestige bonus (Supplementary Information section 5). 
+
+All these measures may reflect some aspect of grave good value, and were therefore normalized to give them equal weight, and the sum of all six (incl. animal meat) for each grave was used as a measure of _combined grave good value_. 
+Three different Gini indices (combined grave good value, TOT, and (unimputed) grave depth) were computed on the grave data and used as basis for the CAI, see Figure \@ref(fig:lorenz-plots). 
+
+The value of time in prehistory is uncertain, but food production alone in the Neolithic may have occupied around 20% of annual daylight working time, and available artefact manufacturing time may have been somewhat limited by daylight hours [@kerig08, see also Supplementary Information 1.1], except perhaps for very simple repetitive work such as making numerous shell beads (Supplementary Information 4.6). Thus, manufacturing time may have had some limited value. Even so, making accurate and general estimates of manufacturing time of prehistoric artefacts is extremely difficult because a myriad of factors affect the end result and the time used, not least the speed and methods of the person doing the work and how it is documented (for a more detailed discussion on this 'it depends'-dilemma, see @petty19). Therefore, any time estimates used in this study are crude approximations at best and would ideally have been done through several years of data collection and controlled experiments which would be beyond the scope of this study (see Supplementary Information section 1). However, the transparency of this framework takes the initial steps towards continuous collection and improvement of such data. Since manufacturing time accounts for just 1/5 (2/5 incl. skill) of the overall grave good value, and 1/8 (2/8 incl. skill) of all grave wealth measures, inaccuracies should not affect the overall results significantly. 
+
+In order to set up a relatively flexible computation system for grave goods, the data were, inspired by the table structure in @kolar11, divided into the main materials: ceramics (Supplementary Information 4.1), flint (Supplementary Information 4.2), groundstone tools (Supplementary Information 4.3), metals (Supplementary Information 4.4), osseous artefacts (Supplementary Information 4.5), shell ornaments (Supplementary Information 4.6), and animal bones (Supplementary Information 5). This was done for both the archaeological data and for the reference data from experimental, ethnographic and prehistoric crafts expert sources. The manufacturing time estimates from the reference data thus form the basis of the time estimates for the archaeological data based on a number of parameters within the _chaîne opératoire_ of each artefact. As an example for pottery vessels, size is a major (and easily quantifiable) criterion of shaping time and skill [@heebol21]. The largest single measure of the pot's dimension gave the best correlation with time, even for different potters (Supplementary Information 4.1.3), and requires the least from the archaeological data quality. Percentage surface cover of impressed decoration, plastic decoration, polish, smoothing/beating, type and amount of temper, slip/paint (where relevant), and firing were also included in separate stages of the _chaîne opératoire_, often in relation to size, see Supplementary Information 4.1 for details. 
+
+Flint and stone axes/adzes were divided into extraction, blank production, preform-knapping/pecking (related to length), grinding (related to estimated ground surface area), sharpening, and hafting (presuming these were hafted). Skill bonus on mining, knapping, and grinding time was added for axes/adzes longer than 30 cm (not relevant for Moravian CWC), thickness below 2 cm, and extraordinary polish or shine inspired by @olausson83b: 12-13 (see Supplementary Information 4.2). 
+
+Time for groundstone tools was initially calculated based on Mohs hardness and fracture toughness, primarily from Pétrequin _et al._ [-@petrequin_etal12] on Neolithic Alpine axes. However, when later adding experimental data for thin-butted groundstone axes from Olausson [-@olausson83a], there was no correlation with these factors at all (many different combinations were tested), and Olausson ( _ibid._) demonstrates that stone tools can be made much faster than usually estimated. Therefore, the time medians were used for Alpine axes vs. other groundstone axes (e.g. flat axes) respectively, but including hardness and toughness as minor factors (Supplementary Information 4.3). This underlines that the experimental study design, methods, and documentation are critical caveats for reported manufacturing times. More systematic experimental data, beyond the scope of this study, may correlate better with hardness and toughness. Considerable extra time for drilling the shaft-hole for axe-hammers (or battle-axes) was added [following @fenton84, whose data will be integrated more thoroughly in the future]. 
+
+CWC metals were usually simple copper ornaments and tools shaped from wire or sheet [@kolar18], and in the 3rd millennium most copper ornaments generally seem to have been shaped by cold-forging (e.g. hammering and rolling) with frequent annealing in-between [@fregni14: 130]. The whole _chaîne opératoire_ was divided, following @brinkmann19, into mining, ore beneficiation, smelting, forging from raw nugget state (but mould manufacture, melting, and casting for cast objects), production/maintenance of metallurgical tools, and post-processing such as grinding, polishing, and, for cast metals, also removing excess metal ('jet') (Supplementary Information 4.4). 
+
+The system thus takes the detailed description of the archaeological artefacts for each material into account using separate material-specific data tables and scripts which flow into a final script adding all of the person-hour calculations into one final table (raw data and material totals in Supplementary Information 6, and grave good value in Appendix Table \@ref(tab:raw-data-table)). A simplified graph of the whole manufacturing structure is given in Figure \@ref(fig:labour-hour-graph). 
+
+```{r labour-hour-graph, results='asis', fig.cap="Simplified graph of automated person-hours system. Each material around the centre represents one or several R scripts calculating person-hours depending on their respective chaînes opératoires. Drawn in MindMaple by the author."}
+require(png)
+
+knitr::include_graphics(here::here('analysis/figures/Fig_2_labour_point_system_graph.png'))
+
+```
+
+```{r}
+here::here()
+source(here::here('analysis/scripts/prestigeObjectsBoxPlots.R'), echo = FALSE)
+
+shellGraves <- colSums(CW_binary[15])
+```
+
+
+All analyses were done in `r R.version.string` [@rcoreteam21] via RStudio [@rstudioteam20], with the tidyverse package [@wickham_etal19] for data manipulation. Graphics were produced using the ggplot2 package [@wickham16], the Lorenz curve ggplot add-on [@chen_cortina20], PCA with FactoMineR [@le_etal08], for which missing grave depth values were imputed with the missMDA package [@josse_husson16], see colophon in Appendix for a list of all packages used. 
+Gini indices were calculated using the DescTools package [@andrietmult_al_21], with confidence interval settings set to accelerated bias-corrected ('bca'), 4000 bootstrap replicates, and 80% confidence level following @oka_etal18. 
+
+
+## Analyses and Results
+From 69 individuals with both age and sex/gender determination, there is no significant difference between the four age groups (infans 0-9, juvenis 10-19, adultus 20-39, maturus 40+) ($\chi^2$ _p =_ `r round(sex_age.chisq$p.value, 4)`), but there is a significant difference when comparing age groups in general (79 age-determined individuals, $\chi^2$ _p =_ `r round(age_chisq$p.value, 4)`), adults being most numerous and juveniles least numerous, Figure \@ref(fig:age-sex-groups). 
+
+```{r age-sex-groups, fig.cap="Percentage distribution of age groups (79 individuals, left), and sex or gender determination within each age group (69 individuals, right).", fig.height=3}
+require(patchwork)
+Age.p + SexAge.p
+```
+
+Different grave good value aspects (manufacturing time and skill) were calculated for the 82 individuals based on the reference data from experimental, ethnographic and craft people sources. The calculated results for each material were merged, see Supplementary Information: Table 6.2. Distance to raw material and frequency of each material within the study area were added manually to the material-specific tables and used to import travel hours and scarcity respectively. 
+
+Separately, the TOT measure (presence/absence for each grave good category, in this case spanning 0-10 represented categories from 'poorest' to 'richest'), was calculated and used as basis for a separate Gini index, and for the prestige measure. Figure \@ref(fig:TOT-plot) shows a boxplot of the different TOT ranges for each grave good category including the median. This indicates that some categories are exclusive to the upper half of the spectrum (median in parentheses): gold hair decoration (10), shell (6.5) and tooth beads (6), stone axes (6), copper awls/needles (6.5), and copper knives/razors (5). Ceramic pots span the whole TOT spectrum but cluster in the lower half (3 and 3.5, probably reflecting the general population's TOT distribution). Battle-axes surprisingly cluster below the middle of the spectrum (4) and the single spindle whorl is positioned at the lower end (3). While some shell and tooth beads were locally available, the fact that they are exclusive to the upper TOT spectrum, is also supported by a wider study of CWC ornaments [@kysely_etal19]. Thus, the 'prestige' measure allows for the exclusivity of some grave goods to behave differently from scarcity. 
+
+```{r TOT-plot, out.width="100%", fig.align="center", fig.cap="Association of each grave good type with TOT."}
+TOT_prestige_plot
+```
+
+
+```{r}
+source(here('analysis/scripts/animals.R'), echo = FALSE)
+source(here('analysis/scripts/PCA.R'), echo = FALSE)
+source(here('analysis/scripts/non_parametric_tests.R'), echo = FALSE)
+
+```
+The medians mentioned above were applied as 'prestige' values instead of the raw grave good counts, then summed for each grave, and added to the other grave good value parameters in one final grave good table (see Appendix, Table \@ref(tab:raw-data-table)). 
+
+Approximate meat expenditure from meat utility indices were calculated on cattle, red deer, horse, dog/wolf, pig, sheep/goat, and small-medium amphibians (toad and turtle), and correlated with age groups and sex/gender. There was no relation between species and age ($\chi^2$ _p=_ `r round(animal_age_chisq$p.value, 4)`) or sex/gender ($\chi^2$ _p=_ `r round(chisq_spec_sex$p.value, 4)`) of the deceased (see Supplementary Information: 5).
+
+All grave good value parameters (manufacturing time, skill, import travel hours, scarcity, prestige, and meat consumption) were normalized, and the sum of these values was calculated for each grave. A Gini index was then calculated for the normalized sum. 
+A separate Gini index was also calculated from grave depths as reported in the catalogues (excluding graves that were too damaged to determine this). 
+
+Principal components analysis of the five grave good value measures, meat, and TOT as active variables, and grave depth (missing values imputed), and materials as passive quantitative variables, was applied to the graves, with the measures (blue arrows) graded by their percentage contribution to PC1 and PC2 (Figure \@ref(fig:value-PCA)). Two extreme outliers were removed (one from each gender, Letonice gr. 155.1.4, and Marefy gr. 177.1.1), both so elaborately furnished that they would heavily dominate the PCA space. Among many other grave goods, the male had the only gold ring in the assemblage, and the female had the most copper, as well as hundreds of dogtooth pendants, thousands of mother-of-pearl beads and remains from one _Bos sp._ individual. 
+
+The PCA shows that estimated meat expenditure primarily drives PC2 while most other active measures, except grave depth, drive PC1 (Figure \@ref(fig:scree-plots)). Grave depth is weak on both PC1 and PC2. All measures have significant ($\alpha$_=_ .05) positive correlation along PC1 (_p=_ `r grave.desc$Dim.1$quanti[1,2]` to `r grave.desc$Dim.1$quanti[14,2]`), but PH, prestige, TOT, skill, travel, and scarcity (in that order, _p=_ `r grave.desc$Dim.1$quanti[1,2]` to `r grave.desc$Dim.1$quanti[6,2]`) have higher significance than grave depth (_p=_ `r grave.desc$Dim.1$quanti[11,2]`) and meat (_p=_ `r grave.desc$Dim.1$quanti[14,2]`). 
+
+```{r value-PCA, fig.cap="Biplots from a PCA of manufacturing time, skill, scarcity, travel-hours, prestige, and estimated meat consumption, as well as materials, and individuals. Juvenis and adultus correlate negatively with each other on PC2.", out.width="100%", fig.height=6.5, fig.align="center"}
+PCA_paper_sex/ PCA_paper_age
+
+```
+
+```{r scree-plots, fig.cap="Top: Scree plot showing contribution of all PCs, bottom left, middle and right: scree plots of PCs 1, 2, and 3 respectively.", out.width="80%"}
+
+scree_all/(scree1+scree2+scree3)
+
+```
+
+Conversely on PC2, only meat has highly significant _positive_ correlation (_p=_ `r grave.desc$Dim.2$quanti[1,2]`), less so flint (_p=_ `r grave.desc$Dim.2$quanti[2,2]`, and then TOT (_p=_ `r grave.desc$Dim.2$quanti[3,2]`) and prestige (not significant, _p=_ `r grave.desc$Dim.2$quanti[4,2]`) while travel (_p=_ `r grave.desc$Dim.2$quanti[8,2]`) and metal (_p=_ `r grave.desc$Dim.2$quanti[9,2]`) have significant, _negative_ correlation (see Supplementary Information fig. 7.3 for a PCA showing each animal species). 
+
+A sex/gender difference on the PCA is most clear along PC1, with which males correlate positively (significant in v-test, _p=_ `r round(grave.desc$Dim.1$category[1,2], 4)`) and females correlate negatively (although not significant in v-test _p=_ `r round(grave.desc$Dim.1$category[3,2], 4)`), but the difference between male and female is not significant in non-parametric tests on PC1 (Wilcoxon rank sum test _p=_ `r wilcoxMF_PC1$p.value`), neither on PC2 (Wilcoxon _p=_ `r wilcoxMF_PC2$p.value`). Instead, Wilcoxon rank sum test shows that the individual grave good value parameters manufacturing skill (_p=_ `r Wilcox_skill_sex$p.value`) and time (PH, _p=_ `r Wilcox_PH_sex$p.value`) are significantly higher for males than for females or vice versa. No other parameters had significant sex/gender differences. 
+
+Age group shows negative correlation for infans on PC1, but does not reach significance (_p=_ `r round(grave.desc$Dim.1$category[2,2], 4)`). No other age groups show noteworthy correlation along PC1, meaning infans graves tend to have less, or less valuable, grave goods (if any). Conversely, young adults (adultus, 20-39 years old) show negative correlation on PC2 (_p=_ `r round(grave.desc$Dim.2$category[3,2], 4)`), while juvenis correlates positively with PC2 (_p=_ `r round(grave.desc$Dim.2$category[1,2], 4)`). A non-parametric Wilcoxon test of juvenis vs. adultus on PC2 is also significant (_p=_ `r round(KW_adu_vs_juv_PC2$p.value, 4)`). Thus, juvenis have significantly more meat expenditure than adultus. 
+
+However, in absolute numbers, only 3 juvenis graves and 2 adultus graves had animal remains (one adultus only in the grave fill), so the main finding is that adultus had very few graves with animal bones (6%) compared to any other age group: infans (31%), juvenis (43%), and maturus (30%) (see table \@ref(tab:meat-table)). A $\chi^2$ test of independence comparing adultus to all other age groups combined (_p=_ `r round(chisq_adult_rest$p.value, 4)`) shows that this pattern is significant. 
+There is no relation between animal _species_ and age groups (Fisher's test, _p=_ `r round(animal_age_fish$p.value, 4)`).
+
+```{r source-scripts, echo=FALSE}
+source(here::here('analysis/scripts/Gini_calc.R'), echo = FALSE)
+
+Gini_TOT
+Gini_PH_raw
+Gini_scarcity
+Gini_graveDepth
+Gini_prestige
+
+#take only the relevant first three columns from the TOT Gini's sweet spot
+Gini_TOT_adj <- Gini_sweet_spot[1:3]
+
+#Now collect the different Ginis in one variable (for later Gini table)
+all_ginis <- data.frame(Gini = c("Adjusted TOT", 
+                                 "Grave depth", 
+                                 "Combined grave good value"),
+                        rbind(Gini_TOT_adj, 
+                              Gini_graveDepth, 
+                              Gini_GG_normed))
+
+
+all_ginis_normed <- data.frame(rbind(Gini_GG_normed, 
+                                     Gini_TOT_adj, 
+                                     Gini_graveDepth))
+```
+
+```{r value-correlation, echo=FALSE}
+
+
+require(tidyr) #for gather function
+require(psych)
+
+
+densities <- grave_normed_ID
+#fix names in densities
+names(densities) <- c("Grave ID", "PH", "Prestige", "Scarcity", "Travel", "Skill", "Meat")
+#make the dataframe long to better work with ggplot
+densities2 <- gather(densities[,-1])
+names(densities2) <- c("grave_good_value", "score")
+
+density_comp <- ggplot(densities2, aes(score, color = grave_good_value))+
+  stat_density(geom="line",position="identity", size = 1)+
+  theme(legend.key.size = unit(1, 'cm'), 
+        legend.title = element_text(size=15), 
+        legend.text = element_text(size=12))+
+  scale_colour_discrete(name = "Grave good value")+
+  scale_y_sqrt()
+  
+```
+
+```{r meat-table, results='asis'}
+
+meat_tab <- huxtable::huxtable(
+  round(age_meat_tab_all, 2)) %>% 
+  set_caption('Graves with and without meat (animal bones) vs. age groups, and percentage of graves with meat.')
+huxtable::as_flextable(meat_tab)
+
+# knitr::kable(round(age_meat_tab_all, 2), 
+#       caption = "Graves with and without meat (animal bones) vs. age groups, and percentage of graves with meat.") %>% #caption also gives table reference number
+#   kableExtra::kable_styling(latex_options = c("striped", "hold_position")) 
+#   #kableExtra::scroll_box(height = "300px", width = "100%", fixed_thead = T)
+
+```
+
+
+
+```{r summaries}
+TOT_sum <- t(as.data.frame(unclass(summary(TOT_num$TOT_original))))
+PH_raw_sum <- t(as.data.frame(unclass(summary(PH_raw_num))))
+scarcity_sum <- t(as.data.frame(unclass(summary(scarcity_num))))
+prestige_sum <- t(as.data.frame(unclass(summary(prestige_num))))
+skill_sum <- t(as.data.frame(unclass(summary(skill_num))))
+animal_sum <- t(as.data.frame(unclass(summary(animals_all$total_animal))))
+travel_sum <- t(as.data.frame(unclass(summary(travel_num))))
+normed_summary <- t(as.data.frame(unclass(summary(grave_normed_sum))))
+graveDepth_sum <- t(as.data.frame(unclass(summary(graveDepth_num))))
+
+
+
+sum_compare <- rbind(TOT_sum, PH_raw_sum, scarcity_sum, skill_sum, travel_sum, prestige_sum, animal_sum, normed_summary, graveDepth_sum)
+row.names(sum_compare) <- c("Total Object Types", "Person-hours", "Scarcity", "Skill bonus", "Travel hours", "Prestige", "Animal meat", "Grave good normalized sum (0-6)", "Grave depth")
+```
+
+The TOT range is generally quite low (0-10, integer) compared to the other measures. This makes its resulting Gini more unstable (even more so for lower ranges such as the Bohemian CWC Vliněves cemetery (TOT 0-5) in Figure \@ref(fig:Gini-TOT-adjust)). This makes the Gini higher for lower ranges, behaving opposite to the Lorenz curve (see Figure \@ref(fig:TOT-Lorenz-correction)). The Lorenz curve plots the percentage distribution of the sample population on the x-axis and the accumulated percentage of the given wealth measure on the y-axis ordered from the poorest to the richest graves. Because of this counter-intuitive behaviour, the TOT distributions were multiplied by their own maximum value (which does not change the Gini), then incrementally adding one point to the TOT distribution for each Gini calculation. This makes the Gini drop drastically at first, but less so for each added point until reaching a set drop threshold of 5%, indicating a more stable TOT Gini. This makes the TOT Gini more comparable between cases, even for lower TOT ranges (see Figure \@ref(fig:Gini-TOT-adjust)), and better aligned with the Lorenz curve (Figure \@ref(fig:TOT-Lorenz-correction)). 
+
+```{r Gini-TOT-adjust, fig.cap="Comparison of drop in TOT Gini indices for every addition to the TOT distribution using the highest TOT value as starting point, applied to Moravia (left, TOT 0-10) and Vliněves (right, TOT 0-5). The drops in Gini with the least added TOT is set at a threshold of 5 percent.", out.width='100%', fig.height=3.5, fig.align='center'}
+TOT_Gini_stats.p + TOT_Gini_stats_vli.p
+
+```
+
+```{r TOT-Lorenz-correction, fig.cap="Lorenz curves and Gini indices for TOT without correction (left), and with correction (right) for both Vliněves (Vli, red solid curve) and Moravia (Mor, blue dotted curve).", out.width='100%', fig.height=2.5, fig.align='center'}
+
+LC_comb + LC_comb_trans
+```
+
+
+The Gini indices are based on the data summarized in Figure \@ref(fig:value-densities) and Table \@ref(tab:summary-table).
+
+```{r summary-table, results='asis'}
+
+sum_tab <- huxtable::huxtable(
+  round(sum_compare, 2)) %>% 
+  set_caption('Summaries of the data foundation of the Gini coefficients.')
+huxtable::as_flextable(sum_tab)
+
+# knitr::kable(round(sum_compare, 2), 
+#       caption = "Summaries of the data foundation of the Gini coefficients.") %>% #caption also gives table reference number
+#   kableExtra::kable_styling(latex_options = c("striped", "hold_position")) 
+#   #kableExtra::scroll_box(height = "300px", width = "100%", fixed_thead = T)
+
+```
+
+```{r value-densities, fig.cap="Square root of densities of manufacturing time, skill, scarcity, travel-hours, prestige, and estimated meat consumption.", out.width="80%", fig.height=3}
+density_comp
+
+```
+
+Combining all aspects of grave wealth gives three different measures: TOT, grave depth, and combined grave good value (including meat consumption). 
+
+The Gini coefficients and Lorenz curves for the 82 Moravian CWC individuals in this dataset are given in Table \@ref(tab:grave-gini-table) and Figure \@ref(fig:lorenz-plots) with separate scarcity Gini for comparison with @grossmann21. Grossmann [-@grossmann21: 87] gets a grave good scarcity Gini index of 0.69 for Lauda-Königshofen (Southern Central German CWC 2600-2500 BCE). A scarcity Gini of `r Gini_scarcity[1]` for Moravian CWC is quite close to this. 
+
+```{r grave-gini-table, results='asis'}
+
+grave_gini_tab <- huxtable::huxtable(
+  all_ginis) %>% 
+  set_caption('Gini coefficients based on (corrected) TOT, Grave Depth, and combined grave good value.')
+huxtable::as_flextable(grave_gini_tab)
+
+# knitr::kable(all_ginis, 
+#              col.names = c("Data", "Gini", "Lower CI", "Upper CI"),
+#       caption = "Gini coefficients based on (corrected) TOT, Grave Depth, and combined grave good value.") %>% #caption also gives table reference number
+#   kableExtra::kable_styling(latex_options = c("striped", "hold_position"))
+#   #kableExtra::scroll_box(height = "300px", width = "60%", fixed_thead = T)
+
+```
+
+```{r lorenz-plots, fig.cap="Lorenz curves and Gini indices for Moravian CWC: (normalized sum) of combined grave good value, Ginis for Total Object Types (TOT), Grave depth, and scarcity to compare with the scarcity Gini of 0.69 for Lauda-Königshofen CWC by Grossmann 2021. TOT Gini is the adjusted version.", out.width="90%"}
+
+
+LC_GG_normed.p + LC_TOT.p + LC_graveDepth.p + LC_scarcity.p
+
+```
+
+```{r geometric-means}
+#Calculate the CAI (the geometric mean of all the Ginis):
+#CAI_median <- round(geometric.mean(all_ginis_median$gini), 3)
+CAI_normed <- round(geometric.mean(all_ginis_normed$gini), 3)
+
+#Applying couple (household) adjustment (Fochesato et al. 2019)
+CAI_couple_adj <- round(CAI_normed*0.91, 3)
+
+#mean(all_ginis$gini)
+#median(all_ginis$gini)
+
+#grave correction (subtract 28%) based on Fochesato et al. 2019:
+#CAI_median_correct <- round((CAI_median*0.72), digits = 3)
+CAI_normed_correct <- round((CAI_couple_adj*0.72), digits = 3)
+
+
+```
+   
+
+
+The grave CAI index, combining the TOT Gini, grave depth Gini, and combined grave good Gini is `r CAI_normed`, which is markedly lower than when only using scarcity (`r Gini_scarcity[1]`) as in Grossmann [-@grossmann21], and probably more realistic in a society not fully developed into institutionalized hierarchy which may have been more pronounced in the later Únětice period [@meller19: 57, 67]. The CAI is also much lower than the very unequal Copper Age Durankulak community [Ginis ranging 0.61-0.77; @windler_etal13], which uses a similar, but less transparent, point system (making this comparison uncertain). Fochesato _et al._ [-@fochesato_etal19; -@fochesato_etal21] found that grave Ginis tend to be higher per individual than per household (i.e. hypothetical couples) across case studies, and that individual Ginis in graves should thus be corrected by a ratio of 0.91-0.92. On that background, the mean (0.915) ratio is applied in this study giving a household-adjusted grave CAI of `r CAI_couple_adj`. 
+
+# Discussion
+The meat expenditure driving PC2 in the PCA plot may indicate funerary feasting as described in Hayden [-@hayden09] and/or food for the afterlife in case of fleshy animal parts in the grave, or, for one dog skull found with a mature male (gr. 148.2.1.), perhaps a pet or a psychopomp guiding the soul of the dead [@goepfert12]. However, interpreting animal deposits usually requires more information such as the sex, age, and general biography of each animal [@morris12]. Similar interpretations have been made previously for a subset of this material [@kolar_etal12], but due to their small sample size, no relation with age could be demonstrated. Funerary feasting is also suggested for the Globular Amphora Culture [@szmyt06; @makowiecki_etal14] and for the Eneolithic-Bronze Age steppe [@anthony07: 161, 179, 184-189, 247, 259, 325, 391, 405-409]. It is curious that only 6% (3% if excluding grave fill objects) of adultus, the largest age category, had animal remains (one of them only a tooth from cattle and deer respectively), while especially juvenis, followed by infans and maturus, generally had more animal remains. The individual with the highest meat score (cattle, horse, pig, and sheep/goat) was a 14-17 year-old (osteologically) female, who also had one of only four flint axes in the whole dataset. No ethnographic parallel to especially rare animal sacrifice for adultus graves was found in literature search. A hypothetical explanation could be that young adults were main providers and protectors of the family's economy. So when a young adult died, the living family members were more dependent on the animals (already owned or offered by others) for food, bride price, or trade, while this was not the case when an individual of any other age group died, where animals could be sacrificed for the funeral (e.g. in one of the functions mentioned above). Alternatively, young adults may not have been perceived as needing animal companions, meat, or feasts in the afterlife compared to other age groups (the role of plant-based food may have been different). Different roles of animals for each age group cannot be ruled out either. 
+
+It has been argued that grave wealth can be an exaggerated form of wealth display. Fochesato et al. [-@fochesato_etal19: 13-15 and Table S5], based on four cases with both graves and houses (Late Neolithic Balkans, and Early Dynastic Mesopotamia), find a general difference between grave good and house size Ginis of 0.244-0.343 (or an average of 28.1%) for which they downgrade the grave Gini to match the house Gini. While further studies are needed to test the general applicability of this across economies, regions, and periods, applying that in this study would bring the Gini down to a hypothetical `r CAI_normed_correct`. 
+
+A similar argument can be made for missing parts of the population in grave data which could have been at the lower tier of society or 'unfree'. Fochesato et al. [-@fochesato_etal19: Table S4] reconstruct the missing population in Southern Mesopotamia to be 34% and in Roman (rural?) Italy to be 9%. Both of these are state societies, and presumably much more dependent on institutionalized 'unfree' labour than expected for Neolithic societies. If we accept the association of Indo-European language with 'steppe' ancestry dispersal, we may also get an indication of the state of institutionalized 'unfree' labour in steppe-derived populations such as the CWC by looking at reconstructed 'Core-Indo-European' (Proto-Indo-European excluding the Anatolian branch) vocabulary of slavery. While such vocabulary is widespread in the daughter languages, and while military, conquering activities, and looting vocabulary is easier to reconstruct, it seems difficult to reconstruct a word specifically meaning 'slave' or 'servant' [@campanile98a: 16-17; @nortoft17: 84-89]. Therefore, we would not expect a large proportion of missing 'unfree' in Eneolithic steppe-derived cultures, probably less than 9% (Roman Italy), and the impact of 'unfree' on the Gini index may be limited. However, it is still theoretically possible that lower levels of society were rarely buried in a way that leaves less traces today. The large and relatively poor CWC cemetery (75 CWC flat graves, [@dobes_limbursky13]) at Vliněves in Bohemia may be a candidate for this lower level (Vliněves will be treated further in another study). Missing individuals may also be due to taboo, 'sky' burials, shallow graves destroyed by the plough or children's bones disintegrating faster [@kolar18: 68, 101]. 
+Due to this uncertainty, the author here follows Fochesato et al. [-@fochesato_etal21: 3] in not correcting for a missing population, because the data has graves without grave goods (including generally poorer children's graves). 
+
+# Conclusion
+This study suggests using a new framework, QuantWealth, combining different measures of grave wealth and grave good value to quantify prehistoric grave wealth. These measures are more data-driven, transparent, and include several aspects that seem to define wealth in ethnographic studies [e.g. @bosel08; @dalton77; @olausson83b]. The system's open data, flexibility, and transparency makes it more applicable and comparable between different cases, and makes it easier to expand to more grave good types, and refine with more reference data, making it more robust in the future.
+
+Importantly, applying the different measures to a PCA combined with material groups and demographic variables gives a more holistic view of grave wealth, and still allows looking at individual aspects. In this case, males generally tend to have somewhat more elaborate grave goods than females (although not a significant difference), primarily in terms of manufacturing time and skill (with a significant difference). At the same time, deposited animal bones, potentially reflecting funerary feasting, are very rare in graves of specifically young adults, but more common for other age groups, of both sexes/genders, especially juveniles. Whether this pattern is present in other regions of the CWC will need further case studies. No good ethnographic parallel to this specific pattern was found by the author at this stage. The main point of this study is that quantifying grave wealth in this way takes these questions beyond the hypothetical, and towards something more concrete, but still broadly applicable, that may be systematically tested in the future with more and better data.
+
+
+# Acknowledgements
+The author sincerely thanks the crafts specialists that shared their knowledge, especially Morten Kutschera, Inger Heebøl (Sagnlandet Lejre), Sofus Stenak (Saxo Institute), Torben Johansen, and Pauline Ferrisse, as well as Rune Iversen (University of Copenhagen). Thanks also to Johanna Brinkmann (Christian-Albrechts-Universität zu Kiel) for discussions on metal technology, and the staff at the Max Planck Institute for Evolutionary Anthropology, especially AB Rohrlach, for extensive feedback and support, and Wolfgang Haak for hosting me at the MPI in Leipzig. Also, deep thanks to Solveig Chaudesaigues-Clausen (Universitetet i Bergen) for everyday sparring on Stone Age technology, the Saxo Institute for funding the PhD project fostering this paper, and the reviewers for crucial feedback.
+
+
+# Competing Interests
+The author knows of no competing interests that could have affected this study. 
+
+# Ethics and Consent
+The craft specialists mentioned in this study were used as consultants on estimated time and techniques for manufacturing prehistoric objects, and informed beforehand that their knowledge would be used in this study. For one plot (in Supplementary Information fig. 4.3) comparing the manufacturing time recorded by different potters relative to pot size, the potters have been anonymized. Any other data used was publicly available in literature or online videos. 
+
+# Data availability
+All data and code used for this study and QuantWealth itself can be accessed at (https://github.com/mnortoft/QuantWealth). 
+
+<!-- The following line inserts a page break  -->
+\newpage
+
+# References
+
+<!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
+
+::: {#refs}
+:::
+
+
+&nbsp;
+
+# Appendix 
+```{r raw-data-table, results='asis'}
+
+#remove parenthesis text and shorten the longest site names a bit to make table fit on tehe page:
+require(stringr)
+appendix_table[2] <- str_replace(appendix_table$SiteName, " \\s*\\([^\\)]+\\)", "")
+appendix_table[2] = str_replace(appendix_table$SiteName, " of the Vyškov State Farm", "")
+
+
+appendix_tab <- huxtable::huxtable(
+  appendix_table) %>% 
+  set_caption('Calculated manufacturing time, prestige points, scarcity points, import travel points, skill points, and animal meat for feasts (estimated kg). * in site names indicates that some objects are in the grave fill of that grave. VN X in grave IDs are documentation quality rankings from Šebela 1999.')
+huxtable::as_flextable(appendix_tab, cwidth = 0.3, font.size = 6)
+
+# knitr::kable(appendix_table, booktabs = T, longtable = T, 
+#              col.names = c("Grave ID", "Site name", "Manufacturing time (PH)", "Prestige", "Scarcity", "Travel hours", "Skill bonus", "Meat (estimate)"),
+#       caption = "Calculated manufacturing time, prestige points, scarcity points, import travel points, skill points, and animal meat for feasts (estimated kg). * in site names indicates that some objects are in the grave fill of that grave. VN X in grave IDs are documentation quality rankings from Šebela 1999.") %>% #caption also gives table reference number
+#   kable_styling(latex_options = c("striped", "hold_position", "repeat_header")) %>% 
+#   landscape()
+#   #kableExtra::scroll_box(height = "400pt", width = "100%", fixed_thead = T)
+
+```
+
+
+\newpage
+
+### Colophon
+This report was generated on `r Sys.time()` using the following computational environment and dependencies :
+
+```{r colophon, cache = FALSE, results='hold'}
+if ("devtools" %in% installed.packages()) devtools::session_info()
+```
+
+The current Git commit details are:
+
+```{r commit-details, results='asis'}
+# what commit is this file at?
+if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())
+```
+

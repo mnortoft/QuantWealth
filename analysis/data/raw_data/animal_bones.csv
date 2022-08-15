@@ -1,19 +1,19 @@
-Grave_ID,cattle,red_deer,horse,dog_wolf,fox,pig,sheep_goat,small_medium_amphibians,hare
-14.1.1. Gr. 1,,,,,,1,,,
-148.2.1. Gr. 1,,,,1,,1,,,
-155.1.3. Br. 5,,,,,,,,,
-177.1.1 Grave 1 (VN 1),1,,,,,,,,
-20.1.1. Gr. 1,1,,1,,,1,1,,
-207.1.3. Gr. 11,1,,,,,1,,,
-232.1.2. Gr. 14,1,,,,,,1,,
-277.1.1. Gr. 1,1,1,,,,,1,2,
-30.1.1 Grave 9,,,,,,,2,,
-30.1.3 Grave 42 VN 1,,,,,,,1,,
-30.1.4 Grave 70 (VN I),,,,,,,,,
-355.1.2. Gr. 2,,,,,,1,,,
-58.1.1. Gr. 1,,,,,,1,,,
-93.1.2. Gr. 26,,,,,,1,,,
-Hos_802,1,1,,,,,1,,
-Hos_838,1,,,,,,1,,
-Hos_839,1,,,,,1,,,
-Iv4_810,,,,,,1,1,,
+Grave_ID,cattle,red_deer,horse,dog_wolf,fox,pig,sheep_goat,small_medium_amphibians,hare,unworked_teeth_species,tooth_species
+14.1.1. Gr. 1,,,,,,1,,,,,
+148.2.1. Gr. 1,,,,1,,,,,,1,domestic pig (canine)
+155.1.3. Br. 5,,,,,,,,,,,
+177.1.1 Grave 1 (VN 1),,,,,,,,,,1,domestic aurochs (incisor and molar)
+20.1.1. Gr. 1,1,,1,,,1,1,,,,
+207.1.3. Gr. 11,1,,,,,1,,,,,
+232.1.2. Gr. 14,1,,,,,,1,,,,
+277.1.1. Gr. 1,1,1,,,,,1,2,,,
+30.1.1 Grave 9,,,,,,,2,,,,
+30.1.3 Grave 42 VN 1,,,,,,,1,,,,
+30.1.4 Grave 70 (VN I),,,,,,,,,,,
+355.1.2. Gr. 2,,,,,,1,,,,1,domestic pig (unworked boar tusk)
+58.1.1. Gr. 1,,,,,,1,,,,,
+93.1.2. Gr. 26,,,,,,1,,,,,
+Hos_802,1,,,,,,,,,2,red deer and sheep/goat
+Hos_838,1,,,,,,1,,,,
+Hos_839,1,,,,,1,,,,,
+Iv4_810,,,,,,1,1,,,,

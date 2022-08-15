@@ -1,6 +1,6 @@
 Site;Grave_ID;object_ID;Plate_number;object_type;count;comments;anatomical_part;species;length_mm;width_mm;thickness_mm;hole_diam_mm
-Blucina;14.1.1. Gr. 1;bone;;animal;1;animal bone (pig shoulder diaphysis);;;;;;
-Kyjov-Netcice (Stara Hora);148.2.1. Gr. 1;bone;;animal;;animal bones: canine fragment (domestic pig);;;;;;
+Blucina;14.1.1. Gr. 1;bone;;animal;;animal bone (pig shoulder diaphysis);;;;;;
+Kyjov-Netcice (Stara Hora);148.2.1. Gr. 1;tooth;;animal;;animal bones: canine fragment (domestic pig);;;;;;
 Kyjov-Netcice (Stara Hora);148.2.1. Gr. 1;bone;;animal;;animal bones: domestic dog (cranium(?) remains).;;;;;;
 Letonice (Hajek);155.1.3. Br. 5;bone;grave fill;animal;;animal bones (unidentified);;;;;;
 Mouchnice (Díly za vraty);199.1.2. Gr. 2;bone;;animal;;fragments of animal bones (unidentified, not preserved);;;;;;
@@ -8,9 +8,7 @@ Boleradice (U studanky);20.1.1. Gr. 1;bone;;animal;;animal bones;;;;;;
 Boleradice (U studanky);20.1.1. Gr. 1;bone;;animal;;animal bone fragments (horse metatarsus, domestic aurochs talus, pig maxilla and mandible, sheep/goat tibia, scattered with individual's skeletal remains. ;;;;;;
 Nechvalin (Nivky);207.1.3. Gr. 11;bone;;animal;;animal remains: domestic pig (Vertebrae of), domestic aurochs (Fovea of the iliac bone), unidentified animal bone fragments;;;;;;
 Pavlov (Horni pole);232.1.1 Grave 5 (VN 1);bone;;animal;;animal bones (domestic pig);;;;;;
-Pavlov (Horni pole);232.1.2. Gr. 14;bone;;animal;;animal bone fragments (sheep/goat);;;;;;
-Pavlov (Horni pole);232.1.2. Gr. 14;bone;;animal;;long animal bones (sheep/goat tibia and femur, same animal);;;;;;
-Pavlov (Horni pole);232.1.2. Gr. 14;bone;;animal;;animal bones (sheep/goat);;;;;;
+Pavlov (Horni pole);232.1.2. Gr. 14;bone;;animal;;animal bone fragments (sheep/goat, tibia and femur, and other sheep/goat bones in different parts of the grave);;;;;;
 Pavlov (Horni pole);232.1.2. Gr. 14;bone;;animal;;more bone fragments (domestic aurochs, undetermined);;;;;;
 Slavkov u Brna (Slovanska ulice);277.1.1. Gr. 1;bone;;animal;;scattered animal remains: domestic aurochs (metacarpus, astragalus), red deer (humerus), sheep/goat (molar, neck vertebra), tortoise (fraction of lateral part of carapace), toad (metatarsal, humerus, ileum, coracoid);;;;;;
 Brno-Stary Liskovec (Housing Estate of Czechoslovak-Soviet Friendship, Bohunice-West);30.1.1 Grave 9;bone;;animal;;Only animal bones found (ribs, radius, ulna from sheep/goat and goat), no objects;;;;;;

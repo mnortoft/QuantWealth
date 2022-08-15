@@ -22,11 +22,11 @@ flintAxe_predict <- read.csv(here("analysis/data/raw_data/flint_axe_predict.csv"
 #flintAxe_predict <- dplyr::filter(flintAxe_predict, is.na(grave_fill))
 
 #Here we get the whole surface area (cm2 from mm artefact measures) of four-sided axes: (L*W)*2+(L*T)*2
-flintAxe_predict$flint_axe_surface <- #convert measures to cm, then get cm2 for each side
-  case_when(flintAxe_predict$number_of_sides == 4 ~
+flintAxe_predict$flint_axe_surface <- #convert measures to cm (/10), then get cm2 for each side
+  case_when(flintAxe_predict$number_of_sides == 4 ~  #four-sided axe
               (((flintAxe_predict$length_mm/10)*(flintAxe_predict$width_mm/10))*2)+
               (((flintAxe_predict$length_mm/10)*(flintAxe_predict$thickness_mm/10))*2),
-            flintAxe_predict$number_of_sides == 2 ~
+            flintAxe_predict$number_of_sides == 2 ~ #two-sided axe
               (((flintAxe_predict$length_mm/10)*(flintAxe_predict$width_mm/10))*2)
   )
 
@@ -194,8 +194,11 @@ flint_other_predict$retouch_bonus <- dplyr::case_when(
 flint_other_predict$scarcity_bonus <- flint_other_predict$total_graves/
   flint_other_predict$total_material
 
+#multiply PH by the count of each object type:
+flint_other_predict$PH_multiplied <- flint_other_predict$PH_raw*flint_other_predict$count
+
 #summarize total manufacturing time, incl. retouch and hafting
-flint_other_predict$PH_total <- rowSums(flint_other_predict[,c("PH_raw",
+flint_other_predict$PH_total <- rowSums(flint_other_predict[,c(("PH_multiplied"),
                                                             "retouch_bonus",
                                                             "handle")],
                                         na.rm = TRUE)

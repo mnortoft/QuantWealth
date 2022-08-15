@@ -74,11 +74,11 @@ TOT_Gini_stats.p <- ggplot(Gini_TOT_diff.p_prep, aes(addition, (drop_perc/100)))
   scale_y_continuous(breaks = c(0.0, 0.1, 0.2, 0.3, 0.4, 0.5))+
   ylab("Gini drop % (bars) vs. Gini (dots)")+
   xlab("TOT added")+
-  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.02), hjust = 0, label=paste("Gini drop <5%: ", as.name(sweet_drop_perc))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.04), hjust = 0, label=paste("TOT added: ", as.name(addition_sweet_spot))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.06), hjust = 0, label=paste("Orig. Gini: ", as.name(Gini_TOT_diff$gini[1]))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.08), hjust = 0, label=paste("Adj. Gini: ", as.name(Gini_sweet_spot$gini))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.10), hjust = 0, label=paste("CI: ", as.name(CI_gap_sweet_spot))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.02), hjust = 0, label=paste("Gini drop <5%: ", as.name(sweet_drop_perc))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.04), hjust = 0, label=paste("TOT added: ", as.name(addition_sweet_spot))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.06), hjust = 0, label=paste("Orig. Gini: ", as.name(Gini_TOT_diff$gini[1]))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.08), hjust = 0, label=paste("Adj. Gini: ", as.name(Gini_sweet_spot$gini))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc/100)+0.10), hjust = 0, label=paste("CI: ", as.name(CI_gap_sweet_spot))), size = 2)+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 sweet_spot_vli <- filter(Gini_diff_vli, Gini_drop > 0)
@@ -101,11 +101,11 @@ TOT_Gini_stats_vli.p <- ggplot(Gini_diff_vli.p_prep, aes(addition, (drop_perc/10
   scale_y_continuous(breaks = c(0.0, 0.1, 0.2, 0.3, 0.4, 0.5))+
   ylab("Gini drop % (bars) vs. Gini (dots)")+
   xlab("TOT added")+
-  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.02), hjust = 0, label=paste("Gini drop <5%: ", as.name(sweet_drop_perc_vli))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.04), hjust = 0, label=paste("TOT added: ", as.name(addition_sweet_spot_vli))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.06), hjust = 0, label=paste("Orig. Gini: ", as.name(Gini_diff_vli$gini[1]))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.08), hjust = 0, label=paste("Adj. Gini: ", as.name(Gini_sweet_spot_vli$gini))), size = 2.5)+
-  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.10), hjust = 0, label=paste("CI: ", as.name(CI_gap_sweet_spot_vli))), size = 2.5)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.02), hjust = 0, label=paste("Gini drop <5%: ", as.name(sweet_drop_perc_vli))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.04), hjust = 0, label=paste("TOT added: ", as.name(addition_sweet_spot_vli))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.06), hjust = 0, label=paste("Orig. Gini: ", as.name(Gini_diff_vli$gini[1]))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.08), hjust = 0, label=paste("Adj. Gini: ", as.name(Gini_sweet_spot_vli$gini))), size = 2)+
+  geom_text(aes(6.5, ((sweet_drop_perc_vli/100)+0.10), hjust = 0, label=paste("CI: ", as.name(CI_gap_sweet_spot_vli))), size = 2)+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
@@ -118,8 +118,9 @@ LC_TOT.p <- ggplot(CW_binary, aes(TOT))+
   theme_bw()+
   xlab("Sample population %")+
   ylab("Total Object Types (TOT) %")+
-  geom_text(aes(0.2, 1, size = 36, label=paste("Gini ", as.name(Gini_sweet_spot$gini))))+
-  theme(axis.title = element_text(size = 10),
+  geom_text(aes(0.2, 1, label=paste("Gini ", as.name(Gini_sweet_spot$gini))), size = 3)+
+  theme(axis.title = element_text(size = 8),
+        axis.text = element_text(size = 6),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"),
@@ -142,14 +143,15 @@ LC_scarcity.p <- ggplot(grave_scarcity, aes(total_scarcity))+
   theme_bw()+
   xlab("Sample population %")+
   ylab("Scarcity points %")+
-  geom_text(aes(0.2, 1, size = 36, label=paste("Gini ", as.name(Gini_scarcity))))+
-  theme(axis.title = element_text(size = 10),
+  geom_text(aes(0.2, 1, label=paste("Gini ", as.name(Gini_scarcity))), size = 3)+
+  theme(axis.title = element_text(size = 8),
+        axis.text = element_text(size = 6),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"),
         legend.position = "None")
 
-ggplotly(LC_scarcity.p)
+#ggplotly(LC_scarcity.p)
 
 #combine travel_hours+scarcity+skill:
 grave_travel <- data.frame(Grave_ID = grave_8_skelet$Grave_ID, grave_8_skelet %>% select(contains('travel')))
@@ -187,8 +189,9 @@ LC_graveDepth.p <- ggplot(graveDepth, aes(graveDepth))+
   theme_bw()+
   xlab("Sample population %")+
   ylab("Grave Depth %")+
-  geom_text(aes(0.2, 1, size = 36, label=paste("Gini ", as.name(Gini_graveDepth))))+
-  theme(axis.title = element_text(size = 10),
+  geom_text(aes(0.2, 1, label=paste("Gini ", as.name(Gini_graveDepth))), size = 3)+
+  theme(axis.title = element_text(size = 8),
+        axis.text = element_text(size = 6),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"),
@@ -205,11 +208,11 @@ hist_prestige <- ggplot(prestige_total, aes(prestige_total))+
 
 
 #add all value measures together in one table:
-allGravesTotals1 <- merge(x=grave_PH_raw[,c(1,10)], y=Prestige_values[,c(1,20)], by="Grave_ID", all = TRUE)
-allGravesTotals2 <- merge(x=allGravesTotals1, y=grave_scarcity[,c(1,10)], by="Grave_ID", all = TRUE)
-allGravesTotals3 <- merge(x=allGravesTotals2, y=grave_travel[,c(1,6)], by="Grave_ID", all = TRUE)
-allGravesTotals4 <- merge(x=allGravesTotals3, y=grave_skill[,c(1,10)], by="Grave_ID", all = TRUE)
-allGravesTotals5 <- merge(x=allGravesTotals4, y=animals_all[,c(1,14)], by="Grave_ID", all = TRUE)
+allGravesTotals1 <- merge(x=grave_PH_raw[,c(1,10)], y=Prestige_values[,c(1,20)], by="Grave_ID", all = TRUE) #row numbers may change with more categories!
+allGravesTotals2 <- merge(x=allGravesTotals1, y=grave_scarcity[,c(1,10)], by="Grave_ID", all = TRUE) #row numbers may change with more categories!
+allGravesTotals3 <- merge(x=allGravesTotals2, y=grave_travel[,c(1,6)], by="Grave_ID", all = TRUE) #row numbers may change with more categories!
+allGravesTotals4 <- merge(x=allGravesTotals3, y=grave_skill[,c(1,10)], by="Grave_ID", all = TRUE) #row numbers may change with more categories!
+allGravesTotals5 <- merge(x=allGravesTotals4, y=animals_all[,c(1,15)], by="Grave_ID", all = TRUE) #row numbers may change with more categories!
 
 
 
@@ -239,8 +242,9 @@ LC_GG_normed.p <- ggplot(as.data.frame(grave_normed_sum), aes(grave_normed_sum))
   theme_bw()+
   xlab("Sample population %")+
   ylab("Grave good values %.")+
-  geom_text(aes(0.2, 1, size = 25, label=paste("Gini ", as.name(Gini_norm_single))))+
-  theme(axis.title = element_text(size = 10),
+  geom_text(aes(0.2, 1, label=paste("Gini ", as.name(Gini_norm_single))), size = 3)+
+  theme(axis.title = element_text(size = 8),
+        axis.text = element_text(size = 6),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"),

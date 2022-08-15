@@ -25,11 +25,11 @@ stone_axe_predict$mohs_tough <- log(stone_axe_predict$mohs_hardness_mean)+stone_
 
 # first number sets the starting point, exponent at the end sets the slope
 stone_axe_predict$PH_raw <- dplyr::case_when(stone_axe_predict$objectType == "axe-hammer" ~
-                                               2*median(stone_axe_ref$total_PH[stone_axe_ref$type_simple == "groundstone axe"])
+                                               3*median(stone_axe_ref$total_PH[stone_axe_ref$type_simple == "groundstone axe"])
                                              *stone_axe_predict$grind_perc*log(stone_axe_predict$mohs_tough),
 
                                              stone_axe_predict$objectType == "axe-hammer (faceted)" ~
-                                               3*median(stone_axe_ref$total_PH[stone_axe_ref$type_simple == "groundstone axe"])
+                                               4*median(stone_axe_ref$total_PH[stone_axe_ref$type_simple == "groundstone axe"])
                                              *stone_axe_predict$grind_perc*log(stone_axe_predict$mohs_tough),
 
                                              stone_axe_predict$objectType == "axe" | stone_axe_predict$objectType == "flat axe"
@@ -50,6 +50,7 @@ stone_arch_plot <- ggplot(stone_axe_predict, aes(x = objectType, y = PH_raw, alp
   theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1))+
   scale_alpha(range=c(0.3,1), limits=c(0,1), na.value = 0)
 
+#ggplotly(stone_arch_plot)
 
 #1 hour for axe-hammer handles (Informant MK), using flint axe handle variable for flat axes,
 #and adding 1 hour for birch tar glue
@@ -59,12 +60,12 @@ stone_axe_predict$handle <- dplyr::case_when(
   stone_axe_predict$objectType == "axe" ~ axeAdze_handleMedian+1,
   stone_axe_predict$objectType == "flat axe" ~ axeAdze_handleMedian+1)
 
-#skill bonus *2.0 high level (the general level of crafts people in experiments and interviews)
+#skill bonus *0.4 medium level
 stone_axe_predict$skill_bonus <- dplyr::case_when(
-  stone_axe_predict$objectType == "axe-hammer" ~ stone_axe_predict$PH_raw*2.0,
-  stone_axe_predict$objectType == "axe-hammer (faceted)" ~ stone_axe_predict$PH_raw*2.0,
-  stone_axe_predict$objectType == "axe" ~ stone_axe_predict$PH_raw*2.0,
-  stone_axe_predict$objectType == "flat axe" ~ stone_axe_predict$PH_raw*2.0)
+  stone_axe_predict$objectType == "axe-hammer" ~ stone_axe_predict$PH_raw*0.4,
+  stone_axe_predict$objectType == "axe-hammer (faceted)" ~ stone_axe_predict$PH_raw*0.4,
+  stone_axe_predict$objectType == "axe" ~ stone_axe_predict$PH_raw*0.4,
+  stone_axe_predict$objectType == "flat axe" ~ stone_axe_predict$PH_raw*0.4)
 
 stone_axe_predict$scarcity_bonus <- dplyr::case_when(
   stone_axe_predict$source_distance_km > 5 ~
@@ -72,7 +73,7 @@ stone_axe_predict$scarcity_bonus <- dplyr::case_when(
 
 stone_axe_predict$travel_bonus <- stone_axe_predict$source_distance_km/7
 
-#adding lenght of axe bonus multiplying extraordinarily long axes by 0.2
+#adding length of axe bonus multiplying extraordinarily long axes by 0.2
 stone_axe_predict$length_bonus <- dplyr::case_when(
   stone_axe_predict$length_mm >= 130 ~ stone_axe_predict$PH_raw*0.2)
 

@@ -16,7 +16,7 @@
     <category field="science"/>
     <eissn>2514-8362</eissn>
     <summary>Harvard author-date style edited for Journal of Computer Applications in Archaeology.</summary>
-    <updated>2022-03-10T17:48:52+00:00</updated>
+    <updated>2022-07-26T11:16:57+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -35,7 +35,7 @@
   </macro>
   <macro name="author">
     <names variable="author">
-      <name and="text" delimiter-precedes-last="never" initialize-with=" " name-as-sort-order="all"/>
+      <name suffix="." and="text" delimiter-precedes-last="never" initialize-with="." name-as-sort-order="all"/>
       <label form="short" prefix=" "/>
       <substitute>
         <names variable="editor"/>
@@ -67,13 +67,13 @@
   <macro name="title">
     <choose>
       <if type="book webpage graphic" match="any">
-        <text variable="title" font-style="italic" suffix="."/>
+        <text variable="title" text-case="capitalize-first" font-style="italic" suffix="."/>
       </if>
       <else-if variable="container-title" match="none">
         <text variable="title" font-style="italic"/>
       </else-if>
       <else-if type="article-journal" match="any">
-        <text variable="title" suffix=","/>
+        <text variable="title" suffix="."/>
       </else-if>
       <else>
         <text variable="title" suffix="."/>
@@ -81,7 +81,7 @@
     </choose>
   </macro>
   <macro name="publisher">
-    <group delimiter=": " suffix=".">
+    <group delimiter=": ">
       <text variable="publisher-place"/>
       <text variable="publisher"/>
     </group>
@@ -136,7 +136,7 @@
       <if type="webpage post-weblog report" match="any">
         <group delimiter=" ">
           <text term="available at" text-case="capitalize-first"/>
-          <text variable="URL"/>
+          <text variable="URL" display="left-margin"/>
           <group delimiter=" " prefix="[" suffix="]">
             <text term="accessed" text-case="capitalize-first"/>
             <date form="text" variable="accessed"/>
@@ -171,7 +171,7 @@
     </sort>
     <layout suffix=".">
       <text macro="author"/>
-      <text macro="year-date" prefix=" "/>
+      <text macro="year-date" prefix=" " suffix="."/>
       <choose>
         <if type="thesis">
           <group prefix=" " delimiter=". ">
@@ -237,7 +237,7 @@
             <text variable="collection-title" suffix="."/>
             <text macro="edition" suffix="."/>
             <text macro="issued"/>
-            <text macro="publisher" suffix="."/>
+            <text macro="publisher" suffix=","/>
             <label variable="page" form="short"/>
             <text macro="pages"/>
           </group>

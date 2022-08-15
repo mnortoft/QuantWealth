@@ -155,7 +155,7 @@ summary(ObjectType_TOT_cor$Type)
 TOT_prestige_plot <- ggplot(ObjectType_TOT_cor, aes(x=reorder(Type, TOT), y=TOT, fill = Material))+
   geom_boxplot(outlier.shape = 21, outlier.size = 2)+
   geom_jitter(width = 0.1, height = 0.1, size = 0.1, alpha = 0.5)+
-  theme(axis.text.x = element_text (angle = 90))+
+  theme(axis.text.x = element_text (angle = 90), axis.text.y = element_text (size = 8), axis.title = element_text(size = 9), plot.title = element_text(size=10))+
   labs(title = "Association of each grave good type with total object types", x ="Grave good type (type total)", y = "Total object types")+
   scale_y_continuous(breaks = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), minor_breaks = NULL)
 
