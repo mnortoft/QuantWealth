@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 Title <- "Quantifying Grave Wealth"
 ```
 
-# Quantifying Grave Wealth
+# Repository for the paper "A new Framework for Quantifying Grave Wealth"
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mnortoft/QuantGraveWealth/master?urlpath=rstudio)
 
