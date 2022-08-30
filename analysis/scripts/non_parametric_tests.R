@@ -118,6 +118,10 @@ KruskWall_adu_vs_juvenis <- filter(KruskWall_adu_vs_juvenis, age_group != "matur
 KruskWall_adu_vs_juvenis <- filter(KruskWall_adu_vs_juvenis, age_group != "infans")
 KW_adu_vs_juv_PC2 <- kruskal.test(PC2 ~ age_group, data = KruskWall_adu_vs_juvenis)
 
+Wilcox_PC2_juv <- filter(KruskWall_PCA, age_group == "juvenis")
+Wilcox_PC2_adu <- filter(KruskWall_PCA, age_group == "adultus")
+wilcox_PC2_adu_vs_juv <- wilcox.test(Wilcox_PC2_juv$PC2, Wilcox_PC2_adu$PC2)
+
 adu_juvenis_PC2_box <- ggplot(KruskWall_adu_vs_juvenis, aes(age_group, PC2))+
   geom_boxplot()+
   geom_jitter(width = 0.1)
@@ -171,7 +175,7 @@ wilcox_age_raw$adultus_boolean <- case_when(wilcox_age_raw$ageGroup == "infans" 
                                            wilcox_age_raw$ageGroup == "maturus" ~ "non-adultus",
                                          wilcox_age_raw$ageGroup == "adultus" ~ "adultus")
 
-#choose only males and females (in separate objects)
+#choose only adultus and non-adultus and females (in separate objects)
 wilcox_raw_adultus <- subset(wilcox_age_raw, adultus_boolean == c('adultus'))
 wilcox_raw_non_adultus <- subset(wilcox_age_raw, adultus_boolean == c('non-adultus'))
 
@@ -187,7 +191,12 @@ KruskWall_juven_adultus <- KruskWall_raw %>%
   filter(ageGroup != "maturus") %>%
   filter(ageGroup != "infans")
 kruskal.test(meat ~ ageGroup, data = KruskWall_juven_adultus)
+wilcox_juvenis_meat <- dplyr::filter(KruskWall_raw, ageGroup == "juvenis")
+Wilcox_meat_juv_vs_adu <- wilcox.test(wilcox_raw_adultus$meat, wilcox_juvenis_meat$meat, exact = FALSE)
 
+juv_adult_box <- ggplot(KruskWall_juven_adultus, aes(x= ageGroup, y= meat))+
+  geom_boxplot()+
+  geom_jitter(width = 0.1)
 #Test meat column between all other groups but adultus
 KruskWall_non_adultus <- KruskWall_raw %>%
   filter(ageGroup != "adultus")
