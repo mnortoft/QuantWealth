@@ -1,34 +1,35 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Repository for the paper “A new Framework for Quantifying Grave Wealth”
+# Repository for the paper “A new Framework for Quantifying Prehistoric Grave Wealth”
 
 This repository contains the data and code for our paper:
 
-> Nørtoft, Mikkel, (2022). *A new Framework for Quantifying Grave
-> Wealth*. Name of journal/book <https://doi.org/xxx/xxx>
+> Nørtoft, Mikkel, (2022). A new Framework for Quantifying Prehistoric
+> Grave Wealth. *Journal of Computer Applications in Archaeology, 5(1)*,
+> pp. 123-139 <https://doi.org/10.5334/jcaa.86>
 
 The paper quantifies grave wealth from eight different parameters, and
-uses these to identify potential wealth classes and calculate Gini
-indices using Moravian Corded Ware Culture (CWC) graves as a case study.
-One of the eight parameters is (estimated) manufacturing time of grave
-goods. The extensive Supplementary Information (SI) in this repository
-goes into more detail about how manufacturing time is calculated based
-on primarily experimental reference data, and then applied to
-archaeological data from different material-specific parameters. The SI
-(open SI.html in a separate window or tab) also elaborates on other
-theoretical, methodological, and contextual aspects that could not fit
-in the main paper. Apart from this, all R-scripts, reference data and
-archaeological data (grave and grave good data from Moravian CWC, and
-geodata for raw material sources from around Europe) used in the main
-paper and the SI can be found in this repository.
+use these in correlation with demographic factors and for calculating
+Gini indices using Moravian Corded Ware Culture (CWC) graves as a case
+study. One of the eight parameters is (estimated) manufacturing time of
+grave goods. The extensive Supplementary Information (SI) in this
+repository goes into more detail about how manufacturing time is
+calculated based on primarily experimental reference data, and then
+applied to archaeological data from different material-specific
+parameters. The SI (open SI.html in a separate window or tab) also
+elaborates on other theoretical, methodological, and contextual aspects
+that could not fit in the main paper. Apart from this, all R-scripts,
+reference data and archaeological data (grave and grave good data from
+Moravian CWC, and geodata for raw material sources from around Europe)
+used in the main paper and the SI can be found in this repository.
 
 ### How to cite
 
 Please cite this compendium as:
 
-> Authors, (2022). *Repository for A new Framework for Quantifying Grave
-> Wealth*. Accessed 15 aug 2022.
+> Authors, (2022). *Repository for A new Framework for Quantifying
+> Prehistoric Grave Wealth*. Accessed 13 sep 2022.
 
 ## Contents
 
