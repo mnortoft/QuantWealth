@@ -28,7 +28,7 @@ Apart from this, all R-scripts, reference data and archaeological data (grave an
 
 Please cite this compendium as:
 
-> Authors, (`r format(Sys.Date(), "%Y")`). _Repository for `r Title`_. Accessed `r format(Sys.Date(), "%d %b %Y")`. 
+> Nørtoft, Mikkel, (`r format(Sys.Date(), "%Y")`). _Repository for `r Title`_. Accessed `r format(Sys.Date(), "%d %b %Y")`. 
 
 ## Contents
 

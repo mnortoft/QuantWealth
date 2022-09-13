@@ -28,8 +28,8 @@ used in the main paper and the SI can be found in this repository.
 
 Please cite this compendium as:
 
-> Authors, (2022). *Repository for A new Framework for Quantifying
-> Prehistoric Grave Wealth*. Accessed 13 sep 2022.
+> Nørtoft, Mikkel, (2022). *Repository for A new Framework for
+> Quantifying Prehistoric Grave Wealth*. Accessed 13 sep 2022.
 
 ## Contents
 
